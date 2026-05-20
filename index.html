@@ -1,64 +1,1442 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="KDExpress Fulfillment - Coming Soon" />
-  <title>KDExpress Fulfillment — Coming Soon</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📦</text></svg>" />
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background: #ffffff;
-      color: #111;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      -webkit-font-smoothing: antialiased;
-    }
-    main {
-      text-align: center;
-      max-width: 560px;
-    }
-    .brand {
-      font-size: 14px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: #6b7280;
-      margin-bottom: 24px;
-    }
-    h1 {
-      font-size: clamp(36px, 6vw, 56px);
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      margin-bottom: 16px;
-    }
-    p {
-      font-size: 16px;
-      color: #6b7280;
-      line-height: 1.6;
-    }
-    footer {
-      position: fixed;
-      bottom: 24px;
-      left: 0;
-      right: 0;
-      text-align: center;
-      font-size: 12px;
-      color: #9ca3af;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KDEXPRESS · Canada operations infrastructure for global eCommerce brands</title>
+<style>
+  :root{
+    --ink:#0b0c0f;
+    --ink-2:#1b1d22;
+    --ink-3:#3a3d44;
+    --muted:#6b7280;
+    --line:#e8eaed;
+    --line-2:#f1f3f5;
+    --bg:#ffffff;
+    --bg-soft:#f7f8fa;
+    --bg-dark:#0b0c0f;
+    --bg-dark-2:#121419;
+
+    --green:#16a34a;
+    --green-dark:#15803d;
+    --green-soft:#e8f7ee;
+    --green-line:#bbe7c8;
+
+    --amber:#b45309;
+    --amber-soft:#fef3c7;
+    --red:#b91c1c;
+    --red-soft:#fee2e2;
+    --blue:#1d4ed8;
+    --blue-soft:#dbeafe;
+
+    --mono:ui-monospace,SFMono-Regular,Menlo,"JetBrains Mono",Consolas,monospace;
+    --shadow-sm:0 1px 2px rgba(15,23,42,.04),0 1px 1px rgba(15,23,42,.03);
+    --shadow:0 10px 30px -12px rgba(15,23,42,.12),0 4px 10px -4px rgba(15,23,42,.06);
+    --shadow-lg:0 30px 80px -30px rgba(15,23,42,.35),0 6px 20px -8px rgba(15,23,42,.12);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",Roboto,sans-serif;
+    color:var(--ink);background:var(--bg);
+    line-height:1.55;letter-spacing:-0.005em;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{display:block;max-width:100%;height:auto;}
+  a{color:inherit;text-decoration:none;}
+  .container{max-width:1180px;margin:0 auto;padding:0 24px;}
+  .mono{font-family:var(--mono);font-feature-settings:"ss01","tnum";}
+
+  /* ───── Header ───── */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.85);
+    backdrop-filter:saturate(180%) blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:1.5px;font-size:14px;}
+  .logo-mark{width:28px;height:28px;border-radius:7px;background:var(--green);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:13px;}
+  .nav-links{display:flex;gap:26px;font-size:13.5px;color:var(--ink-3);font-weight:500;}
+  .nav-links a:hover{color:var(--ink);}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:9px 16px;border-radius:8px;font-size:13.5px;font-weight:600;
+    transition:all .15s ease;cursor:pointer;border:0;
+  }
+  .btn-primary{background:var(--ink);color:#fff;}
+  .btn-primary:hover{background:#000;transform:translateY(-1px);}
+  .btn-green{background:var(--green);color:#fff;}
+  .btn-green:hover{background:var(--green-dark);}
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line);}
+  .btn-ghost:hover{border-color:var(--ink);}
+
+  /* ───── Hero ───── */
+  .hero{padding:88px 0 64px;position:relative;overflow:hidden;}
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(800px 400px at 20% -10%,rgba(22,163,74,.06),transparent 60%),
+      radial-gradient(600px 400px at 90% 0%,rgba(29,78,216,.04),transparent 60%);
+    pointer-events:none;z-index:0;
+  }
+  .hero .container{position:relative;z-index:1;}
+  .hero-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--mono);font-size:11.5px;font-weight:600;
+    letter-spacing:1.2px;color:var(--ink-3);text-transform:uppercase;
+    padding:6px 12px;border:1px solid var(--line);border-radius:999px;
+    background:rgba(255,255,255,.6);
+    margin-bottom:24px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(22,163,74,.18);}
+  h1{
+    font-size:clamp(36px,5vw,60px);line-height:1.02;font-weight:700;
+    letter-spacing:-0.035em;margin-bottom:22px;
+  }
+  h1 .accent{
+    background:linear-gradient(180deg,var(--green) 0%,var(--green-dark) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .lede{font-size:18px;color:var(--ink-3);margin-bottom:28px;max-width:540px;line-height:1.6;}
+  .hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px;}
+  .hero-meta{display:flex;gap:8px;flex-wrap:wrap;}
+  .hero-meta .chip{
+    font-family:var(--mono);font-size:11.5px;font-weight:600;
+    padding:6px 10px;border:1px solid var(--line);border-radius:6px;
+    color:var(--ink-3);background:#fff;
+  }
+  .hero-meta .chip b{color:var(--ink);font-weight:700;}
+
+  /* Hero visual: dashboard + warehouse hybrid */
+  .hero-visual{position:relative;}
+  .hero-visual .photo{
+    border-radius:14px;overflow:hidden;
+    box-shadow:var(--shadow-lg);aspect-ratio:16/10;
+    border:1px solid var(--line);background:#fff;
+  }
+  .hero-visual .photo img{width:100%;height:100%;object-fit:cover;object-position:top left;}
+  .hero-visual .ws-snip{
+    position:absolute;bottom:-26px;right:-22px;
+    width:178px;aspect-ratio:1;border-radius:14px;overflow:hidden;
+    box-shadow:var(--shadow-lg);border:3px solid #fff;
+  }
+  .hero-visual .ws-snip img{width:100%;height:100%;object-fit:cover;}
+  .hero-visual .ws-snip .ws-tag{
+    position:absolute;left:10px;bottom:10px;
+    font-family:var(--mono);font-size:9.5px;font-weight:700;
+    background:rgba(11,12,15,.82);color:#fff;padding:4px 8px;border-radius:5px;
+    text-transform:uppercase;letter-spacing:.7px;backdrop-filter:blur(4px);
+  }
+  .hero-visual .ui-float{
+    position:absolute;border-radius:12px;background:#fff;
+    box-shadow:var(--shadow-lg);border:1px solid var(--line);
+    padding:14px 16px;font-size:12.5px;
+  }
+  .hero-visual .ui-float .row{display:flex;align-items:center;gap:10px;}
+  .hero-visual .ui-float .status-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(22,163,74,.2);}
+  .hero-visual .ui-float.tl{top:-22px;left:-22px;}
+  .hero-visual .ui-float.br{bottom:-22px;right:-22px;}
+  .hero-visual .ui-float .label{font-family:var(--mono);font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;}
+  .hero-visual .ui-float .value{font-weight:700;font-size:14px;color:var(--ink);}
+  .hero-visual .ui-float .pill{
+    font-family:var(--mono);font-size:10.5px;font-weight:600;
+    padding:3px 8px;border-radius:5px;
+    background:var(--green-soft);color:var(--green-dark);
+  }
+
+  /* ───── Logo strip ───── */
+  .strip{padding:28px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-soft);}
+  .strip-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+  .strip-label{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.4px;font-weight:600;}
+  .strip-logos{display:flex;gap:36px;flex-wrap:wrap;font-weight:700;letter-spacing:1.2px;font-size:13px;color:#a1a8b3;}
+
+  /* ───── Section base ───── */
+  section{padding:96px 0;}
+  .section-eyebrow{
+    display:inline-block;font-family:var(--mono);font-size:11.5px;font-weight:700;
+    letter-spacing:1.5px;color:var(--green-dark);text-transform:uppercase;margin-bottom:14px;
+  }
+  h2{
+    font-size:clamp(28px,3.4vw,40px);line-height:1.08;
+    letter-spacing:-0.028em;font-weight:700;margin-bottom:14px;
+  }
+  .section-head{max-width:660px;margin-bottom:48px;}
+  .section-head p{font-size:17px;color:var(--ink-3);line-height:1.6;}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+
+  /* ───── Pillars (replaced feature grid) ───── */
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);}
+  .pillar{padding:32px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff;transition:background .15s ease;}
+  .pillar:hover{background:var(--bg-soft);}
+  .pillar .ic{
+    width:36px;height:36px;border-radius:8px;
+    background:var(--green-soft);color:var(--green-dark);
+    display:flex;align-items:center;justify-content:center;font-size:18px;
+    margin-bottom:18px;border:1px solid var(--green-line);
+  }
+  .pillar h3{font-size:17px;font-weight:700;margin-bottom:8px;letter-spacing:-.01em;}
+  .pillar p{font-size:14.5px;color:var(--ink-3);line-height:1.55;}
+
+  /* ───── Software showcase ───── */
+  .showcase{background:var(--bg-soft);}
+  .showcase-row{display:grid;grid-template-columns:1fr 1.35fr;gap:56px;align-items:center;margin-bottom:88px;}
+  .showcase-row:last-child{margin-bottom:0;}
+  .showcase-row.reverse{grid-template-columns:1.35fr 1fr;}
+  .showcase-row.reverse .showcase-img{order:-1;}
+  .showcase-img{
+    border-radius:12px;overflow:hidden;
+    box-shadow:var(--shadow-lg);
+    border:1px solid var(--line);background:#fff;
+  }
+  .showcase-img img{width:100%;height:auto;display:block;}
+  .module-tag{
+    display:inline-flex;align-items:center;gap:8px;
+    background:#fff;border:1px solid var(--line);
+    padding:5px 10px;border-radius:6px;font-family:var(--mono);
+    font-size:11px;font-weight:600;color:var(--ink-3);
+    text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;
+  }
+  .module-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
+  .showcase-row h3{font-size:26px;font-weight:700;letter-spacing:-.02em;margin-bottom:12px;line-height:1.15;}
+  .showcase-row p{font-size:15.5px;color:var(--ink-3);line-height:1.6;}
+  .check-list{margin-top:20px;display:grid;gap:10px;}
+  .check-list li{display:flex;gap:10px;align-items:flex-start;list-style:none;font-size:14.5px;color:var(--ink-3);}
+  .check-list .ck{flex-shrink:0;width:18px;height:18px;border-radius:5px;background:var(--green-soft);color:var(--green-dark);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;margin-top:2px;border:1px solid var(--green-line);}
+
+  /* ───── Settlement section (dark) ───── */
+  .settlement{background:var(--bg-dark);color:#fff;position:relative;overflow:hidden;}
+  .settlement::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(700px 400px at 80% 0%,rgba(22,163,74,.12),transparent 60%),
+      radial-gradient(600px 400px at 10% 100%,rgba(29,78,216,.08),transparent 60%);
+    pointer-events:none;
+  }
+  .settlement .container{position:relative;}
+  .settlement h2,.exception h2{color:#fff;}
+  .settlement p,.exception p{color:#a1a8b3;}
+  .settlement .section-eyebrow,.exception .section-eyebrow{color:#86efac;}
+  .settle-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+  .settle-cards{display:grid;gap:14px;}
+  .settle-card{
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:12px;padding:20px;
+    transition:all .2s ease;
+  }
+  .settle-card:hover{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.06);}
+  .settle-card .head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+  .settle-card .head .left{display:flex;align-items:center;gap:10px;}
+  .settle-card .head .ic-circle{width:32px;height:32px;border-radius:8px;background:rgba(22,163,74,.18);color:#86efac;display:flex;align-items:center;justify-content:center;font-size:15px;}
+  .settle-card .head .title{font-weight:700;font-size:14px;color:#fff;}
+  .settle-card .head .sub{font-family:var(--mono);font-size:11px;color:#9ca3af;margin-top:2px;}
+  .settle-card .amount{font-family:var(--mono);font-size:26px;font-weight:700;color:#fff;letter-spacing:-.02em;}
+  .settle-card .meta{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;padding-top:14px;border-top:1px solid rgba(255,255,255,.08);font-family:var(--mono);font-size:11px;color:#9ca3af;}
+  .settle-card .meta b{color:#e5e7eb;font-weight:600;}
+  .status-pill{
+    display:inline-flex;align-items:center;gap:6px;
+    font-family:var(--mono);font-size:10.5px;font-weight:600;
+    padding:3px 8px;border-radius:5px;
+  }
+  .status-pill.green{background:rgba(22,163,74,.18);color:#86efac;}
+  .status-pill.amber{background:rgba(180,83,9,.22);color:#fcd34d;}
+  .status-pill.red{background:rgba(185,28,28,.22);color:#fca5a5;}
+  .status-pill.blue{background:rgba(29,78,216,.22);color:#93c5fd;}
+  .status-pill .ddot{width:5px;height:5px;border-radius:50%;background:currentColor;}
+
+  /* Reconciliation flow */
+  .recon-flow{
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+    border-radius:12px;padding:22px;
+  }
+  .recon-flow .step{display:flex;gap:14px;padding:12px 0;border-bottom:1px dashed rgba(255,255,255,.1);}
+  .recon-flow .step:last-child{border-bottom:0;padding-bottom:0;}
+  .recon-flow .step:first-child{padding-top:0;}
+  .recon-flow .num{
+    flex-shrink:0;width:24px;height:24px;border-radius:6px;
+    background:rgba(255,255,255,.06);color:#fff;font-family:var(--mono);
+    font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;
+    border:1px solid rgba(255,255,255,.1);
+  }
+  .recon-flow .body{flex:1;}
+  .recon-flow .body .t{font-weight:600;font-size:13.5px;color:#fff;margin-bottom:2px;}
+  .recon-flow .body .d{font-size:12.5px;color:#9ca3af;line-height:1.5;}
+
+  /* ───── Payment Operations workflow ───── */
+  .payops{background:#fff;border-top:1px solid var(--line);}
+  .payops-stages{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    border:1px solid var(--line);border-radius:14px;overflow:hidden;
+    background:#fff;margin-bottom:48px;
+  }
+  .payops-stage{
+    padding:24px;border-right:1px solid var(--line);position:relative;
+    background:linear-gradient(180deg,#fff 0%,var(--bg-soft) 100%);
+  }
+  .payops-stage:last-child{border-right:0;}
+  .payops-stage .stage-num{
+    font-family:var(--mono);font-size:11px;font-weight:700;
+    color:var(--green-dark);letter-spacing:1.2px;margin-bottom:10px;
+  }
+  .payops-stage h3{font-size:15.5px;font-weight:700;letter-spacing:-.01em;margin-bottom:6px;}
+  .payops-stage p{font-size:13px;color:var(--ink-3);line-height:1.5;}
+  .payops-stage .badge-row{display:flex;gap:5px;margin-top:12px;flex-wrap:wrap;}
+  .payops-stage .badge{
+    font-family:var(--mono);font-size:10px;font-weight:600;
+    padding:3px 7px;border-radius:4px;
+    background:#fff;border:1px solid var(--line);color:var(--ink-3);
+  }
+
+  .payops-detail{display:grid;grid-template-columns:1fr 1.1fr;gap:24px;align-items:start;}
+
+  /* Email extraction mock */
+  .email-mock{
+    border:1px solid var(--line);border-radius:14px;background:#fff;
+    box-shadow:var(--shadow);overflow:hidden;
+  }
+  .email-mock .em-head{
+    padding:14px 18px;border-bottom:1px solid var(--line);
+    background:var(--bg-soft);display:flex;align-items:center;justify-content:space-between;
+  }
+  .email-mock .em-head .et{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;}
+  .email-mock .em-head .dot-row{display:flex;gap:5px;}
+  .email-mock .em-head .dot-row span{width:10px;height:10px;border-radius:50%;background:var(--line);}
+  .email-mock .em-body{padding:18px;font-family:var(--mono);font-size:12.5px;line-height:1.7;color:var(--ink-2);}
+  .email-mock .em-body .row{display:flex;gap:10px;}
+  .email-mock .em-body .lbl{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.6px;width:62px;flex-shrink:0;padding-top:2px;}
+  .email-mock .em-body .val{color:var(--ink);}
+  .email-mock .em-body .msg-box{
+    margin-top:10px;padding:12px;border-radius:8px;
+    background:var(--bg-soft);border:1px dashed var(--line);
+    color:var(--ink-3);font-size:12px;line-height:1.5;
+  }
+  .email-mock .em-body mark{background:rgba(22,163,74,.14);color:var(--green-dark);padding:1px 4px;border-radius:3px;font-weight:600;}
+  .email-mock .em-arrow{
+    text-align:center;padding:14px;color:var(--muted);font-size:18px;
+    border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);
+    background:var(--bg-soft);
+  }
+  .email-mock .em-extracted{padding:18px;}
+  .email-mock .em-extracted .et-row{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:8px 0;border-bottom:1px solid var(--line-2);
+    font-family:var(--mono);font-size:12.5px;
+  }
+  .email-mock .em-extracted .et-row:last-child{border-bottom:0;}
+  .email-mock .em-extracted .et-key{color:var(--muted);text-transform:uppercase;font-size:10.5px;letter-spacing:.7px;}
+  .email-mock .em-extracted .et-val{color:var(--ink);font-weight:600;}
+  .email-mock .em-extracted .et-val.green{color:var(--green-dark);}
+
+  /* Customer-level settlement table mock */
+  .settle-table{
+    border:1px solid var(--line);border-radius:14px;background:#fff;
+    box-shadow:var(--shadow);overflow:hidden;
+  }
+  .settle-table .st-head{
+    padding:16px 18px;border-bottom:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;
+    background:var(--bg-soft);
+  }
+  .settle-table .st-head .left{display:flex;align-items:center;gap:8px;}
+  .settle-table .st-head .icon{width:24px;height:24px;border-radius:6px;background:var(--green-soft);color:var(--green-dark);display:flex;align-items:center;justify-content:center;font-size:12px;border:1px solid var(--green-line);}
+  .settle-table .st-head h4{font-size:13.5px;font-weight:700;letter-spacing:-.01em;}
+  .settle-table .st-head .sub{font-family:var(--mono);font-size:11px;color:var(--muted);}
+  .settle-table .st-table{font-size:12.5px;}
+  .settle-table .st-row{
+    display:grid;grid-template-columns:1.4fr .9fr .7fr .9fr .9fr;
+    gap:8px;padding:11px 18px;border-bottom:1px solid var(--line-2);
+    align-items:center;
+  }
+  .settle-table .st-row:last-child{border-bottom:0;}
+  .settle-table .st-row.head-row{
+    background:var(--bg-soft);font-family:var(--mono);font-size:10.5px;
+    color:var(--muted);text-transform:uppercase;letter-spacing:.7px;font-weight:600;
+    padding-top:10px;padding-bottom:10px;
+  }
+  .settle-table .st-row .cust{display:flex;align-items:center;gap:8px;font-weight:600;color:var(--ink);}
+  .settle-table .st-row .cust .av{width:22px;height:22px;border-radius:5px;background:var(--green-soft);color:var(--green-dark);display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;font-family:var(--mono);border:1px solid var(--green-line);}
+  .settle-table .st-row .num{font-family:var(--mono);color:var(--ink);font-weight:600;}
+  .settle-table .st-row .num.pos{color:var(--green-dark);}
+  .settle-table .st-row .num.neg{color:var(--amber);}
+  .settle-table .st-pill{
+    font-family:var(--mono);font-size:9.5px;font-weight:700;
+    padding:2px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:.5px;
+    width:fit-content;
+  }
+  .settle-table .st-pill.green{background:var(--green-soft);color:var(--green-dark);border:1px solid var(--green-line);}
+  .settle-table .st-pill.amber{background:var(--amber-soft);color:var(--amber);border:1px solid #fde68a;}
+  .settle-table .st-pill.blue{background:var(--blue-soft);color:var(--blue);border:1px solid #bfdbfe;}
+  .settle-table .st-foot{
+    padding:14px 18px;border-top:1px solid var(--line);background:var(--bg-soft);
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--mono);font-size:11px;color:var(--muted);
+  }
+  .settle-table .st-foot b{color:var(--ink);font-weight:700;}
+
+  .payops-callout{
+    margin-top:32px;padding:20px 22px;border-radius:12px;
+    background:var(--green-soft);border:1px solid var(--green-line);
+    display:flex;gap:14px;align-items:flex-start;
+  }
+  .payops-callout .ic{
+    flex-shrink:0;width:32px;height:32px;border-radius:8px;
+    background:#fff;color:var(--green-dark);
+    display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;
+    border:1px solid var(--green-line);
+  }
+  .payops-callout .t{font-weight:700;font-size:14.5px;color:var(--ink);margin-bottom:4px;letter-spacing:-.01em;}
+  .payops-callout .d{font-size:13.5px;color:var(--ink-3);line-height:1.55;}
+
+  /* ───── Exception management section ───── */
+  .exception{background:var(--bg-dark-2);color:#fff;border-top:1px solid rgba(255,255,255,.06);}
+  .exc-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:start;}
+  .alert-stack{display:grid;gap:12px;}
+  .alert{
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    border-left:3px solid var(--amber);
+    border-radius:10px;padding:16px 18px;
+  }
+  .alert.red{border-left-color:#dc2626;}
+  .alert.amber{border-left-color:#d97706;}
+  .alert.blue{border-left-color:#3b82f6;}
+  .alert .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+  .alert .top .who{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;color:#9ca3af;}
+  .alert .top .who b{color:#fff;font-weight:700;}
+  .alert .top .age{font-family:var(--mono);font-size:11px;color:#6b7280;}
+  .alert .msg{font-size:14px;color:#e5e7eb;line-height:1.5;margin-bottom:10px;}
+  .alert .foot{display:flex;align-items:center;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:11px;color:#9ca3af;}
+  .alert .foot .actions{display:flex;gap:6px;}
+  .alert .mini-btn{
+    font-family:var(--mono);font-size:10.5px;font-weight:600;
+    padding:4px 8px;border-radius:5px;
+    background:rgba(255,255,255,.06);color:#e5e7eb;
+    border:1px solid rgba(255,255,255,.1);cursor:pointer;
+  }
+  .alert .mini-btn:hover{background:rgba(255,255,255,.1);}
+  .alert .mini-btn.primary{background:rgba(22,163,74,.2);color:#86efac;border-color:rgba(22,163,74,.3);}
+
+  .exc-summary{
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+    border-radius:12px;padding:22px;margin-top:14px;
+  }
+  .exc-summary .row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,.1);font-size:13px;color:#cbd5e1;}
+  .exc-summary .row:last-child{border-bottom:0;}
+  .exc-summary .row .count{font-family:var(--mono);font-weight:700;color:#fff;font-size:14px;}
+
+  /* ───── Flexible workflows ───── */
+  .flex-flow{background:#fff;}
+  .flow-card{
+    border:1px solid var(--line);border-radius:14px;padding:32px;
+    background:#fff;box-shadow:var(--shadow-sm);
+  }
+  .flow-diagram{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+    align-items:stretch;margin-top:24px;
+  }
+  .flow-node{
+    border:1px solid var(--line);border-radius:10px;padding:18px;
+    background:var(--bg-soft);position:relative;
+  }
+  .flow-node .head{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+  .flow-node .head .ic-sq{
+    width:28px;height:28px;border-radius:6px;background:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:14px;
+    border:1px solid var(--line);color:var(--ink);
+  }
+  .flow-node .head .t{font-weight:700;font-size:13.5px;color:var(--ink);}
+  .flow-node .lst{display:grid;gap:5px;font-family:var(--mono);font-size:11px;color:var(--ink-3);}
+  .flow-node .lst span{padding-left:12px;position:relative;}
+  .flow-node .lst span::before{content:"›";position:absolute;left:0;color:var(--green);}
+  .flow-arrow{display:none;}
+  @media (min-width:961px){
+    .flow-diagram{grid-template-columns:1fr 24px 1fr 24px 1fr 24px 1fr;}
+    .flow-arrow{display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:18px;}
+  }
+
+  /* ───── Why sellers switch ───── */
+  .why{background:var(--bg-soft);}
+  .why-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:start;}
+  .why-quote{
+    font-size:24px;font-weight:600;line-height:1.35;
+    letter-spacing:-.018em;color:var(--ink);
+  }
+  .why-quote .accent{color:var(--green-dark);}
+  .why-quote em{font-style:normal;color:var(--muted);font-weight:500;}
+  .why-attrib{margin-top:24px;display:flex;align-items:center;gap:12px;font-size:13px;color:var(--ink-3);}
+  .why-attrib .av{width:36px;height:36px;border-radius:50%;background:var(--green-soft);color:var(--green-dark);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;border:1px solid var(--green-line);}
+  .why-list{display:grid;gap:0;border-top:1px solid var(--line);}
+  .why-list .item{display:grid;grid-template-columns:36px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);}
+  .why-list .num{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--muted);}
+  .why-list .t{font-weight:700;font-size:15px;margin-bottom:4px;letter-spacing:-.01em;}
+  .why-list .d{font-size:14px;color:var(--ink-3);line-height:1.55;}
+
+  /* ───── Operations (the team behind the platform) ───── */
+  .ops{background:#fff;}
+  .ops-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .ops-card{border-radius:12px;overflow:hidden;background:#fff;border:1px solid var(--line);transition:all .2s ease;}
+  .ops-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+  .ops-img{aspect-ratio:4/3;overflow:hidden;background:#000;}
+  .ops-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;}
+  .ops-card:hover .ops-img img{transform:scale(1.04);}
+  .ops-body{padding:18px;}
+  .ops-step{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--green-dark);letter-spacing:1.2px;}
+  .ops-body h3{font-size:15.5px;font-weight:700;margin:5px 0 6px;letter-spacing:-.01em;}
+  .ops-body p{font-size:13.5px;color:var(--ink-3);line-height:1.5;}
+
+  /* ───── Storage (smaller, scan-tracked framing) ───── */
+  .storage{background:var(--bg-soft);}
+  .storage-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+  .storage-gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .storage-gallery .g{aspect-ratio:3/4;border-radius:10px;overflow:hidden;position:relative;}
+  .storage-gallery .g img{width:100%;height:100%;object-fit:cover;}
+  .storage-gallery .g .cap{
+    position:absolute;left:10px;bottom:10px;right:10px;
+    background:rgba(11,12,15,.78);backdrop-filter:blur(6px);
+    color:#fff;font-family:var(--mono);font-size:10.5px;font-weight:600;
+    padding:5px 8px;border-radius:5px;letter-spacing:.5px;
+  }
+  .storage-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:24px;}
+  .storage-stats .s{padding:16px;border:1px solid var(--line);border-radius:10px;background:#fff;}
+  .storage-stats .s strong{display:block;font-family:var(--mono);font-size:22px;font-weight:700;color:var(--ink);letter-spacing:-.02em;}
+  .storage-stats .s span{font-size:12.5px;color:var(--muted);}
+
+  /* ───── Carriers ───── */
+  .carrier-section{background:#fff;}
+  .carrier{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;}
+  .carrier-img{border-radius:14px;overflow:hidden;aspect-ratio:4/3;border:1px solid var(--line);box-shadow:var(--shadow);}
+  .carrier-img img{width:100%;height:100%;object-fit:cover;}
+  .carrier-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:20px;}
+  .carrier-tag{
+    display:flex;align-items:center;gap:8px;
+    padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:#fff;
+    font-size:13.5px;font-weight:500;color:var(--ink-3);
+  }
+  .carrier-tag .dot{width:8px;height:8px;border-radius:50%;background:var(--green);}
+  .carrier-tag b{color:var(--ink);font-weight:600;}
+
+  /* ───── Location ───── */
+  .location{background:var(--bg-soft);}
+  .location-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;}
+  .location-img{border-radius:14px;overflow:hidden;aspect-ratio:3/2;border:1px solid var(--line);box-shadow:var(--shadow);}
+  .location-img img{width:100%;height:100%;object-fit:cover;}
+  .addr-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;margin-top:24px;}
+  .addr-card .row{display:flex;gap:14px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13.5px;}
+  .addr-card .row:last-child{border-bottom:0;}
+  .addr-card .label{width:88px;color:var(--muted);font-family:var(--mono);font-weight:600;text-transform:uppercase;font-size:10.5px;letter-spacing:1px;padding-top:2px;}
+  .addr-card .val{color:var(--ink);font-weight:500;}
+
+  /* ───── CTA ───── */
+  .cta{background:var(--bg-dark);color:#fff;position:relative;overflow:hidden;}
+  .cta::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(700px 400px at 50% 0%,rgba(22,163,74,.18),transparent 60%);
+    pointer-events:none;
+  }
+  .cta .container{position:relative;text-align:center;}
+  .cta h2{color:#fff;margin-bottom:14px;}
+  .cta p{color:#a1a8b3;font-size:17px;margin-bottom:28px;max-width:560px;margin-left:auto;margin-right:auto;}
+  .cta .btn-primary{background:#fff;color:var(--ink);}
+  .cta .btn-primary:hover{background:#f7f8fa;}
+  .cta .btn-ghost{color:#fff;border-color:rgba(255,255,255,.18);}
+  .cta .btn-ghost:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.04);}
+
+  /* ───── Footer ───── */
+  footer{background:#06070a;color:#9ca3af;padding:48px 0 28px;font-size:13.5px;border-top:1px solid rgba(255,255,255,.04);}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:32px;}
+  footer h4{color:#fff;font-family:var(--mono);font-size:11.5px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1.3px;font-weight:700;}
+  footer ul{list-style:none;display:grid;gap:8px;}
+  footer a:hover{color:#fff;}
+  .foot-bottom{padding-top:20px;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--mono);font-size:11.5px;color:#6b7280;}
+
+  /* ───── Responsive ───── */
+  @media (max-width:960px){
+    .hero-grid,.settle-grid,.exc-grid,.why-grid,.carrier,.location-grid,.storage-grid,.showcase-row,.showcase-row.reverse,.payops-detail{grid-template-columns:1fr;gap:40px;}
+    .showcase-row.reverse .showcase-img{order:0;}
+    .pillars{grid-template-columns:1fr;}
+    .ops-grid{grid-template-columns:1fr 1fr;}
+    .flow-diagram{grid-template-columns:1fr 1fr;}
+    .payops-stages{grid-template-columns:1fr 1fr;}
+    .payops-stage{border-right:0;border-bottom:1px solid var(--line);}
+    .payops-stage:nth-child(2){border-right:1px solid var(--line);border-right:0;}
+    .settle-table .st-row{grid-template-columns:1.5fr 1fr 1fr;}
+    .settle-table .st-row .col-hide{display:none;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+    .nav-links{display:none;}
+    section{padding:64px 0;}
+    .hero{padding:48px 0 32px;}
+    .hero-visual .ui-float.tl,.hero-visual .ui-float.br{display:none;}
+    .hero-visual .ws-snip{width:120px;bottom:-16px;right:-12px;}
+  }
+</style>
 </head>
 <body>
-  <main>
-    <div class="brand">KDExpress</div>
-    <h1>Fulfillment</h1>
-    <p>Coming soon.</p>
-  </main>
-  <footer>&copy; 2026 KDExpress. All rights reserved.</footer>
+
+<!-- ============= HEADER ============= -->
+<header>
+  <div class="container nav">
+    <div class="logo">
+      <div class="logo-mark">K</div>
+      <span>KDEXPRESS</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#platform">Platform</a>
+      <a href="#settlement">Settlement</a>
+      <a href="#payment-ops">Payment ops</a>
+      <a href="#exceptions">Exceptions</a>
+      <a href="#workflows">Workflows</a>
+      <a href="#operations">Operations</a>
+      <a href="#location">Company</a>
+    </nav>
+    <a class="btn btn-primary" href="#cta">Talk to operations →</a>
+  </div>
+</header>
+
+<!-- ============= HERO ============= -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot"></span> OPERATIONS INFRASTRUCTURE · CANADA</span>
+      <h1>Canada operations infrastructure for <span class="accent">global eCommerce brands</span>.</h1>
+      <p class="lede">Each seller gets their own operational workspace — a shared layer between your team and ours. Realtime visibility, exception detection and settlement workflows, for cross-border volume out of Canada.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#cta">Talk to operations →</a>
+        <a class="btn btn-ghost" href="#platform">See the platform</a>
+      </div>
+      <div class="hero-meta">
+        <span class="chip"><b>Realtime</b> · order &amp; tracking pipeline</span>
+        <span class="chip"><b>EFT · COD</b> · settlement built-in</span>
+        <span class="chip"><b>Sheets · CSV · API</b> · flexible inputs</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="photo">
+        <img src="app1.png" alt="KDEXPRESS operations dashboard showing the live status pipeline, batches and activity feed" />
+      </div>
+      <div class="ui-float tl">
+        <div class="label">LIVE PIPELINE</div>
+        <div class="row" style="margin-top:6px;gap:14px;">
+          <div><div class="value mono">243</div><div class="label" style="margin-top:0;">IN TRANSIT</div></div>
+          <div><div class="value mono" style="color:var(--amber);">13</div><div class="label" style="margin-top:0;">FLAGGED</div></div>
+        </div>
+      </div>
+      <div class="ws-snip">
+        <img src="gpt5.png" alt="KDEXPRESS operator at a pack station executing the workflow" />
+        <span class="ws-tag">REAL OPS · VANCOUVER</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= LOGO STRIP ============= -->
+<div class="strip">
+  <div class="container strip-inner">
+    <span class="strip-label">The operational stack our sellers actually run on</span>
+    <div class="strip-logos">
+      <span>GOOGLE SHEETS</span>
+      <span>CSV IMPORT</span>
+      <span>EMAIL-BASED OPS</span>
+      <span>CANADA POST</span>
+      <span>COD</span>
+      <span>EFT</span>
+      <span>SHOPIFY</span>
+      <span>API</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============= PILLARS ============= -->
+<section id="platform">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">The platform</span>
+      <h2>Stop managing Canada shipping through spreadsheets and inboxes.</h2>
+      <p>KDEXPRESS is the operational layer between your storefront and the package on the truck — six modules built around the way cross-border sellers actually work in Canada.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="ic">◎</div>
+        <h3>Realtime visibility</h3>
+        <p>Status pipeline from receive to delivered, updated as the warehouse scans. Same dashboard your team, your finance and your customer see.</p>
+      </div>
+      <div class="pillar">
+        <div class="ic">⚑</div>
+        <h3>Exception management</h3>
+        <p>Notice cards, failed delivery, address issues and returns surfaced in realtime — with a clear ownership trail, not buried in an inbox.</p>
+      </div>
+      <div class="pillar">
+        <div class="ic">$</div>
+        <h3>Settlement workflows</h3>
+        <p>EFT, e-Transfer and COD reconciliation built in. Weekly statements, payment routing and operational finance visibility — without spreadsheet chaos.</p>
+      </div>
+      <div class="pillar">
+        <div class="ic">⇄</div>
+        <h3>Flexible inputs</h3>
+        <p>Google Sheets, CSV upload, email-in or REST API. Built for operational teams, not idealized integrations.</p>
+      </div>
+      <div class="pillar">
+        <div class="ic">⌂</div>
+        <h3>Tracking intelligence</h3>
+        <p>Carrier events normalized across Canada Post, Purolator, UPS &amp; FedEx into one timeline. Customer-facing link generated automatically.</p>
+      </div>
+      <div class="pillar">
+        <div class="ic">⌬</div>
+        <h3>Operationally invisible</h3>
+        <p>Your customer sees your brand, not a warehouse. Branded label, packaging and tracking link — operationally invisible fulfillment, by design.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= SOFTWARE SHOWCASE ============= -->
+<section class="showcase">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">The product</span>
+      <h2>An operations dashboard, not a fulfillment portal.</h2>
+      <p>Built in-house for our own operation, then opened to sellers. Every screen earns its place on the warehouse floor.</p>
+    </div>
+
+    <div class="showcase-row">
+      <div>
+        <span class="module-tag"><span class="dot"></span>MODULE · DASHBOARD</span>
+        <h3>Your operation, visible in realtime — in your own workspace.</h3>
+        <p>Each seller gets a dedicated workspace. Today's volume, pipeline state, exception counts and recent batches — refreshed live as your team and ours scan through the day. The same screen, the same numbers, no exports to wait on.</p>
+        <ul class="check-list">
+          <li><span class="ck">✓</span>Per-seller workspace — your team and ours, one operational view</li>
+          <li><span class="ck">✓</span>Pipeline: Pending → Picked → Packed → Labeled → In Transit → Delivered</li>
+          <li><span class="ck">✓</span>Live activity log synced bidirectionally with Google Sheets</li>
+        </ul>
+      </div>
+      <div class="showcase-img">
+        <img src="app1.png" alt="KDEXPRESS dashboard showing live status pipeline, batches and activity feed" />
+      </div>
+    </div>
+
+    <div class="showcase-row reverse">
+      <div>
+        <span class="module-tag"><span class="dot"></span>MODULE · ACTIVE ORDERS</span>
+        <h3>Every order, every status, in one operational table.</h3>
+        <p>Filter by carrier, store, status or date. Bulk-select to print labels, mark picked or flag for attention. Read/unread state so your team picks up where they left off — even at peak volume.</p>
+        <ul class="check-list">
+          <li><span class="ck">✓</span>Filter &amp; bulk-action across thousands of orders</li>
+          <li><span class="ck">✓</span>Inline tracking link &amp; recipient address per row</li>
+          <li><span class="ck">✓</span>Operational read state — never lose your place</li>
+        </ul>
+      </div>
+      <div class="showcase-img">
+        <img src="app2.png" alt="Active orders table inside the KDEXPRESS platform with filters and bulk actions" />
+      </div>
+    </div>
+
+    <div class="showcase-row">
+      <div>
+        <span class="module-tag"><span class="dot"></span>MODULE · ORDER DETAIL</span>
+        <h3>One click to the full audit trail of a parcel.</h3>
+        <p>Recipient, parcel dimensions, payment state, tracking number, carrier, delivery confirmation — plus the full event log of who scanned what, when. Built for support and dispute resolution, not just shipping.</p>
+        <ul class="check-list">
+          <li><span class="ck">✓</span>One-click open of carrier tracking page</li>
+          <li><span class="ck">✓</span>Delivery confirmation timestamp recorded automatically</li>
+          <li><span class="ck">✓</span>Full event log for support &amp; dispute resolution</li>
+        </ul>
+      </div>
+      <div class="showcase-img">
+        <img src="app3.png" alt="Order detail panel showing recipient, parcel, tracking and delivery confirmation" />
+      </div>
+    </div>
+
+    <div class="showcase-row reverse">
+      <div>
+        <span class="module-tag"><span class="dot"></span>MODULE · TRACKING TIMELINE</span>
+        <h3>Six checkpoints, one timeline, every parcel.</h3>
+        <p>Label Printed → Picked Up → In Transit → Arrived at Destination → Out for Delivery → Delivered. Written to the order timeline as soon as it happens on the floor or upstream from the carrier.</p>
+        <ul class="check-list">
+          <li><span class="ck">✓</span>Six-stage normalized timeline per parcel</li>
+          <li><span class="ck">✓</span>Cross-carrier event ingestion (Canada Post, Purolator, UPS, FedEx)</li>
+          <li><span class="ck">✓</span>Customer-facing public tracking link generated automatically</li>
+        </ul>
+      </div>
+      <div class="showcase-img">
+        <img src="gpt5.png" alt="KDEXPRESS operator at a clean pack station with the live tracking timeline open on the screen" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= SETTLEMENT & RECONCILIATION ============= -->
+<section id="settlement" class="settlement">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">Operational finance</span>
+      <h2>Payment visibility without spreadsheet chaos.</h2>
+      <p>Not every seller operates through Shopify payouts. Many cross-border sellers still settle through EFT, e-Transfer, COD and weekly statements — and that workflow doesn't fit inside an accounting app. So we built it into the operations platform itself.</p>
+    </div>
+
+    <div class="settle-grid">
+      <!-- Left: mock notification cards -->
+      <div class="settle-cards">
+        <div class="settle-card">
+          <div class="head">
+            <div class="left">
+              <div class="ic-circle">$</div>
+              <div>
+                <div class="title">EFT received</div>
+                <div class="sub mono">REF · KDCA-EFT-2026-0518-A</div>
+              </div>
+            </div>
+            <span class="status-pill green"><span class="ddot"></span>MATCHED</span>
+          </div>
+          <div class="amount">$4,820.00 <span style="font-size:13px;color:#9ca3af;font-weight:500;">CAD</span></div>
+          <div class="meta">
+            <span>Batch · <b>KDCA250513</b></span>
+            <span>Orders · <b>166</b></span>
+            <span>Reconciled · <b>auto</b></span>
+          </div>
+        </div>
+
+        <div class="settle-card">
+          <div class="head">
+            <div class="left">
+              <div class="ic-circle">⌂</div>
+              <div>
+                <div class="title">COD weekly settlement</div>
+                <div class="sub mono">May 13 – May 19 · 2026</div>
+              </div>
+            </div>
+            <span class="status-pill blue"><span class="ddot"></span>READY</span>
+          </div>
+          <div class="amount">$12,144.50 <span style="font-size:13px;color:#9ca3af;font-weight:500;">CAD</span></div>
+          <div class="meta">
+            <span>Delivered · <b>342</b></span>
+            <span>Refused · <b>11</b></span>
+            <span>Carrier · <b>Canada Post</b></span>
+          </div>
+        </div>
+
+        <div class="settle-card">
+          <div class="head">
+            <div class="left">
+              <div class="ic-circle" style="background:rgba(180,83,9,.22);color:#fcd34d;">!</div>
+              <div>
+                <div class="title">Unmatched e-Transfer</div>
+                <div class="sub mono">REF · e-tx-2026-0517-C9</div>
+              </div>
+            </div>
+            <span class="status-pill amber"><span class="ddot"></span>REVIEW</span>
+          </div>
+          <div class="amount">$1,260.00 <span style="font-size:13px;color:#9ca3af;font-weight:500;">CAD</span></div>
+          <div class="meta">
+            <span>Sender · <b>JESSICA L.</b></span>
+            <span>Memo · <b>"may invoice"</b></span>
+            <span>Assigned · <b>finance</b></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: reconciliation flow -->
+      <div>
+        <div class="recon-flow">
+          <div class="step">
+            <div class="num mono">01</div>
+            <div class="body">
+              <div class="t">Dedicated payment routing</div>
+              <div class="d">Each seller gets a routing reference. EFT, e-Transfer and COD inflows land tagged — never anonymous in a shared account.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num mono">02</div>
+            <div class="body">
+              <div class="t">Automatic payment extraction</div>
+              <div class="d">Notifications, bank statements and carrier remittance files parsed into structured payment events.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num mono">03</div>
+            <div class="body">
+              <div class="t">Weekly reconciliation</div>
+              <div class="d">Orders, payments and carrier remittance matched line by line. Unmatched items surface as review tasks, not silent gaps.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num mono">04</div>
+            <div class="body">
+              <div class="t">Operational finance dashboard</div>
+              <div class="d">Receivables, settled, in-review and refused — visible in the same product your operations team already uses.</div>
+            </div>
+          </div>
+        </div>
+
+        <p style="margin-top:18px;font-size:13px;color:#9ca3af;line-height:1.5;">
+          This is not bookkeeping software. It's the operational finance layer that sits between your warehouse and your accountant — built for how cross-border sellers actually move money in Canada.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= PAYMENT OPERATIONS WORKFLOW ============= -->
+<section id="payment-ops" class="payops">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">Payment operations</span>
+      <h2>Built for how sellers actually settle payments in Canada.</h2>
+      <p>Most cross-border sellers don't run on Shopify payouts. They settle through EFT, e-Transfer, COD remittance, cheques and weekly statements — with reference numbers, sender names and email memos as the only thread connecting money to orders. KDEXPRESS turns that thread into a workflow.</p>
+    </div>
+
+    <!-- 4-stage workflow -->
+    <div class="payops-stages">
+      <div class="payops-stage">
+        <div class="stage-num">01 · ROUTING</div>
+        <h3>Dedicated payment routing</h3>
+        <p>Each customer gets their own reference key and a custom payment notification email — so every inflow lands tagged, not anonymous in a shared inbox.</p>
+        <div class="badge-row">
+          <span class="badge">EFT</span>
+          <span class="badge">e-TRANSFER</span>
+          <span class="badge">COD</span>
+        </div>
+      </div>
+      <div class="payops-stage">
+        <div class="stage-num">02 · EXTRACTION</div>
+        <h3>Automated email extraction</h3>
+        <p>Bank notifications, carrier remittance and e-Transfer alerts are parsed automatically — amount, sender, reference number and memo, normalized into one payment event stream.</p>
+        <div class="badge-row">
+          <span class="badge">AMOUNT</span>
+          <span class="badge">SENDER</span>
+          <span class="badge">REF</span>
+          <span class="badge">MEMO</span>
+        </div>
+      </div>
+      <div class="payops-stage">
+        <div class="stage-num">03 · MATCHING</div>
+        <h3>Customer-level reconciliation</h3>
+        <p>Payments matched to the customer that owns the reference. Intentionally <b>not</b> a perfect order-level accounting allocation — that's bookkeeping, not operations.</p>
+        <div class="badge-row">
+          <span class="badge">CUSTOMER</span>
+          <span class="badge">BATCH</span>
+        </div>
+      </div>
+      <div class="payops-stage">
+        <div class="stage-num">04 · SETTLEMENT</div>
+        <h3>Weekly settlement view</h3>
+        <p>One row per customer per week — inflows, shipped, refused, balance, status. Reviewed once, signed off, archived. No spreadsheets, no monthly scramble.</p>
+        <div class="badge-row">
+          <span class="badge">WEEKLY</span>
+          <span class="badge">STATEMENT</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Email extraction + customer-level settlement table -->
+    <div class="payops-detail">
+      <!-- Left: email extraction mock -->
+      <div class="email-mock">
+        <div class="em-head">
+          <div class="et">⌬ INBOUND PAYMENT NOTIFICATION</div>
+          <div class="dot-row"><span></span><span></span><span></span></div>
+        </div>
+        <div class="em-body">
+          <div class="row"><span class="lbl">From</span><span class="val">notifications@interac.ca</span></div>
+          <div class="row"><span class="lbl">Subject</span><span class="val">INTERAC e-Transfer received</span></div>
+          <div class="row"><span class="lbl">Date</span><span class="val">2026-05-17 · 14:08 PST</span></div>
+          <div class="msg-box">
+            You received <mark>$1,260.00 CAD</mark> from <mark>JESSICA LE</mark>.<br/>
+            Reference: <mark>KDCA-2026-0517-C9</mark><br/>
+            Message: "may invoice settlement"
+          </div>
+        </div>
+        <div class="em-arrow">↓</div>
+        <div class="em-extracted">
+          <div class="et-row"><span class="et-key">AMOUNT</span><span class="et-val green">$1,260.00 CAD</span></div>
+          <div class="et-row"><span class="et-key">SENDER</span><span class="et-val">JESSICA LE</span></div>
+          <div class="et-row"><span class="et-key">REFERENCE</span><span class="et-val">KDCA-2026-0517-C9</span></div>
+          <div class="et-row"><span class="et-key">MEMO</span><span class="et-val">may invoice settlement</span></div>
+          <div class="et-row"><span class="et-key">MATCHED CUSTOMER</span><span class="et-val green">Jessica's Beauty Co.</span></div>
+          <div class="et-row"><span class="et-key">STATUS</span><span class="et-val green">→ posted to weekly statement</span></div>
+        </div>
+      </div>
+
+      <!-- Right: customer-level weekly settlement table -->
+      <div class="settle-table">
+        <div class="st-head">
+          <div class="left">
+            <div class="icon">⌂</div>
+            <div>
+              <h4>Weekly settlement</h4>
+              <div class="sub mono">WEEK 20 · MAY 13 – MAY 19 · 2026</div>
+            </div>
+          </div>
+          <span class="status-pill green" style="background:var(--green-soft);color:var(--green-dark);border:1px solid var(--green-line);"><span class="ddot"></span>4 / 5 RECONCILED</span>
+        </div>
+        <div class="st-table">
+          <div class="st-row head-row">
+            <span>CUSTOMER</span>
+            <span>INFLOWS</span>
+            <span class="col-hide">SHIPPED</span>
+            <span class="col-hide">BALANCE</span>
+            <span>STATUS</span>
+          </div>
+          <div class="st-row">
+            <span class="cust"><span class="av">JB</span>Jessica's Beauty Co.</span>
+            <span class="num pos">$4,820.00</span>
+            <span class="num col-hide">162</span>
+            <span class="num pos col-hide">+$240</span>
+            <span><span class="st-pill green">RECONCILED</span></span>
+          </div>
+          <div class="st-row">
+            <span class="cust"><span class="av">HL</span>Highland Co.</span>
+            <span class="num pos">$12,144.50</span>
+            <span class="num col-hide">342</span>
+            <span class="num neg col-hide">−$340</span>
+            <span><span class="st-pill amber">REVIEW</span></span>
+          </div>
+          <div class="st-row">
+            <span class="cust"><span class="av">TT</span>TT Apparel</span>
+            <span class="num pos">$3,610.00</span>
+            <span class="num col-hide">98</span>
+            <span class="num col-hide">$0</span>
+            <span><span class="st-pill green">SETTLED</span></span>
+          </div>
+          <div class="st-row">
+            <span class="cust"><span class="av">DN</span>Dong Nai Trading</span>
+            <span class="num pos">$2,180.00</span>
+            <span class="num col-hide">66</span>
+            <span class="num pos col-hide">+$60</span>
+            <span><span class="st-pill green">RECONCILED</span></span>
+          </div>
+          <div class="st-row">
+            <span class="cust"><span class="av">VN</span>VN Express Brands</span>
+            <span class="num pos">$8,940.00</span>
+            <span class="num col-hide">214</span>
+            <span class="num pos col-hide">+$120</span>
+            <span><span class="st-pill blue">READY</span></span>
+          </div>
+        </div>
+        <div class="st-foot">
+          <span>5 customers · 882 parcels · <b>$31,694.50 CAD</b></span>
+          <span>EXPORT · PDF</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Callout: explicit positioning -->
+    <div class="payops-callout">
+      <div class="ic">i</div>
+      <div>
+        <div class="t">This is operational finance, not accounting.</div>
+        <div class="d">KDEXPRESS reconciles at the <b>customer level</b>, not the order level — by design. It reflects how cross-border sellers actually settle in Canada: weekly, by relationship, with a reference number and a memo. The output is a clean handoff to your accountant, not a replacement for them.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= EXCEPTION MANAGEMENT ============= -->
+<section id="exceptions" class="exception">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">Exception intelligence</span>
+      <h2>Know shipment problems before your customer does.</h2>
+      <p>Notice cards, failed delivery attempts, address issues and return triggers — surfaced in realtime, assigned, and tracked through to resolution. The exception isn't lost in an inbox.</p>
+    </div>
+
+    <div class="exc-grid">
+      <!-- Alert stack -->
+      <div class="alert-stack">
+        <div class="alert red">
+          <div class="top">
+            <div class="who"><span class="status-pill red"><span class="ddot"></span>NOTICE CARD</span><b>KDCA25051300188</b></div>
+            <span class="age">8m ago</span>
+          </div>
+          <div class="msg">Carrier left a notice card — recipient not home at <b>1820 Cambie St, Vancouver BC</b>. Re-delivery scheduled May 20.</div>
+          <div class="foot">
+            <span>Assigned · <b>support · An</b></span>
+            <div class="actions">
+              <button class="mini-btn">View timeline</button>
+              <button class="mini-btn primary">Notify customer</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert amber">
+          <div class="top">
+            <div class="who"><span class="status-pill amber"><span class="ddot"></span>ADDRESS ISSUE</span><b>KDCA25051300194</b></div>
+            <span class="age">12m ago</span>
+          </div>
+          <div class="msg">Address validation failed — postal code <span class="mono">V6P 1R2</span> doesn't match civic address. Held before label generation.</div>
+          <div class="foot">
+            <span>Hold · <b>label not printed</b></span>
+            <div class="actions">
+              <button class="mini-btn">Edit address</button>
+              <button class="mini-btn primary">Release to print</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert blue">
+          <div class="top">
+            <div class="who"><span class="status-pill blue"><span class="ddot"></span>RETURN INBOUND</span><b>KDCA25051200067</b></div>
+            <span class="age">1h ago</span>
+          </div>
+          <div class="msg">Parcel returned to sender — customer refused at door. Inbound to warehouse. Suggested action: restock or RTO charge.</div>
+          <div class="foot">
+            <span>Inbound · <b>arriving May 21</b></span>
+            <div class="actions">
+              <button class="mini-btn">Open return</button>
+              <button class="mini-btn primary">Mark for restock</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert amber">
+          <div class="top">
+            <div class="who"><span class="status-pill amber"><span class="ddot"></span>STALLED IN TRANSIT</span><b>KDCA25051000041</b></div>
+            <span class="age">3h ago</span>
+          </div>
+          <div class="msg">No carrier event in <b>72h</b> — last scan Calgary AB. Flagged before customer SLA breach.</div>
+          <div class="foot">
+            <span>Carrier · <b>Canada Post</b></span>
+            <div class="actions">
+              <button class="mini-btn">Open ticket</button>
+              <button class="mini-btn primary">Chase carrier</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: summary + framing -->
+      <div>
+        <h3 style="font-size:20px;font-weight:700;color:#fff;letter-spacing:-.018em;margin-bottom:12px;">Realtime detection. Owned, not orphaned.</h3>
+        <p style="font-size:15px;color:#a1a8b3;line-height:1.6;">Every exception is a row with an owner, a status and a resolution path. Your team works the queue — not their inbox.</p>
+
+        <div class="exc-summary">
+          <div class="row"><span>Notice card &amp; failed delivery</span><span class="count mono">7</span></div>
+          <div class="row"><span>Address validation issues</span><span class="count mono">3</span></div>
+          <div class="row"><span>Stalled in transit (&gt; 72h)</span><span class="count mono">2</span></div>
+          <div class="row"><span>Inbound returns</span><span class="count mono">5</span></div>
+          <div class="row"><span>Carrier disputes open</span><span class="count mono">1</span></div>
+        </div>
+
+        <ul class="check-list" style="margin-top:24px;">
+          <li><span class="ck">✓</span><span style="color:#cbd5e1;">Realtime detection from carrier event ingestion</span></li>
+          <li><span class="ck">✓</span><span style="color:#cbd5e1;">Ownership trail — assignee, status, last action</span></li>
+          <li><span class="ck">✓</span><span style="color:#cbd5e1;">Proactive customer notification templates</span></li>
+          <li><span class="ck">✓</span><span style="color:#cbd5e1;">Returns and RTO routed through the same queue</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= FLEXIBLE WORKFLOWS ============= -->
+<section id="workflows" class="flex-flow">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">Flexible workflows</span>
+      <h2>Still operating from spreadsheets? So are most growing sellers.</h2>
+      <p>The cross-border seller reality: orders in Google Sheets, payment notifications in email, supplier files in CSV, fulfillment instructions in chat. KDEXPRESS meets that operational reality — and gives it a backbone.</p>
+    </div>
+
+    <div class="flow-card">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px;margin-bottom:6px;">
+        <span class="module-tag"><span class="dot"></span>OPERATIONAL FLOW</span>
+        <span class="mono" style="font-size:12px;color:var(--muted);">INPUT → BATCH → TRACKING → EXCEPTIONS</span>
+      </div>
+
+      <div class="flow-diagram">
+        <div class="flow-node">
+          <div class="head"><div class="ic-sq">▤</div><div class="t">Input</div></div>
+          <div class="lst">
+            <span>Google Sheets</span>
+            <span>CSV upload</span>
+            <span>Email-in</span>
+            <span>REST API</span>
+          </div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="head"><div class="ic-sq">⎚</div><div class="t">Batch processing</div></div>
+          <div class="lst">
+            <span>Address validate</span>
+            <span>Label allocate</span>
+            <span>Pick &amp; pack queue</span>
+            <span>Carrier assign</span>
+          </div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="head"><div class="ic-sq">◎</div><div class="t">Live tracking</div></div>
+          <div class="lst">
+            <span>Six-stage timeline</span>
+            <span>Customer link</span>
+            <span>Sheets sync-back</span>
+            <span>Webhook events</span>
+          </div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="head"><div class="ic-sq">⚑</div><div class="t">Exceptions</div></div>
+          <div class="lst">
+            <span>Notice cards</span>
+            <span>Address issues</span>
+            <span>Returns &amp; RTO</span>
+            <span>Settlement holds</span>
+          </div>
+        </div>
+      </div>
+
+      <p style="margin-top:24px;font-size:14px;color:var(--ink-3);line-height:1.6;max-width:760px;">
+        You don't have to be Shopify-native to operate professionally. The same workflow runs whether your input is an API call or a Tuesday-morning Sheets paste — and the output is the same operational discipline downstream.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============= WHY SELLERS SWITCH ============= -->
+<section class="why">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">Why sellers switch</span>
+      <h2>It's almost never one catastrophic failure.</h2>
+    </div>
+
+    <div class="why-grid">
+      <div>
+        <p class="why-quote">
+          Most sellers don't switch fulfillment providers because of one <span class="accent">catastrophic failure</span>.
+          <br><br>
+          <em>They switch because of the slow accumulation of small operational problems — the kind that don't show up on a quarterly review but quietly eat the team's week.</em>
+        </p>
+        <div class="why-attrib">
+          <div class="av">K</div>
+          <div>
+            <div style="color:var(--ink);font-weight:600;">KDEXPRESS Operations</div>
+            <div class="mono" style="font-size:12px;color:var(--muted);">Founder note · Vancouver, BC</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="why-list">
+        <div class="item">
+          <div class="num mono">01</div>
+          <div>
+            <div class="t">Inventory sync delays</div>
+            <div class="d">Stock count is right in the WMS, wrong on the storefront, wrong on the supplier's spreadsheet. Refunds quietly pile up.</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="num mono">02</div>
+          <div>
+            <div class="t">Manual tracking fixes</div>
+            <div class="d">Tracking numbers re-keyed by hand, missing carriers, broken links emailed to customers who already opened a ticket.</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="num mono">03</div>
+          <div>
+            <div class="t">Missed exceptions</div>
+            <div class="d">Notice cards and stalled parcels surface only when the customer messages — by then, the SLA is gone and so is the trust.</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="num mono">04</div>
+          <div>
+            <div class="t">Support lag</div>
+            <div class="d">Provider replies in 48 hours. The marketplace deadline is 24. Every escalation becomes the founder's problem.</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="num mono">05</div>
+          <div>
+            <div class="t">Settlement opacity</div>
+            <div class="d">COD remittances, EFT credits and carrier surcharges don't line up. The monthly reconciliation eats two days.</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="num mono">06</div>
+          <div>
+            <div class="t">Operational friction</div>
+            <div class="d">Every workflow change needs a phone call. Every CSV needs a custom mapping. The team builds workarounds instead of moving volume.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= OPERATIONS BEHIND THE PLATFORM ============= -->
+<section id="operations" class="ops">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow">Real operations behind the software</span>
+      <h2>A scan-disciplined workflow, not a marketing claim.</h2>
+      <p>The platform is opinionated because the operation is. Every parcel that leaves our Vancouver facility passes the same four scans — receive, label, pack, handoff.</p>
+    </div>
+
+    <div class="ops-grid">
+      <div class="ops-card">
+        <div class="ops-img"><img src="gpt1.png" alt="Operator scanning the barcode on a branded KDEXPRESS shipping box" /></div>
+        <div class="ops-body">
+          <div class="ops-step">01 · RECEIVE</div>
+          <h3>Inbound scan &amp; verify</h3>
+          <p>Receiving is barcode-driven. Mismatches are flagged before they hit the shelf.</p>
+        </div>
+      </div>
+      <div class="ops-card">
+        <div class="ops-img"><img src="gpt3.png" alt="Thermal label printer producing KDEXPRESS branded labels next to the shipments dashboard" /></div>
+        <div class="ops-body">
+          <div class="ops-step">02 · LABEL</div>
+          <h3>Branded thermal labels</h3>
+          <p>One-click bulk printing from the dashboard. Carrier-aware service tier selection.</p>
+        </div>
+      </div>
+      <div class="ops-card">
+        <div class="ops-img"><img src="gpt2.png" alt="KDEXPRESS team member sealing a labeled parcel with branded packing tape" /></div>
+        <div class="ops-body">
+          <div class="ops-step">03 · PACK</div>
+          <h3>Pack &amp; verify</h3>
+          <p>Pick by bin, verify against the order, seal with branded tape. Scan to advance state.</p>
+        </div>
+      </div>
+      <div class="ops-card">
+        <div class="ops-img"><img src="gpt14.png" alt="Worker organizing a stack of sealed KDEXPRESS parcels onto a dispatch cart" /></div>
+        <div class="ops-body">
+          <div class="ops-step">04 · HANDOFF</div>
+          <h3>Carrier handoff &amp; sync</h3>
+          <p>Sorted by carrier and route. Tracking events stream straight back into the dashboard.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= STORAGE (supporting layer, compact) ============= -->
+<section id="storage" class="storage" style="padding:72px 0;">
+  <div class="container storage-grid">
+    <div>
+      <span class="section-eyebrow">The warehouse layer</span>
+      <h2 style="font-size:26px;">A real warehouse beneath the platform — not the headline.</h2>
+      <p style="font-size:15.5px;color:var(--ink-3);line-height:1.6;">Scan-tracked Canadian storage that supports the operational layer. Climate-controlled, barcode-linked, every position reconciled with the dashboard. It's the floor the software runs on — not the product we're selling.</p>
+
+      <div class="storage-stats" style="grid-template-columns:1fr 1fr;">
+        <div class="s"><strong>Scan-tracked</strong><span>Every position barcode-linked</span></div>
+        <div class="s"><strong>24h SLA</strong><span>Receive-to-stock</span></div>
+      </div>
+    </div>
+    <div class="storage-gallery">
+      <div class="g"><img src="gpt10.png" alt="Organized warehouse shelving for mixed-category inventory" /><div class="cap">MIXED · ZONE A</div></div>
+      <div class="g"><img src="gpt13.png" alt="Storage shelves dedicated to health and supplement SKUs" /><div class="cap">HEALTH · ZONE B</div></div>
+      <div class="g"><img src="gpt11.png" alt="Storage shelves stocked with consumer goods and FMCG SKUs" /><div class="cap">FMCG · ZONE C</div></div>
+      <div class="g"><img src="gpt12.png" alt="Aisle view of the KDEXPRESS warehouse showing organized rack rows" /><div class="cap">AISLE · MAIN</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= CARRIERS ============= -->
+<section id="carriers" class="carrier-section">
+  <div class="container carrier">
+    <div class="carrier-img">
+      <img src="gpt6.png" alt="Canada Post operator picking up a daily KDEXPRESS dispatch from the Vancouver facility" />
+    </div>
+    <div>
+      <span class="section-eyebrow">Carrier normalization</span>
+      <h2>Every Canadian carrier, normalized into one operational timeline.</h2>
+      <p style="font-size:16px;color:var(--ink-3);line-height:1.6;">Carrier events from Canada Post, Purolator, UPS and FedEx ingested, normalized and stitched into a single operational view per parcel. Service tier becomes a routing decision — not an operational lock-in, not a logo on a brochure.</p>
+      <ul class="check-list" style="margin-top:20px;">
+        <li><span class="ck">✓</span>Six-stage timeline normalized across carriers — same shape every time</li>
+        <li><span class="ck">✓</span>Carrier-agnostic exception detection (notice card, stalled, returned)</li>
+        <li><span class="ck">✓</span>One customer-facing tracking link, regardless of who actually moved the box</li>
+      </ul>
+      <div class="carrier-list" style="margin-top:24px;opacity:.92;">
+        <div class="carrier-tag"><span class="dot"></span><span>Canada Post</span></div>
+        <div class="carrier-tag"><span class="dot"></span><span>Purolator</span></div>
+        <div class="carrier-tag"><span class="dot"></span><span>UPS</span></div>
+        <div class="carrier-tag"><span class="dot"></span><span>FedEx</span></div>
+        <div class="carrier-tag"><span class="dot"></span><span>International · USA / VN / EU</span></div>
+        <div class="carrier-tag"><span class="dot"></span><span>COD service</span></div>
+      </div>
+      <p style="margin-top:16px;font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.4px;">SUPPORTED CARRIERS · NORMALIZED · ROUTING-AGNOSTIC</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============= LOCATION ============= -->
+<section id="location" class="location">
+  <div class="container location-grid">
+    <div>
+      <span class="section-eyebrow">Company</span>
+      <h2>A real facility, at a real address — in Vancouver, BC.</h2>
+      <p style="font-size:16px;color:var(--ink-3);line-height:1.6;">We don't operate from a virtual office. Walk into 4450 and you'll find the same warehouse, the same team and the same boxes you've been shipping to your customers.</p>
+      <div class="addr-card">
+        <div class="row"><div class="label">Address</div><div class="val">4450 Juneau Street, Burnaby, BC, Canada</div></div>
+        <div class="row"><div class="label">Hours</div><div class="val">Mon – Sat · 9:00 – 18:00 PST</div></div>
+        <div class="row"><div class="label">Pickup</div><div class="val">Daily Canada Post · On-demand other carriers</div></div>
+        <div class="row"><div class="label">Contact</div><div class="val">media@kdexpress.ca</div></div>
+      </div>
+    </div>
+    <div class="location-img">
+      <img src="gpt7.png" alt="KDEXPRESS Vancouver warehouse exterior at 4450, branded entrance with shipping and import service signage" />
+    </div>
+  </div>
+</section>
+
+<!-- ============= CTA ============= -->
+<section id="cta" class="cta">
+  <div class="container">
+    <span class="section-eyebrow" style="color:#86efac;">Get started</span>
+    <h2>Tell us how your operation actually runs today.</h2>
+    <p>Sheets, Shopify, COD, e-Transfer or all of the above. Send us your current workflow — we'll build the operational layer around it, not the other way around. Quote, workspace and onboarding plan back within one business day.</p>
+    <div class="hero-cta" style="justify-content:center;">
+      <a class="btn btn-primary" href="mailto:media@kdexpress.ca">Talk to operations →</a>
+      <a class="btn btn-ghost" href="#platform">Tour the platform</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============= FOOTER ============= -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="logo" style="color:#fff;">
+          <div class="logo-mark">K</div>
+          <span>KDEXPRESS</span>
+        </div>
+        <p style="margin-top:14px;max-width:320px;color:#9ca3af;line-height:1.55;">Canada operations infrastructure for global eCommerce brands. Realtime visibility, exception management and settlement workflows — built on a real warehouse in Vancouver, BC.</p>
+      </div>
+      <div>
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="#platform">Overview</a></li>
+          <li><a href="#settlement">Settlement</a></li>
+          <li><a href="#payment-ops">Payment operations</a></li>
+          <li><a href="#exceptions">Exceptions</a></li>
+          <li><a href="#workflows">Workflows</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Operations</h4>
+        <ul>
+          <li><a href="#operations">Warehouse flow</a></li>
+          <li><a href="#storage">Storage</a></li>
+          <li><a href="#carriers">Carriers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#location">About</a></li>
+          <li><a href="#location">Visit warehouse</a></li>
+          <li><a href="mailto:media@kdexpress.ca">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 KDEXPRESS · Operations Infrastructure</span>
+      <span>4450 JUNEAU STREET · BURNABY BC · MEDIA@KDEXPRESS.CA</span>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
