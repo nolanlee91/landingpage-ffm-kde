@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="logo.png" />
 <title>KDEXPRESS · Canada operations infrastructure for global eCommerce brands</title>
 <style>
   :root{
@@ -56,7 +57,8 @@
   }
   .nav{display:flex;align-items:center;justify-content:space-between;height:64px;}
   .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:1.5px;font-size:14px;}
-  .logo-mark{width:28px;height:28px;border-radius:7px;background:var(--green);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:13px;}
+  .logo img{height:32px;width:auto;display:block;}
+  footer .logo img{height:36px;}
   .nav-links{display:flex;gap:26px;font-size:13.5px;color:var(--ink-3);font-weight:500;}
   .nav-links a:hover{color:var(--ink);}
   .btn{
@@ -585,7 +587,7 @@
     .addr-card .row{flex-direction:column;gap:4px;padding:12px 0;}
     .addr-card .label{width:auto;padding-top:0;}
     .addr-card .val{font-size:14px;line-height:1.45;}
-    .logo span{display:none;}
+    .logo img{height:28px;}
     .nav .btn-primary{padding:8px 12px;font-size:12.5px;}
     .lang-btn{padding:6px 9px;font-size:10.5px;}
     .nav-right{gap:8px;}
@@ -597,10 +599,9 @@
 <!-- ============= HEADER ============= -->
 <header>
   <div class="container nav">
-    <div class="logo">
-      <div class="logo-mark">K</div>
-      <span>KDEXPRESS</span>
-    </div>
+    <a href="#top" class="logo" aria-label="KDEXPRESS home">
+      <img src="logo.png" alt="KDEXPRESS" />
+    </a>
     <nav class="nav-links">
       <a href="#platform" data-i18n="nav_platform">Platform</a>
       <a href="#settlement" data-i18n="nav_settlement">Settlement</a>
@@ -1424,9 +1425,8 @@
   <div class="container">
     <div class="foot-grid">
       <div>
-        <div class="logo" style="color:#fff;">
-          <div class="logo-mark">K</div>
-          <span>KDEXPRESS</span>
+        <div class="logo">
+          <img src="logo.png" alt="KDEXPRESS" />
         </div>
         <p style="margin-top:14px;max-width:320px;color:#9ca3af;line-height:1.55;" data-i18n="foot_desc">Canada operations infrastructure for global eCommerce brands. Realtime visibility, exception management and settlement workflows — built on a real warehouse in Vancouver, BC.</p>
       </div>
