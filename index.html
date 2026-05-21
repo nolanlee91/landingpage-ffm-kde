@@ -556,6 +556,57 @@
   .cta .btn-ghost{color:#fff;border-color:rgba(255,255,255,.18);}
   .cta .btn-ghost:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.04);}
 
+  /* ───── Stats bar ───── */
+  .stats-bar{padding:48px 0;border-bottom:1px solid var(--line);background:#fff;}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;align-items:end;}
+  .stat{position:relative;padding-left:18px;}
+  .stat::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:2px;background:var(--green);border-radius:2px;opacity:.85;}
+  .stat .num{font-family:var(--mono);font-size:clamp(28px,3vw,38px);font-weight:700;color:var(--ink);letter-spacing:-.02em;line-height:1;}
+  .stat .num .plus{color:var(--green-dark);}
+  .stat .lbl{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.3px;margin-top:10px;font-weight:600;}
+  @media (max-width:760px){
+    .stats-grid{grid-template-columns:repeat(2,1fr);gap:28px 20px;}
+  }
+
+  /* ───── Onboarding section ───── */
+  .onboard{background:var(--bg-soft);}
+  .onboard-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);margin-top:36px;}
+  .onboard-col{padding:32px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff;}
+  .onboard-col .ic{
+    width:36px;height:36px;border-radius:8px;
+    background:var(--green-soft);color:var(--green-dark);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-size:13px;font-weight:700;
+    margin-bottom:18px;border:1px solid var(--green-line);
+  }
+  .onboard-col h3{font-size:17px;font-weight:700;margin-bottom:14px;letter-spacing:-.01em;}
+  .onboard-col ul{list-style:none;display:grid;gap:10px;}
+  .onboard-col li{font-size:14.5px;color:var(--ink-3);line-height:1.5;padding-left:18px;position:relative;}
+  .onboard-col li::before{content:"→";position:absolute;left:0;top:0;color:var(--green-dark);font-weight:700;}
+  @media (max-width:960px){
+    .onboard-grid{grid-template-columns:1fr;}
+  }
+
+  /* ───── Hero animation ───── */
+  @keyframes ki-pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.18);opacity:.65;}}
+  .hero-visual .ui-float .pulse-dot{
+    display:inline-block;width:7px;height:7px;border-radius:50%;
+    background:var(--green);box-shadow:0 0 0 3px rgba(22,163,74,.22);
+    margin-right:6px;vertical-align:middle;
+    animation:ki-pulse 1.4s ease-in-out infinite;
+  }
+  .hero-visual .ui-float .value.flagged{color:var(--amber);}
+  @keyframes ki-amber-pulse{0%,100%{opacity:1;}50%{opacity:.55;}}
+  .hero-visual .ui-float .value.flagged{animation:ki-amber-pulse 2s ease-in-out infinite;}
+  .hero-ticker{
+    margin-top:14px;display:flex;align-items:center;gap:10px;
+    font-family:var(--mono);font-size:11.5px;color:var(--muted);
+    padding:8px 12px;border:1px solid var(--line);border-radius:8px;
+    background:#fff;overflow:hidden;
+  }
+  .hero-ticker .tick-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;animation:ki-pulse 1.4s ease-in-out infinite;}
+  .hero-ticker-line{flex:1;min-width:0;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:opacity .35s ease;}
+
   /* ───── Footer ───── */
   footer{background:#06070a;color:#9ca3af;padding:48px 0 28px;font-size:13.5px;border-top:1px solid rgba(255,255,255,.04);}
   .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:32px;}
@@ -637,21 +688,49 @@
         <span class="chip" data-i18n="hero_chip2" data-i18n-html="true"><b>EFT · COD</b> · settlement built-in</span>
         <span class="chip" data-i18n="hero_chip3" data-i18n-html="true"><b>Sheets · CSV · API</b> · flexible inputs</span>
       </div>
+      <div class="hero-ticker" id="js-ticker" aria-live="polite">
+        <span class="tick-dot"></span>
+        <span class="hero-ticker-line" id="js-ticker-line" data-i18n="ticker_t1">Parcel KDCA-2026-0517-C9 · scan PACK · Vancouver</span>
+      </div>
     </div>
     <div class="hero-visual">
       <div class="photo">
         <img src="app1.png" alt="KDEXPRESS operations dashboard showing the live status pipeline, batches and activity feed" />
       </div>
       <div class="ui-float tl">
-        <div class="label" data-i18n="hero_float_title">LIVE PIPELINE</div>
+        <div class="label"><span class="pulse-dot"></span><span data-i18n="hero_float_title">LIVE PIPELINE</span></div>
         <div class="row" style="margin-top:6px;gap:14px;">
-          <div><div class="value mono">243</div><div class="label" style="margin-top:0;" data-i18n="hero_float_label1">IN TRANSIT</div></div>
-          <div><div class="value mono" style="color:var(--amber);">13</div><div class="label" style="margin-top:0;" data-i18n="hero_float_label2">FLAGGED</div></div>
+          <div><div class="value mono" id="js-transit-count" data-target="243">0</div><div class="label" style="margin-top:0;" data-i18n="hero_float_label1">IN TRANSIT</div></div>
+          <div><div class="value mono flagged">13</div><div class="label" style="margin-top:0;" data-i18n="hero_float_label2">FLAGGED</div></div>
         </div>
       </div>
       <div class="ws-snip">
         <img src="gpt5.png" alt="KDEXPRESS operator at a pack station executing the workflow" />
         <span class="ws-tag" data-i18n="hero_ws_tag">REAL OPS · VANCOUVER</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= STATS BAR ============= -->
+<section class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="num">50K<span class="plus">+</span></div>
+        <div class="lbl" data-i18n="stat1_lbl">Parcels processed</div>
+      </div>
+      <div class="stat">
+        <div class="num">4</div>
+        <div class="lbl" data-i18n="stat2_lbl">Carrier integrations</div>
+      </div>
+      <div class="stat">
+        <div class="num">&lt; 24h</div>
+        <div class="lbl" data-i18n="stat3_lbl">Exception response</div>
+      </div>
+      <div class="stat">
+        <div class="num">12K<span class="plus" style="font-size:.6em;margin-left:2px;">sqft</span></div>
+        <div class="lbl" data-i18n="stat4_lbl">Vancouver, BC facility</div>
       </div>
     </div>
   </div>
@@ -1407,6 +1486,49 @@
   </div>
 </section>
 
+<!-- ============= ONBOARDING ============= -->
+<section id="onboarding" class="onboard">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-eyebrow" data-i18n="onb_eyebrow">Onboarding</span>
+      <h2 data-i18n="onb_h2">A real workflow built around yours, in one business day.</h2>
+      <p data-i18n="onb_lede">No portal forms. No 30-page intake. Send your current setup — we map an operational workspace around it.</p>
+    </div>
+    <div class="onboard-grid">
+      <div class="onboard-col">
+        <div class="ic">01</div>
+        <h3 data-i18n="onb_c1_h">Who this is for</h3>
+        <ul>
+          <li data-i18n="onb_c1_l1">Cross-border sellers shipping into / from Canada</li>
+          <li data-i18n="onb_c1_l2">300+ parcels/month operational volume</li>
+          <li data-i18n="onb_c1_l3">Already using Sheets, Shopify, COD or EFT workflows</li>
+          <li data-i18n="onb_c1_l4">Looking for an ops team, not a portal login</li>
+        </ul>
+      </div>
+      <div class="onboard-col">
+        <div class="ic">02</div>
+        <h3 data-i18n="onb_c2_h">How onboarding works</h3>
+        <ul>
+          <li data-i18n="onb_c2_l1">Send your current workflow — Sheets, CSV, screenshots</li>
+          <li data-i18n="onb_c2_l2">We mirror it into a dedicated workspace</li>
+          <li data-i18n="onb_c2_l3">First batch shipped within 5 business days</li>
+          <li data-i18n="onb_c2_l4">No setup fee · No long-term lock-in</li>
+        </ul>
+      </div>
+      <div class="onboard-col">
+        <div class="ic">03</div>
+        <h3 data-i18n="onb_c3_h">After you contact us</h3>
+        <ul>
+          <li data-i18n="onb_c3_l1">Reply within one business day · Vancouver hours</li>
+          <li data-i18n="onb_c3_l2">15-min ops call to map your current workflow</li>
+          <li data-i18n="onb_c3_l3">Quote + onboarding plan back same week</li>
+          <li data-i18n="onb_c3_l4">Optional: walk into the warehouse before signing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============= CTA ============= -->
 <section id="cta" class="cta">
   <div class="container">
@@ -1475,19 +1597,28 @@
       // hero
       hero_eyebrow:'<span class="dot"></span> OPERATIONS INFRASTRUCTURE · CANADA',
       hero_h1:'Canada operations infrastructure for <span class="accent">global eCommerce brands</span>.',
-      hero_lede:"Each seller gets their own operational workspace — a shared layer between your team and ours. Realtime visibility, exception detection and settlement workflows, for cross-border volume out of Canada.",
+      hero_lede:"A shared workspace between your team and ours — realtime visibility, exception management and settlement, for cross-border volume out of Canada.",
       hero_cta1:"Talk to operations →", hero_cta2:"See the platform",
       hero_chip1:'<b>Realtime</b> · order &amp; tracking pipeline',
       hero_chip2:'<b>EFT · COD</b> · settlement built-in',
       hero_chip3:'<b>Sheets · CSV · API</b> · flexible inputs',
       hero_float_title:"LIVE PIPELINE", hero_float_label1:"IN TRANSIT", hero_float_label2:"FLAGGED",
       hero_ws_tag:"REAL OPS · VANCOUVER",
+      // ticker
+      ticker_t1:"Parcel KDCA-2026-0517-C9 · scan PACK · Vancouver",
+      ticker_t2:"Batch KDCA250513 · 166 orders · reconciled",
+      ticker_t3:"Address held · V6P 1R2 · waiting validation",
+      ticker_t4:"Canada Post pickup · 412 parcels · 18:00 PST",
+      ticker_t5:"e-Transfer matched · JESSICA LE · $1,260 CAD",
+      // stats
+      stat1_lbl:"Parcels processed", stat2_lbl:"Carrier integrations",
+      stat3_lbl:"Exception response", stat4_lbl:"Vancouver, BC facility",
       // strip
       strip_label:"The operational stack our sellers actually run on",
       // pillars
       pillars_eyebrow:"The platform",
       pillars_h2:"Stop managing Canada shipping through spreadsheets and inboxes.",
-      pillars_lede:"KDEXPRESS is the operational layer between your storefront and the package on the truck — six modules built around the way cross-border sellers actually work in Canada.",
+      pillars_lede:"The operational layer between your storefront and the package on the truck. Six modules, built for cross-border sellers in Canada.",
       pillar1_title:"Realtime visibility", pillar1_desc:"Status pipeline from receive to delivered, updated as the warehouse scans. Same dashboard your team, your finance and your customer see.",
       pillar2_title:"Exception management", pillar2_desc:"Notice cards, failed delivery, address issues and returns surfaced in realtime — with a clear ownership trail, not buried in an inbox.",
       pillar3_title:"Settlement workflows", pillar3_desc:"EFT, e-Transfer and COD reconciliation built in. Weekly statements, payment routing and operational finance visibility — without spreadsheet chaos.",
@@ -1497,7 +1628,7 @@
       // showcase
       showcase_eyebrow:"The product",
       showcase_h2:"An operations dashboard, not a fulfillment portal.",
-      showcase_lede:"Built in-house for our own operation, then opened to sellers. Every screen earns its place on the warehouse floor.",
+      showcase_lede:"Built in-house for our operation, then opened to sellers.",
       dash_tag:'<span class="dot"></span>MODULE · DASHBOARD',
       dash_h3:"Your operation, visible in realtime — in your own workspace.",
       dash_p:"Each seller gets a dedicated workspace. Today's volume, pipeline state, exception counts and recent batches — refreshed live as your team and ours scan through the day. The same screen, the same numbers, no exports to wait on.",
@@ -1525,7 +1656,7 @@
       // settlement
       settle_eyebrow:"Operational finance",
       settle_h2:"Payment visibility without spreadsheet chaos.",
-      settle_lede:"Not every seller operates through Shopify payouts. Many cross-border sellers still settle through EFT, e-Transfer, COD and weekly statements — and that workflow doesn't fit inside an accounting app. So we built it into the operations platform itself.",
+      settle_lede:"Cross-border sellers settle through EFT, e-Transfer, COD and weekly statements — workflows that don't fit accounting software. So we built it into the platform.",
       settle_c1_title:"EFT received", settle_c1_pill:'<span class="ddot"></span>MATCHED',
       settle_c1_m1:'Batch · <b>KDCA250513</b>', settle_c1_m2:'Orders · <b>166</b>', settle_c1_m3:'Reconciled · <b>auto</b>',
       settle_c2_title:"COD weekly settlement", settle_c2_pill:'<span class="ddot"></span>READY',
@@ -1536,11 +1667,11 @@
       recon_s2_t:"Automatic payment extraction", recon_s2_d:"Notifications, bank statements and carrier remittance files parsed into structured payment events.",
       recon_s3_t:"Weekly reconciliation", recon_s3_d:"Orders, payments and carrier remittance matched line by line. Unmatched items surface as review tasks, not silent gaps.",
       recon_s4_t:"Operational finance dashboard", recon_s4_d:"Receivables, settled, in-review and refused — visible in the same product your operations team already uses.",
-      settle_footnote:"This is not bookkeeping software. It's the operational finance layer that sits between your warehouse and your accountant — built for how cross-border sellers actually move money in Canada.",
+      settle_footnote:"Not bookkeeping software. The operational finance layer between your warehouse and your accountant — built for how cross-border sellers move money in Canada.",
       // payment ops
       payops_eyebrow:"Payment operations",
       payops_h2:"Built for how sellers actually settle payments in Canada.",
-      payops_lede:"Most cross-border sellers don't run on Shopify payouts. They settle through EFT, e-Transfer, COD remittance, cheques and weekly statements — with reference numbers, sender names and email memos as the only thread connecting money to orders. KDEXPRESS turns that thread into a workflow.",
+      payops_lede:"Sellers settle through EFT, e-Transfer, COD and weekly statements — connected to orders only by reference numbers and email memos. KDEXPRESS turns that thread into a workflow.",
       payops_s1_num:"01 · ROUTING", payops_s1_t:"Dedicated payment routing", payops_s1_d:"Each customer gets their own reference key and a custom payment notification email — so every inflow lands tagged, not anonymous in a shared inbox.",
       payops_s2_num:"02 · EXTRACTION", payops_s2_t:"Automated email extraction", payops_s2_d:"Bank notifications, carrier remittance and e-Transfer alerts are parsed automatically — amount, sender, reference number and memo, normalized into one payment event stream.",
       payops_s2_b1:"AMOUNT", payops_s2_b2:"SENDER", payops_s2_b4:"MEMO",
@@ -1558,7 +1689,7 @@
       stab_st_recon:"RECONCILED", stab_st_review:"REVIEW", stab_st_settled:"SETTLED", stab_st_recon2:"RECONCILED", stab_st_ready:"READY",
       stab_foot:'5 customers · 882 parcels · <b>$31,694.50 CAD</b>', stab_export:"EXPORT · PDF",
       callout_t:"This is operational finance, not accounting.",
-      callout_d:'KDEXPRESS reconciles at the <b>customer level</b>, not the order level — by design. It reflects how cross-border sellers actually settle in Canada: weekly, by relationship, with a reference number and a memo. The output is a clean handoff to your accountant, not a replacement for them.',
+      callout_d:'KDEXPRESS reconciles at the <b>customer level</b>, not the order level — by design. The output is a clean handoff to your accountant, not a replacement.',
       // exception
       exc_eyebrow:"Exception intelligence",
       exc_h2:"Know shipment problems before your customer does.",
@@ -1583,13 +1714,13 @@
       // flexible workflows
       flow_eyebrow:"Flexible workflows",
       flow_h2:"Still operating from spreadsheets? So are most growing sellers.",
-      flow_lede:"The cross-border seller reality: orders in Google Sheets, payment notifications in email, supplier files in CSV, fulfillment instructions in chat. KDEXPRESS meets that operational reality — and gives it a backbone.",
+      flow_lede:"Orders in Sheets, payment notifications in email, supplier files in CSV, fulfillment in chat. KDEXPRESS meets that reality — and gives it a backbone.",
       flow_tag:'<span class="dot"></span>OPERATIONAL FLOW', flow_arrow_label:"INPUT → BATCH → TRACKING → EXCEPTIONS",
       flow_n1_t:"Input", flow_n1_l2:"CSV upload", flow_n1_l3:"Email-in",
       flow_n2_t:"Batch processing", flow_n2_l1:"Address validate", flow_n2_l2:"Label allocate", flow_n2_l3:"Pick & pack queue", flow_n2_l4:"Carrier assign",
       flow_n3_t:"Live tracking", flow_n3_l1:"Six-stage timeline", flow_n3_l2:"Customer link", flow_n3_l3:"Sheets sync-back", flow_n3_l4:"Webhook events",
       flow_n4_t:"Exceptions", flow_n4_l1:"Notice cards", flow_n4_l2:"Address issues", flow_n4_l3:"Returns & RTO", flow_n4_l4:"Settlement holds",
-      flow_footnote:"You don't have to be Shopify-native to operate professionally. The same workflow runs whether your input is an API call or a Tuesday-morning Sheets paste — and the output is the same operational discipline downstream.",
+      flow_footnote:"You don't have to be Shopify-native to operate professionally. Same workflow whether the input is an API call or a Tuesday Sheets paste — same output downstream.",
       // why
       why_eyebrow:"Why sellers switch", why_h2:"It's almost never one catastrophic failure.",
       why_quote:'Most sellers don\'t switch fulfillment providers because of one <span class="accent">catastrophic failure</span>.<br><br><em>They switch because of the slow accumulation of small operational problems — the kind that don\'t show up on a quarterly review but quietly eat the team\'s week.</em>',
@@ -1603,7 +1734,7 @@
       // operations
       ops_eyebrow:"Real operations behind the software",
       ops_h2:"A scan-disciplined workflow, not a marketing claim.",
-      ops_lede:"The platform is opinionated because the operation is. Every parcel that leaves our Vancouver facility passes the same four scans — receive, label, pack, handoff.",
+      ops_lede:"Every parcel leaving our Vancouver facility passes the same four scans — receive, label, pack, handoff.",
       ops_c1_step:"01 · RECEIVE", ops_c1_t:"Inbound scan & verify", ops_c1_d:"Receiving is barcode-driven. Mismatches are flagged before they hit the shelf.",
       ops_c2_step:"02 · LABEL", ops_c2_t:"Branded thermal labels", ops_c2_d:"One-click bulk printing from the dashboard. Carrier-aware service tier selection.",
       ops_c3_step:"03 · PACK", ops_c3_t:"Pack & verify", ops_c3_d:"Pick by bin, verify against the order, seal with branded tape. Scan to advance state.",
@@ -1611,14 +1742,14 @@
       // storage
       storage_eyebrow:"The warehouse layer",
       storage_h2:"A real warehouse beneath the platform — not the headline.",
-      storage_lede:"Scan-tracked Canadian storage that supports the operational layer. Climate-controlled, barcode-linked, every position reconciled with the dashboard. It's the floor the software runs on — not the product we're selling.",
+      storage_lede:"Scan-tracked Canadian storage. Climate-controlled, barcode-linked, every position reconciled with the dashboard.",
       storage_s1_strong:"Scan-tracked", storage_s1_span:"Every position barcode-linked",
       storage_s2_strong:"24h SLA", storage_s2_span:"Receive-to-stock",
       storage_cap1:"MIXED · ZONE A", storage_cap2:"HEALTH · ZONE B", storage_cap3:"FMCG · ZONE C", storage_cap4:"AISLE · MAIN",
       // carriers
       carr_eyebrow:"Carrier normalization",
       carr_h2:"Every Canadian carrier, normalized into one operational timeline.",
-      carr_lede:"Carrier events from Canada Post, Purolator, UPS and FedEx ingested, normalized and stitched into a single operational view per parcel. Service tier becomes a routing decision — not an operational lock-in, not a logo on a brochure.",
+      carr_lede:"Canada Post, Purolator, UPS and FedEx events — ingested, normalized, stitched into one operational view per parcel.",
       carr_b1:'<span class="ck">✓</span>Six-stage timeline normalized across carriers — same shape every time',
       carr_b2:'<span class="ck">✓</span>Carrier-agnostic exception detection (notice card, stalled, returned)',
       carr_b3:'<span class="ck">✓</span>One customer-facing tracking link, regardless of who actually moved the box',
@@ -1632,12 +1763,31 @@
       loc_l_hours:"Hours", loc_v_hours:"Mon – Sat · 9:00 – 18:00 PST",
       loc_l_pickup:"Pickup", loc_v_pickup:"Daily Canada Post · On-demand other carriers",
       loc_l_contact:"Contact",
+      // onboarding
+      onb_eyebrow:"Onboarding",
+      onb_h2:"A real workflow built around yours, in one business day.",
+      onb_lede:"No portal forms. No 30-page intake. Send your current setup — we map an operational workspace around it.",
+      onb_c1_h:"Who this is for",
+      onb_c1_l1:"Cross-border sellers shipping into / from Canada",
+      onb_c1_l2:"300+ parcels / month operational volume",
+      onb_c1_l3:"Already using Sheets, Shopify, COD or EFT workflows",
+      onb_c1_l4:"Looking for an ops team, not a portal login",
+      onb_c2_h:"How onboarding works",
+      onb_c2_l1:"Send your current workflow — Sheets, CSV, screenshots",
+      onb_c2_l2:"We mirror it into a dedicated workspace",
+      onb_c2_l3:"First batch shipped within 5 business days",
+      onb_c2_l4:"No setup fee · No long-term lock-in",
+      onb_c3_h:"After you contact us",
+      onb_c3_l1:"Reply within one business day · Vancouver hours",
+      onb_c3_l2:"15-min ops call to map your current workflow",
+      onb_c3_l3:"Quote + onboarding plan back same week",
+      onb_c3_l4:"Optional: walk into the warehouse before signing",
       // cta
       cta_eyebrow:"Get started", cta_h2:"Tell us how your operation actually runs today.",
-      cta_lede:"Sheets, Shopify, COD, e-Transfer or all of the above. Send us your current workflow — we'll build the operational layer around it, not the other way around. Quote, workspace and onboarding plan back within one business day.",
+      cta_lede:"Sheets, Shopify, COD or e-Transfer — send your current workflow, we'll build the operational layer around it. Quote and onboarding plan back within one business day.",
       cta_btn1:"Talk to operations →", cta_btn2:"Tour the platform",
       // footer
-      foot_desc:"Canada operations infrastructure for global eCommerce brands. Realtime visibility, exception management and settlement workflows — built on a real warehouse in Vancouver, BC.",
+      foot_desc:"Canada operations infrastructure for global eCommerce brands. Realtime visibility, exception management and settlement — on a real warehouse in Vancouver, BC.",
       foot_col1_h:"Platform", foot_col1_l1:"Overview", foot_col1_l2:"Settlement", foot_col1_l3:"Payment operations", foot_col1_l4:"Exceptions", foot_col1_l5:"Workflows",
       foot_col2_h:"Operations", foot_col2_l1:"Warehouse flow", foot_col2_l2:"Storage", foot_col2_l3:"Carriers",
       foot_col3_h:"Company", foot_col3_l1:"About", foot_col3_l2:"Visit warehouse", foot_col3_l3:"Contact",
@@ -1651,19 +1801,28 @@
       // hero
       hero_eyebrow:'<span class="dot"></span> FULFILMENT · VẬN HÀNH ECOMMERCE · CANADA',
       hero_h1:'Vận hành fulfilment ecommerce tại Canada, cho <span class="accent">seller toàn cầu</span>.',
-      hero_lede:"Mỗi seller có dashboard riêng — workspace dùng chung giữa team bạn và team mình. Theo dõi đơn realtime, xử lý sự cố và đối soát thanh toán, cho seller cross-border bán tại Canada.",
+      hero_lede:"Workspace dùng chung giữa team bạn và team mình — theo dõi realtime, xử lý sự cố và đối soát, cho seller cross-border tại Canada.",
       hero_cta1:"Liên hệ team →", hero_cta2:"Xem dashboard",
       hero_chip1:'<b>Realtime</b> · đơn &amp; tracking',
       hero_chip2:'<b>EFT · COD</b> · đối soát có sẵn',
       hero_chip3:'<b>Sheets · CSV · API</b> · không lock-in',
       hero_float_title:"PIPELINE LIVE", hero_float_label1:"ĐANG GỬI", hero_float_label2:"CẦN XỬ LÝ",
       hero_ws_tag:"VẬN HÀNH THẬT · VANCOUVER",
+      // ticker
+      ticker_t1:"Kiện KDCA-2026-0517-C9 · scan PACK · Vancouver",
+      ticker_t2:"Batch KDCA250513 · 166 đơn · đã đối soát",
+      ticker_t3:"Địa chỉ hold · V6P 1R2 · chờ validate",
+      ticker_t4:"Canada Post pickup · 412 kiện · 18:00 PST",
+      ticker_t5:"e-Transfer đã khớp · JESSICA LE · $1,260 CAD",
+      // stats
+      stat1_lbl:"Kiện đã xử lý", stat2_lbl:"Carrier tích hợp",
+      stat3_lbl:"Phản hồi sự cố", stat4_lbl:"Kho tại Vancouver, BC",
       // strip
       strip_label:"Bộ công cụ thật mà seller đang dùng",
       // pillars
       pillars_eyebrow:"Nền tảng",
       pillars_h2:"Đừng quản đơn Canada bằng Sheets và inbox nữa.",
-      pillars_lede:"KDEXPRESS đứng giữa storefront của bạn và kiện hàng trên xe — sáu module sinh ra từ cách seller cross-border làm việc thật tại Canada.",
+      pillars_lede:"Lớp vận hành giữa storefront và kiện hàng trên xe. Sáu module — xây cho seller cross-border tại Canada.",
       pillar1_title:"Theo dõi realtime", pillar1_desc:"Pipeline trạng thái từ lúc nhận đến lúc giao, update theo từng lần scan. Dashboard mà bạn, kế toán và khách của bạn đều thấy cùng một con số.",
       pillar2_title:"Xử lý sự cố", pillar2_desc:"Phiếu báo, giao trượt, sai địa chỉ, hàng hoàn — hiện ngay realtime với người phụ trách rõ ràng, không chôn trong inbox.",
       pillar3_title:"Đối soát thanh toán", pillar3_desc:"Đối soát EFT, e-Transfer và COD có sẵn. Sao kê tuần, định tuyến thanh toán và nhìn rõ dòng tiền — không Sheets, không lộn xộn.",
@@ -1673,7 +1832,7 @@
       // showcase
       showcase_eyebrow:"Sản phẩm",
       showcase_h2:"Dashboard xây cho team vận hành thật.",
-      showcase_lede:"Tự xây cho chính vận hành của mình, rồi mở cho seller dùng. Mỗi màn hình đều map với workflow ngoài kho.",
+      showcase_lede:"Tự xây cho vận hành của mình, rồi mở cho seller dùng.",
       dash_tag:'<span class="dot"></span>MODULE · DASHBOARD',
       dash_h3:"Vận hành của bạn, realtime, trong workspace riêng.",
       dash_p:"Mỗi seller có workspace riêng. Số đơn hôm nay, pipeline trạng thái, sự cố, batch gần nhất — live theo từng lần scan. Cùng một màn hình, cùng con số, không phải đợi export.",
@@ -1701,7 +1860,7 @@
       // settlement
       settle_eyebrow:"Tài chính vận hành",
       settle_h2:"Nhìn rõ dòng tiền, không cần Sheets.",
-      settle_lede:"Không phải seller nào cũng chạy trên Shopify payouts. Nhiều seller cross-border vẫn đối soát qua EFT, e-Transfer, COD và sao kê tuần — workflow đó không nhét vừa app kế toán. Nên mình xây thẳng vào nền tảng vận hành.",
+      settle_lede:"Seller cross-border đối soát qua EFT, e-Transfer, COD và sao kê tuần — workflow không nhét vừa app kế toán. Nên mình xây thẳng vào nền tảng.",
       settle_c1_title:"Đã nhận EFT", settle_c1_pill:'<span class="ddot"></span>ĐÃ KHỚP',
       settle_c1_m1:'Batch · <b>KDCA250513</b>', settle_c1_m2:'Đơn · <b>166</b>', settle_c1_m3:'Đối soát · <b>tự động</b>',
       settle_c2_title:"Sao kê COD tuần", settle_c2_pill:'<span class="ddot"></span>SẴN SÀNG',
@@ -1712,11 +1871,11 @@
       recon_s2_t:"Trích xuất thanh toán tự động", recon_s2_d:"Thông báo ngân hàng, sao kê và file remittance từ carrier được parse thành event thanh toán có cấu trúc.",
       recon_s3_t:"Đối soát hàng tuần", recon_s3_d:"Đơn hàng, thanh toán và remittance khớp từng dòng. Phần chưa khớp hiện thành task review, không bị bỏ lọt.",
       recon_s4_t:"Dashboard tài chính vận hành", recon_s4_d:"Phải thu, đã đối soát, đang review, từ chối — nhìn ngay trong cùng sản phẩm mà team vận hành đang dùng.",
-      settle_footnote:"Không phải phần mềm kế toán. Đây là lớp tài chính vận hành nằm giữa kho hàng và kế toán — xây cho cách seller cross-border thật sự xoay tiền tại Canada.",
+      settle_footnote:"Không phải phần mềm kế toán. Lớp tài chính vận hành giữa kho và kế toán — xây cho cách seller cross-border xoay tiền tại Canada.",
       // payment ops
       payops_eyebrow:"Vận hành thanh toán",
       payops_h2:"Xây cho cách seller thật sự thanh toán tại Canada.",
-      payops_lede:"Đa số seller cross-border không chạy trên Shopify payouts. Họ thanh toán bằng EFT, e-Transfer, COD, séc và sao kê tuần — nối tiền với đơn chỉ qua mã tham chiếu, tên người gửi và memo email. KDEXPRESS biến sợi chỉ đó thành workflow.",
+      payops_lede:"Seller thanh toán bằng EFT, e-Transfer, COD và sao kê tuần — nối với đơn qua mã tham chiếu và memo email. KDEXPRESS biến sợi chỉ đó thành workflow.",
       payops_s1_num:"01 · ĐỊNH TUYẾN", payops_s1_t:"Định tuyến thanh toán riêng", payops_s1_d:"Mỗi khách có key tham chiếu riêng và email nhận thanh toán riêng — mọi khoản vào đều có tag, không ẩn danh trong inbox chung.",
       payops_s2_num:"02 · TRÍCH XUẤT", payops_s2_t:"Trích xuất email tự động", payops_s2_d:"Thông báo ngân hàng, remittance carrier và alert e-Transfer được parse tự động — số tiền, người gửi, mã tham chiếu, memo, gom về cùng một event stream.",
       payops_s2_b1:"SỐ TIỀN", payops_s2_b2:"NGƯỜI GỬI", payops_s2_b4:"MEMO",
@@ -1734,7 +1893,7 @@
       stab_st_recon:"ĐÃ KHỚP", stab_st_review:"REVIEW", stab_st_settled:"XONG", stab_st_recon2:"ĐÃ KHỚP", stab_st_ready:"SẴN SÀNG",
       stab_foot:'5 khách · 882 kiện · <b>$31,694.50 CAD</b>', stab_export:"XUẤT · PDF",
       callout_t:"Đây là tài chính vận hành, không phải kế toán.",
-      callout_d:'KDEXPRESS đối soát theo <b>khách</b>, không theo từng đơn — đây là chủ ý. Nó phản ánh cách seller cross-border thật sự thanh toán tại Canada: theo tuần, theo quan hệ, qua mã tham chiếu và memo. Đầu ra là một bàn giao gọn cho kế toán của bạn, không thay thế kế toán.',
+      callout_d:'KDEXPRESS đối soát theo <b>khách</b>, không theo từng đơn — đây là chủ ý. Đầu ra là một bàn giao gọn cho kế toán, không thay thế kế toán.',
       // exception
       exc_eyebrow:"Xử lý sự cố",
       exc_h2:"Biết vấn đề shipment trước cả khi khách hỏi.",
@@ -1759,13 +1918,13 @@
       // flexible workflows
       flow_eyebrow:"Workflow linh hoạt",
       flow_h2:"Vẫn chạy đơn trên Sheets? Đa số seller đang lên cũng vậy.",
-      flow_lede:"Thực tế seller cross-border: đơn trong Google Sheets, thông báo thanh toán trong email, file supplier trong CSV, hướng dẫn fulfilment trong chat. KDEXPRESS bắt đúng thực tế đó — và cho nó một bộ khung.",
+      flow_lede:"Đơn trong Sheets, thanh toán trong email, file supplier CSV, fulfilment trong chat. KDEXPRESS bắt thực tế đó — và cho nó một bộ khung.",
       flow_tag:'<span class="dot"></span>WORKFLOW VẬN HÀNH', flow_arrow_label:"INPUT → BATCH → TRACKING → SỰ CỐ",
       flow_n1_t:"Đầu vào", flow_n1_l2:"Upload CSV", flow_n1_l3:"Email-in",
       flow_n2_t:"Xử lý batch", flow_n2_l1:"Validate địa chỉ", flow_n2_l2:"Cấp nhãn", flow_n2_l3:"Queue pick &amp; pack", flow_n2_l4:"Gán carrier",
       flow_n3_t:"Tracking live", flow_n3_l1:"Timeline 6 bước", flow_n3_l2:"Link cho khách", flow_n3_l3:"Sync ngược Sheets", flow_n3_l4:"Webhook events",
       flow_n4_t:"Sự cố", flow_n4_l1:"Phiếu báo", flow_n4_l2:"Lỗi địa chỉ", flow_n4_l3:"Hoàn &amp; RTO", flow_n4_l4:"Hold đối soát",
-      flow_footnote:"Không cần Shopify-native mới vận hành chuyên nghiệp. Cùng workflow đó chạy dù đầu vào là API call hay paste Sheets sáng thứ ba — đầu ra vẫn là cùng kỷ luật vận hành.",
+      flow_footnote:"Không cần Shopify-native mới vận hành chuyên nghiệp. Cùng workflow chạy dù đầu vào là API call hay paste Sheets sáng thứ ba — cùng output downstream.",
       // why
       why_eyebrow:"Vì sao seller chuyển", why_h2:"Fulfillment hỏng vì tích tụ lỗi nhỏ.",
       why_quote:'Đa số seller không chuyển đối tác fulfilment vì một <span class="accent">sự cố thảm hoạ</span>.<br><br><em>Họ chuyển vì sự tích tụ chậm của những vấn đề vận hành nhỏ — loại không hiện ra trên báo cáo quý nhưng âm thầm ngốn cả tuần của team.</em>',
@@ -1779,7 +1938,7 @@
       // operations
       ops_eyebrow:"Vận hành thật sau phần mềm",
       ops_h2:"Scan ở mọi bước vận hành.",
-      ops_lede:"Nền tảng có quan điểm vì vận hành cũng vậy. Mọi kiện rời facility Vancouver đều qua cùng 4 lần scan — nhận, dán nhãn, đóng gói, bàn giao.",
+      ops_lede:"Mọi kiện rời facility Vancouver đều qua cùng 4 lần scan — nhận, dán nhãn, đóng gói, bàn giao.",
       ops_c1_step:"01 · NHẬN", ops_c1_t:"Scan &amp; xác minh", ops_c1_d:"Nhận theo barcode. Sai lệch được flag trước khi lên kệ.",
       ops_c2_step:"02 · DÁN NHÃN", ops_c2_t:"Nhãn nhiệt branded", ops_c2_d:"In bulk một click từ dashboard. Service tier chọn theo carrier.",
       ops_c3_step:"03 · ĐÓNG GÓI", ops_c3_t:"Đóng gói &amp; xác minh", ops_c3_d:"Pick theo bin, đối chiếu với đơn, dán băng dính branded. Scan để chuyển trạng thái.",
@@ -1787,14 +1946,14 @@
       // storage
       storage_eyebrow:"Lớp kho hàng",
       storage_h2:"Phần mềm chạy trên kho thật.",
-      storage_lede:"Kho Canada scan-tracked, làm nền cho lớp vận hành. Kiểm soát môi trường, gắn barcode, mọi vị trí đều khớp với dashboard. Đó là sàn để phần mềm chạy — không phải sản phẩm mình bán.",
+      storage_lede:"Kho scan-tracked tại Canada. Kiểm soát môi trường, gắn barcode, mọi vị trí khớp dashboard.",
       storage_s1_strong:"Scan-tracked", storage_s1_span:"Mọi vị trí gắn barcode",
       storage_s2_strong:"24h SLA", storage_s2_span:"Từ nhận đến lên kệ",
       storage_cap1:"HỖN HỢP · A", storage_cap2:"SỨC KHOẺ · B", storage_cap3:"FMCG · C", storage_cap4:"LỐI CHÍNH",
       // carriers
       carr_eyebrow:"Chuẩn hoá carrier",
       carr_h2:"Canada Post, UPS, FedEx — cùng một timeline.",
-      carr_lede:"Event của Canada Post, Purolator, UPS và FedEx được ingest, chuẩn hoá và khâu vào một view duy nhất cho từng kiện. Service tier là quyết định routing — không phải lock-in vận hành, không phải logo trên brochure.",
+      carr_lede:"Event của Canada Post, Purolator, UPS và FedEx — ingest, chuẩn hoá, khâu vào một view duy nhất cho từng kiện.",
       carr_b1:'<span class="ck">✓</span>Timeline 6 bước chuẩn hoá xuyên carrier — cùng shape mỗi lần',
       carr_b2:'<span class="ck">✓</span>Phát hiện sự cố độc lập carrier (phiếu báo, đứng đường, hoàn)',
       carr_b3:'<span class="ck">✓</span>Một link tracking cho khách, bất kể ai thật sự gửi kiện',
@@ -1808,12 +1967,31 @@
       loc_l_hours:"Giờ làm", loc_v_hours:"T2 – T7 · 9:00 – 18:00 PST",
       loc_l_pickup:"Pickup", loc_v_pickup:"Canada Post hằng ngày · Carrier khác on-demand",
       loc_l_contact:"Liên hệ",
+      // onboarding
+      onb_eyebrow:"Onboarding",
+      onb_h2:"Workflow vận hành thật, dựng quanh workflow của bạn — trong một ngày.",
+      onb_lede:"Không form portal. Không intake 30 trang. Gửi setup hiện tại — mình map workspace vận hành quanh nó.",
+      onb_c1_h:"Phù hợp với ai",
+      onb_c1_l1:"Seller cross-border ship vào / từ Canada",
+      onb_c1_l2:"Volume vận hành 300+ kiện / tháng",
+      onb_c1_l3:"Đang dùng Sheets, Shopify, COD hoặc EFT",
+      onb_c1_l4:"Cần một ops team, không phải một portal đăng nhập",
+      onb_c2_h:"Onboarding chạy thế nào",
+      onb_c2_l1:"Gửi workflow hiện tại — Sheets, CSV, screenshot",
+      onb_c2_l2:"Mình mirror vào một workspace riêng",
+      onb_c2_l3:"Batch đầu tiên gửi trong 5 ngày làm việc",
+      onb_c2_l4:"Không phí setup · Không khoá hợp đồng dài hạn",
+      onb_c3_h:"Sau khi bạn liên hệ",
+      onb_c3_l1:"Phản hồi trong 1 ngày làm việc · giờ Vancouver",
+      onb_c3_l2:"Call 15 phút để map workflow của bạn",
+      onb_c3_l3:"Báo giá + kế hoạch onboarding trong tuần",
+      onb_c3_l4:"Tuỳ chọn: đến tận kho trước khi ký",
       // cta
       cta_eyebrow:"Bắt đầu", cta_h2:"Kể cho mình nghe vận hành hiện tại của bạn.",
-      cta_lede:"Sheets, Shopify, COD, e-Transfer hay tất cả. Gửi workflow hiện tại của bạn — mình xây lớp vận hành quanh nó, không bắt bạn đổi ngược. Báo giá, workspace và kế hoạch onboarding gửi lại trong một ngày làm việc.",
+      cta_lede:"Sheets, Shopify, COD hay e-Transfer — gửi workflow hiện tại, mình xây lớp vận hành quanh nó. Báo giá và kế hoạch onboarding gửi lại trong một ngày làm việc.",
       cta_btn1:"Liên hệ team →", cta_btn2:"Xem dashboard",
       // footer
-      foot_desc:"Trung tâm fulfilment và vận hành ecommerce tại Canada cho seller toàn cầu. Theo dõi realtime, xử lý sự cố và đối soát thanh toán — chạy trên kho thật ở Vancouver, BC.",
+      foot_desc:"Hạ tầng vận hành tại Canada cho seller ecommerce toàn cầu. Realtime, sự cố và đối soát — trên kho thật ở Vancouver, BC.",
       foot_col1_h:"Nền tảng", foot_col1_l1:"Tổng quan", foot_col1_l2:"Đối soát", foot_col1_l3:"Vận hành thanh toán", foot_col1_l4:"Sự cố", foot_col1_l5:"Workflow",
       foot_col2_h:"Vận hành", foot_col2_l1:"Luồng kho", foot_col2_l2:"Kho hàng", foot_col2_l3:"Carrier",
       foot_col3_h:"Công ty", foot_col3_l1:"Về chúng mình", foot_col3_l2:"Thăm kho", foot_col3_l3:"Liên hệ",
@@ -1844,6 +2022,40 @@
   let saved = 'en';
   try { saved = localStorage.getItem('kde_lang') || 'en'; } catch(e){}
   applyLang(saved);
+
+  /* ─── Hero animation: counter + rotating ticker ─── */
+  const transitEl = document.getElementById('js-transit-count');
+  if (transitEl) {
+    const target = parseInt(transitEl.dataset.target, 10) || 0;
+    const startedAt = performance.now();
+    const dur = 1400;
+    function step(now){
+      const t = Math.min(1, (now - startedAt) / dur);
+      const eased = 1 - Math.pow(1 - t, 3);
+      transitEl.textContent = Math.round(target * eased).toString();
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const TICKER_KEYS = ['ticker_t1','ticker_t2','ticker_t3','ticker_t4','ticker_t5'];
+  const tickerLine = document.getElementById('js-ticker-line');
+  let tickerIdx = 0;
+  function rotateTicker(){
+    if (!tickerLine) return;
+    tickerIdx = (tickerIdx + 1) % TICKER_KEYS.length;
+    const lang = document.documentElement.lang || 'en';
+    const key = TICKER_KEYS[tickerIdx];
+    const txt = (I18N[lang] && I18N[lang][key]) || (I18N.en && I18N.en[key]) || '';
+    if (!txt) return;
+    tickerLine.style.opacity = '0';
+    setTimeout(() => {
+      tickerLine.dataset.i18n = key;
+      tickerLine.textContent = txt;
+      tickerLine.style.opacity = '1';
+    }, 320);
+  }
+  if (tickerLine) setInterval(rotateTicker, 3200);
 })();
 </script>
 </body>
