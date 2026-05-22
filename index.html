@@ -112,7 +112,7 @@
     background:linear-gradient(180deg,var(--green) 0%,var(--green-dark) 100%);
     -webkit-background-clip:text;background-clip:text;color:transparent;
   }
-  .lede{font-size:18px;color:var(--ink-3);margin-bottom:28px;max-width:540px;line-height:1.6;}
+  .lede{font-size:19px;color:var(--ink-2);margin-bottom:28px;max-width:540px;line-height:1.62;}
   .hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px;}
   .hero-meta{display:flex;gap:8px;flex-wrap:wrap;}
   .hero-meta .chip{
@@ -159,12 +159,6 @@
     background:var(--green-soft);color:var(--green-dark);
   }
 
-  /* ───── Logo strip ───── */
-  .strip{padding:28px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-soft);}
-  .strip-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
-  .strip-label{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.4px;font-weight:600;}
-  .strip-logos{display:flex;gap:36px;flex-wrap:wrap;font-weight:700;letter-spacing:1.2px;font-size:13px;color:#a1a8b3;}
-
   /* ───── Section base ───── */
   section{padding:96px 0;}
   .section-eyebrow{
@@ -175,22 +169,9 @@
     font-size:clamp(28px,3.4vw,40px);line-height:1.08;
     letter-spacing:-0.028em;font-weight:700;margin-bottom:14px;
   }
-  .section-head{max-width:660px;margin-bottom:48px;}
-  .section-head p{font-size:17px;color:var(--ink-3);line-height:1.6;}
+  .section-head{max-width:680px;margin-bottom:48px;}
+  .section-head p{font-size:18px;color:var(--ink-2);line-height:1.62;}
   .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
-
-  /* ───── Pillars (replaced feature grid) ───── */
-  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);}
-  .pillar{padding:32px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff;transition:background .15s ease;}
-  .pillar:hover{background:var(--bg-soft);}
-  .pillar .ic{
-    width:36px;height:36px;border-radius:8px;
-    background:var(--green-soft);color:var(--green-dark);
-    display:flex;align-items:center;justify-content:center;font-size:18px;
-    margin-bottom:18px;border:1px solid var(--green-line);
-  }
-  .pillar h3{font-size:17px;font-weight:700;margin-bottom:8px;letter-spacing:-.01em;}
-  .pillar p{font-size:14.5px;color:var(--ink-3);line-height:1.55;}
 
   /* ───── Software showcase ───── */
   .showcase{background:var(--bg-soft);}
@@ -199,10 +180,12 @@
   .showcase-row.reverse{grid-template-columns:1.35fr 1fr;}
   .showcase-row.reverse .showcase-img{order:-1;}
   .showcase-img{
-    border-radius:12px;overflow:hidden;
+    border-radius:14px;overflow:hidden;
     box-shadow:var(--shadow-lg);
-    border:1px solid var(--line);background:#fff;
+    background:#fff;
+    transition:transform .25s ease;
   }
+  .showcase-img:hover{transform:translateY(-4px);}
   .showcase-img img{width:100%;height:auto;display:block;}
   .module-tag{
     display:inline-flex;align-items:center;gap:8px;
@@ -211,11 +194,11 @@
     font-size:11px;font-weight:600;color:var(--ink-3);
     text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;
   }
-  .module-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--green);}
+  .module-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(22,163,74,.2);animation:ki-pulse 1.6s ease-in-out infinite;}
   .showcase-row h3{font-size:26px;font-weight:700;letter-spacing:-.02em;margin-bottom:12px;line-height:1.15;}
-  .showcase-row p{font-size:15.5px;color:var(--ink-3);line-height:1.6;}
+  .showcase-row p{font-size:16.5px;color:var(--ink-2);line-height:1.62;}
   .check-list{margin-top:20px;display:grid;gap:10px;}
-  .check-list li{display:flex;gap:10px;align-items:flex-start;list-style:none;font-size:14.5px;color:var(--ink-3);}
+  .check-list li{display:flex;gap:10px;align-items:flex-start;list-style:none;font-size:15.5px;color:var(--ink-2);line-height:1.55;}
   .check-list .ck{flex-shrink:0;width:18px;height:18px;border-radius:5px;background:var(--green-soft);color:var(--green-dark);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;margin-top:2px;border:1px solid var(--green-line);}
 
   /* ───── Settlement section (dark) ───── */
@@ -278,7 +261,18 @@
   .recon-flow .body .d{font-size:12.5px;color:#9ca3af;line-height:1.5;}
 
   /* ───── Payment Operations workflow ───── */
-  .payops{background:#fff;border-top:1px solid var(--line);}
+  .payops{background:var(--bg-dark);color:#fff;padding:112px 0;position:relative;overflow:hidden;}
+  .payops::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(720px 420px at 90% 0%,rgba(22,163,74,.10),transparent 60%),
+      radial-gradient(620px 420px at 5% 100%,rgba(29,78,216,.07),transparent 60%);
+    pointer-events:none;
+  }
+  .payops .container{position:relative;}
+  .payops h2{color:#fff;}
+  .payops .section-eyebrow{color:#86efac;}
+  .payops .section-head p{color:#cbd5e1;}
   .payops-stages{
     display:grid;grid-template-columns:repeat(4,1fr);gap:0;
     border:1px solid var(--line);border-radius:14px;overflow:hidden;
@@ -470,23 +464,35 @@
   }
 
   /* ───── Why sellers switch ───── */
-  .why{background:var(--bg-soft);}
+  .why{background:var(--bg-dark);color:#fff;padding:112px 0;position:relative;overflow:hidden;}
+  .why::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(720px 420px at 12% 0%,rgba(22,163,74,.10),transparent 60%),
+      radial-gradient(620px 420px at 95% 100%,rgba(180,83,9,.07),transparent 60%);
+    pointer-events:none;
+  }
+  .why .container{position:relative;}
+  .why h2{color:#fff;}
+  .why .section-eyebrow{color:#86efac;}
   .why-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:start;}
   .why-quote{
-    font-size:24px;font-weight:600;line-height:1.35;
-    letter-spacing:-.018em;color:var(--ink);
+    font-size:25px;font-weight:600;line-height:1.38;
+    letter-spacing:-.018em;color:#fff;
   }
-  .why-quote .accent{color:var(--green-dark);}
-  .why-quote em{font-style:normal;color:var(--muted);font-weight:500;}
-  .why-attrib{margin-top:24px;display:flex;align-items:center;gap:12px;font-size:13px;color:var(--ink-3);}
-  .why-attrib .av{width:36px;height:36px;border-radius:50%;background:var(--green-soft);color:var(--green-dark);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;border:1px solid var(--green-line);}
-  .why-list{display:grid;gap:0;border-top:1px solid var(--line);}
-  .why-list .item{display:grid;grid-template-columns:36px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);}
-  .why-list .num{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--muted);}
-  .why-list .t{font-weight:700;font-size:15px;margin-bottom:4px;letter-spacing:-.01em;}
-  .why-list .d{font-size:14px;color:var(--ink-3);line-height:1.55;}
+  .why-quote .accent{color:#86efac;}
+  .why-quote em{font-style:normal;color:#9ca3af;font-weight:500;}
+  .why-attrib{margin-top:28px;display:flex;align-items:center;gap:12px;font-size:13px;color:#9ca3af;}
+  .why-attrib .av{width:36px;height:36px;border-radius:50%;background:rgba(22,163,74,.18);color:#86efac;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;border:1px solid rgba(22,163,74,.32);}
+  .why-attrib-org{color:#fff;font-weight:600;}
+  .why-attrib-note{font-size:12px;color:#6b7280;}
+  .why-list{display:grid;gap:0;border-top:1px solid rgba(255,255,255,.08);}
+  .why-list .item{display:grid;grid-template-columns:36px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.08);}
+  .why-list .num{font-family:var(--mono);font-size:12px;font-weight:700;color:#86efac;letter-spacing:.5px;}
+  .why-list .t{font-weight:700;font-size:15.5px;margin-bottom:4px;letter-spacing:-.01em;color:#fff;}
+  .why-list .d{font-size:15px;color:#cbd5e1;line-height:1.6;}
 
-  /* ───── Operations (the team behind the platform) ───── */
+  /* ───── Operations (merged: scan workflow + tracking + issue queue) ───── */
   .ops{background:#fff;}
   .ops-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
   .ops-card{border-radius:12px;overflow:hidden;background:#fff;border:1px solid var(--line);transition:all .2s ease;}
@@ -496,8 +502,41 @@
   .ops-card:hover .ops-img img{transform:scale(1.04);}
   .ops-body{padding:18px;}
   .ops-step{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--green-dark);letter-spacing:1.2px;}
-  .ops-body h3{font-size:15.5px;font-weight:700;margin:5px 0 6px;letter-spacing:-.01em;}
-  .ops-body p{font-size:13.5px;color:var(--ink-3);line-height:1.5;}
+  .ops-body h3{font-size:16px;font-weight:700;margin:5px 0 6px;letter-spacing:-.01em;}
+  .ops-body p{font-size:14.5px;color:var(--ink-2);line-height:1.55;}
+
+  /* Block B: tracking pipeline (full-bleed off-white band inside ops) */
+  .ops-band{margin:80px calc(50% - 50vw) 0;padding:64px 0;background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .ops-band-inner{max-width:1180px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;}
+  .ops-band-img{border-radius:14px;overflow:hidden;aspect-ratio:4/3;border:1px solid var(--line);box-shadow:var(--shadow);}
+  .ops-band-img img{width:100%;height:100%;object-fit:cover;}
+  .ops-block-tag{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--green-dark);text-transform:uppercase;margin-bottom:10px;}
+  .ops-band h3{font-size:24px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px;line-height:1.2;}
+  .ops-band p{font-size:16px;color:var(--ink-2);line-height:1.6;}
+
+  /* Block C: issue queue (light alert variant) */
+  .ops-issue{margin-top:80px;}
+  .ops-issue-head{max-width:680px;margin-bottom:28px;}
+  .ops-issue-head h3{font-size:24px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px;line-height:1.2;}
+  .ops-issue-head p{font-size:16px;color:var(--ink-2);line-height:1.6;}
+  .alert-stack.light{display:grid;gap:14px;grid-template-columns:repeat(3,1fr);}
+  .alert-stack.light .alert{background:#fff;border:1px solid var(--line);border-left:3px solid var(--amber);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;}
+  .alert-stack.light .alert:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--ink-3);}
+  .alert-stack.light .alert.red{border-left-color:#dc2626;}
+  .alert-stack.light .alert.amber{border-left-color:#d97706;}
+  .alert-stack.light .alert.blue{border-left-color:#3b82f6;}
+  .alert-stack.light .alert .top .who{color:var(--muted);}
+  .alert-stack.light .alert .top .who b{color:var(--ink);}
+  .alert-stack.light .alert .top .age{color:var(--muted);}
+  .alert-stack.light .alert .msg{color:var(--ink-2);}
+  .alert-stack.light .alert .foot{color:var(--muted);}
+  .alert-stack.light .alert .foot b{color:var(--ink);}
+  .alert-stack.light .alert .mini-btn{background:var(--bg-soft);color:var(--ink-2);border:1px solid var(--line);}
+  .alert-stack.light .alert .mini-btn:hover{background:#fff;border-color:var(--ink-3);}
+  .alert-stack.light .alert .mini-btn.primary{background:var(--green-soft);color:var(--green-dark);border-color:var(--green-line);}
+  .alert-stack.light .status-pill.red{background:var(--red-soft);color:var(--red);}
+  .alert-stack.light .status-pill.amber{background:var(--amber-soft);color:var(--amber);}
+  .alert-stack.light .status-pill.blue{background:var(--blue-soft);color:var(--blue);}
 
   /* ───── Storage (smaller, scan-tracked framing) ───── */
   .storage{background:var(--bg-soft);}
@@ -531,18 +570,27 @@
   .carrier-tag b{color:var(--ink);font-weight:600;}
 
   /* ───── Location ───── */
-  .location{background:var(--bg-soft);}
-  .location-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;}
-  .location-img{border-radius:14px;overflow:hidden;aspect-ratio:3/2;border:1px solid var(--line);box-shadow:var(--shadow);}
-  .location-img img{width:100%;height:100%;object-fit:cover;}
-  .addr-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;margin-top:24px;}
+  /* ───── Facility (merged: warehouse photo + address + zone gallery) ───── */
+  .facility{background:#fff;padding:96px 0;}
+  .facility-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:56px;align-items:center;margin-bottom:56px;}
+  .facility-img-main{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:4/3;box-shadow:var(--shadow-lg);}
+  .facility-img-main img{width:100%;height:100%;object-fit:cover;}
+  .facility-img-tag{position:absolute;left:18px;bottom:18px;font-family:var(--mono);font-size:11px;font-weight:700;padding:7px 12px;border-radius:6px;background:rgba(11,12,15,.82);color:#fff;backdrop-filter:blur(6px);letter-spacing:.7px;}
+  .facility-lede{font-size:17px;color:var(--ink-2);line-height:1.6;margin-bottom:22px;}
+  .facility .btn-primary{margin-top:26px;}
+  .facility-zones{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+  .facility-zones .zone{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:1;}
+  .facility-zones .zone img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;}
+  .facility-zones .zone:hover img{transform:scale(1.04);}
+  .facility-zones .zone .cap{position:absolute;left:10px;bottom:10px;font-family:var(--mono);font-size:10.5px;font-weight:700;padding:5px 8px;border-radius:5px;background:rgba(11,12,15,.78);color:#fff;letter-spacing:.5px;}
+  .addr-card{background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:20px;margin-top:18px;}
   .addr-card .row{display:flex;gap:14px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13.5px;}
   .addr-card .row:last-child{border-bottom:0;}
   .addr-card .label{width:88px;color:var(--muted);font-family:var(--mono);font-weight:600;text-transform:uppercase;font-size:10.5px;letter-spacing:1px;padding-top:2px;}
   .addr-card .val{color:var(--ink);font-weight:500;}
 
   /* ───── CTA ───── */
-  .cta{background:var(--bg-dark);color:#fff;position:relative;overflow:hidden;}
+  .cta{background:var(--bg-dark);color:#fff;position:relative;overflow:hidden;padding:112px 0;}
   .cta::before{
     content:"";position:absolute;inset:0;
     background:radial-gradient(700px 400px at 50% 0%,rgba(22,163,74,.18),transparent 60%);
@@ -550,41 +598,36 @@
   }
   .cta .container{position:relative;text-align:center;}
   .cta h2{color:#fff;margin-bottom:14px;}
-  .cta p{color:#a1a8b3;font-size:17px;margin-bottom:28px;max-width:560px;margin-left:auto;margin-right:auto;}
+  .cta p{color:#cbd5e1;font-size:17px;margin-bottom:0;max-width:580px;margin-left:auto;margin-right:auto;line-height:1.6;}
   .cta .btn-primary{background:#fff;color:var(--ink);}
   .cta .btn-primary:hover{background:#f7f8fa;}
   .cta .btn-ghost{color:#fff;border-color:rgba(255,255,255,.18);}
   .cta .btn-ghost:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.04);}
+  .cta-eyebrow{color:#86efac !important;}
+  .cta-chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:24px 0 28px;}
+  .cta-chip{font-family:var(--mono);font-size:12px;font-weight:600;padding:7px 12px;border-radius:6px;background:rgba(255,255,255,.06);color:#e5e7eb;border:1px solid rgba(255,255,255,.12);letter-spacing:.3px;transition:background .15s ease,border-color .15s ease;}
+  .cta-chip:hover{background:rgba(22,163,74,.14);border-color:rgba(22,163,74,.32);color:#86efac;}
+  .cta-buttons{justify-content:center;margin-bottom:0;}
+  .cta-next{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:920px;margin:56px auto 0;padding-top:40px;border-top:1px solid rgba(255,255,255,.08);text-align:left;}
+  .cta-next-item{display:flex;gap:14px;align-items:flex-start;}
+  .cta-next-num{font-family:var(--mono);font-size:11px;font-weight:700;color:#86efac;letter-spacing:1px;padding-top:3px;flex-shrink:0;}
+  .cta-next-t{font-size:14.5px;font-weight:700;color:#fff;margin-bottom:4px;letter-spacing:-.01em;}
+  .cta-next-d{font-size:13px;color:#9ca3af;line-height:1.55;}
 
-  /* ───── Stats bar ───── */
-  .stats-bar{padding:48px 0;border-bottom:1px solid var(--line);background:#fff;}
-  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;align-items:end;}
-  .stat{position:relative;padding-left:18px;}
+  /* ───── Stats bar (trust strip) ───── */
+  .stats-bar{padding:56px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-soft);}
+  .stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;align-items:end;}
+  .stat{position:relative;padding-left:16px;}
   .stat::before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:2px;background:var(--green);border-radius:2px;opacity:.85;}
-  .stat .num{font-family:var(--mono);font-size:clamp(28px,3vw,38px);font-weight:700;color:var(--ink);letter-spacing:-.02em;line-height:1;}
+  .stat .num{font-family:var(--mono);font-size:clamp(24px,2.7vw,32px);font-weight:700;color:var(--ink);letter-spacing:-.02em;line-height:1;}
+  .stat .num.text{font-size:clamp(20px,2.2vw,26px);}
   .stat .num .plus{color:var(--green-dark);}
   .stat .lbl{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.3px;margin-top:10px;font-weight:600;}
-  @media (max-width:760px){
-    .stats-grid{grid-template-columns:repeat(2,1fr);gap:28px 20px;}
-  }
-
-  /* ───── Onboarding section ───── */
-  .onboard{background:var(--bg-soft);}
-  .onboard-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);margin-top:36px;}
-  .onboard-col{padding:32px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff;}
-  .onboard-col .ic{
-    width:36px;height:36px;border-radius:8px;
-    background:var(--green-soft);color:var(--green-dark);
-    display:flex;align-items:center;justify-content:center;
-    font-family:var(--mono);font-size:13px;font-weight:700;
-    margin-bottom:18px;border:1px solid var(--green-line);
-  }
-  .onboard-col h3{font-size:17px;font-weight:700;margin-bottom:14px;letter-spacing:-.01em;}
-  .onboard-col ul{list-style:none;display:grid;gap:10px;}
-  .onboard-col li{font-size:14.5px;color:var(--ink-3);line-height:1.5;padding-left:18px;position:relative;}
-  .onboard-col li::before{content:"→";position:absolute;left:0;top:0;color:var(--green-dark);font-weight:700;}
   @media (max-width:960px){
-    .onboard-grid{grid-template-columns:1fr;}
+    .stats-grid{grid-template-columns:repeat(3,1fr);gap:28px 20px;}
+  }
+  @media (max-width:560px){
+    .stats-grid{grid-template-columns:repeat(2,1fr);gap:24px 18px;}
   }
 
   /* ───── Hero animation ───── */
@@ -617,10 +660,12 @@
 
   /* ───── Responsive ───── */
   @media (max-width:960px){
-    .hero-grid,.settle-grid,.exc-grid,.why-grid,.carrier,.location-grid,.storage-grid,.showcase-row,.showcase-row.reverse,.payops-detail{grid-template-columns:1fr;gap:40px;}
+    .hero-grid,.settle-grid,.exc-grid,.why-grid,.carrier,.facility-grid,.storage-grid,.showcase-row,.showcase-row.reverse,.payops-detail,.ops-band-inner{grid-template-columns:1fr;gap:40px;}
+    .facility-zones{grid-template-columns:repeat(2,1fr);}
+    .cta-next{grid-template-columns:1fr;gap:18px;}
     .showcase-row.reverse .showcase-img{order:0;}
-    .pillars{grid-template-columns:1fr;}
     .ops-grid{grid-template-columns:1fr 1fr;}
+    .alert-stack.light{grid-template-columns:1fr;}
     .flow-diagram{grid-template-columns:1fr 1fr;}
     .payops-stages{grid-template-columns:1fr 1fr;}
     .payops-stage{border-right:0;border-bottom:1px solid var(--line);}
@@ -654,12 +699,10 @@
       <img src="logo.png" alt="KDEXPRESS" />
     </a>
     <nav class="nav-links">
-      <a href="#platform" data-i18n="nav_platform">Platform</a>
       <a href="#operations" data-i18n="nav_operations">Operations</a>
-      <a href="#payment-ops" data-i18n="nav_payops">Settlement</a>
-      <a href="#exceptions" data-i18n="nav_exceptions">Exceptions</a>
-      <a href="#onboarding" data-i18n="nav_onboarding">Onboarding</a>
-      <a href="#location" data-i18n="nav_company">Visit warehouse</a>
+      <a href="#payment-ops" data-i18n="nav_payops">Payment</a>
+      <a href="#showcase" data-i18n="nav_dashboard">Dashboard</a>
+      <a href="#facility" data-i18n="nav_company">Visit warehouse</a>
     </nav>
     <div class="nav-right">
       <div class="lang-switch" role="group" aria-label="Language">
@@ -720,136 +763,213 @@
         <div class="lbl" data-i18n="stat1_lbl">Parcels processed</div>
       </div>
       <div class="stat">
+        <div class="num text" data-i18n="stat2_num">Daily</div>
+        <div class="lbl" data-i18n="stat2_lbl">Canada Post pickup</div>
+      </div>
+      <div class="stat">
         <div class="num">4</div>
-        <div class="lbl" data-i18n="stat2_lbl">Carrier integrations</div>
+        <div class="lbl" data-i18n="stat3_lbl">Carriers synced</div>
       </div>
       <div class="stat">
         <div class="num">&lt; 24h</div>
-        <div class="lbl" data-i18n="stat3_lbl">Exception response</div>
+        <div class="lbl" data-i18n="stat4_lbl">Exception response</div>
       </div>
       <div class="stat">
-        <div class="num">12K<span class="plus" style="font-size:.6em;margin-left:2px;">sqft</span></div>
-        <div class="lbl" data-i18n="stat4_lbl">Vancouver, BC facility</div>
+        <div class="num text" data-i18n="stat5_num">Vancouver</div>
+        <div class="lbl" data-i18n="stat5_lbl">BC · 12K sqft warehouse</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============= LOGO STRIP ============= -->
-<div class="strip">
-  <div class="container strip-inner">
-    <span class="strip-label" data-i18n="strip_label">The operational stack our sellers actually run on</span>
-    <div class="strip-logos">
-      <span>GOOGLE SHEETS</span>
-      <span>CSV IMPORT</span>
-      <span>EMAIL-BASED OPS</span>
-      <span>CANADA POST</span>
-      <span>COD</span>
-      <span>EFT</span>
-      <span>SHOPIFY</span>
-      <span>API</span>
-    </div>
-  </div>
-</div>
-
-<!-- ============= PILLARS ============= -->
-<section id="platform">
+<!-- ============= WHY SELLERS SWITCH (pain hook, moved up) ============= -->
+<section class="why">
   <div class="container">
     <div class="section-head">
-      <span class="section-eyebrow" data-i18n="pillars_eyebrow">The platform</span>
-      <h2 data-i18n="pillars_h2">Stop managing Canada shipping through spreadsheets and inboxes.</h2>
-      <p data-i18n="pillars_lede">KDEXPRESS is the operational layer between your storefront and the package on the truck — six modules built around the way cross-border sellers actually work in Canada.</p>
+      <span class="section-eyebrow" data-i18n="why_eyebrow">Why sellers switch</span>
+      <h2 data-i18n="why_h2">It's almost never one catastrophic failure.</h2>
     </div>
-    <div class="pillars">
-      <div class="pillar">
-        <div class="ic">⌂</div>
-        <h3 data-i18n="pillar1_title">Fulfilment ops</h3>
-        <p data-i18n="pillar1_desc">Receive, pick, pack, label, handoff. Every parcel through the same scan-disciplined flow at our Vancouver warehouse — branded packaging, daily Canada Post pickup.</p>
+
+    <div class="why-grid">
+      <div>
+        <p class="why-quote" data-i18n="why_quote" data-i18n-html="true">
+          Most sellers don't switch fulfillment providers because of one <span class="accent">catastrophic failure</span>.
+          <br><br>
+          <em>They switch because of the slow accumulation of small operational problems — the kind that don't show up on a quarterly review but quietly eat the team's week.</em>
+        </p>
+        <div class="why-attrib">
+          <div class="av">K</div>
+          <div>
+            <div class="why-attrib-org" data-i18n="why_attrib_org">KDEXPRESS Operations</div>
+            <div class="mono why-attrib-note" data-i18n="why_attrib_note">Founder note · Vancouver, BC</div>
+          </div>
+        </div>
       </div>
-      <div class="pillar">
-        <div class="ic">⚑</div>
-        <h3 data-i18n="pillar2_title">Tracking &amp; exceptions</h3>
-        <p data-i18n="pillar2_desc">Canada Post, Purolator, UPS and FedEx events normalized into one timeline. Notice cards, failed delivery and stalled parcels surfaced before your customer asks.</p>
-      </div>
-      <div class="pillar">
-        <div class="ic">$</div>
-        <h3 data-i18n="pillar3_title">COD &amp; settlement</h3>
-        <p data-i18n="pillar3_desc">EFT, e-Transfer and COD remittance reconciled weekly. Payment routing and statement workflow built for how cross-border sellers actually settle in Canada.</p>
+
+      <div class="why-list">
+        <div class="item">
+          <div class="num mono">01</div>
+          <div>
+            <div class="t" data-i18n="why_i1_t">Inventory sync delays</div>
+            <div class="d" data-i18n="why_i1_d">Stock count is right in the WMS, wrong on the storefront, wrong on the supplier's spreadsheet. Refunds quietly pile up.</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="num mono">02</div>
+          <div>
+            <div class="t" data-i18n="why_i2_t">Manual tracking fixes</div>
+            <div class="d" data-i18n="why_i2_d">Tracking numbers re-keyed by hand, missing carriers, broken links emailed to customers who already opened a ticket.</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="num mono">03</div>
+          <div>
+            <div class="t" data-i18n="why_i3_t">Missed exceptions</div>
+            <div class="d" data-i18n="why_i3_d">Notice cards and stalled parcels surface only when the customer messages — by then, the SLA is gone and so is the trust.</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="num mono">04</div>
+          <div>
+            <div class="t" data-i18n="why_i4_t">Support lag</div>
+            <div class="d" data-i18n="why_i4_d">Provider replies in 48 hours. The marketplace deadline is 24. Every escalation becomes the founder's problem.</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="num mono">05</div>
+          <div>
+            <div class="t" data-i18n="why_i5_t">Settlement opacity</div>
+            <div class="d" data-i18n="why_i5_d">COD remittances, EFT credits and carrier surcharges don't line up. The monthly reconciliation eats two days.</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="num mono">06</div>
+          <div>
+            <div class="t" data-i18n="why_i6_t">Operational friction</div>
+            <div class="d" data-i18n="why_i6_d">Every workflow change needs a phone call. Every CSV needs a custom mapping. The team builds workarounds instead of moving volume.</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============= SOFTWARE SHOWCASE ============= -->
-<section class="showcase">
+<!-- ============= OPERATIONS (merged: scan + tracking + issue queue) ============= -->
+<section id="operations" class="ops">
   <div class="container">
     <div class="section-head">
-      <span class="section-eyebrow" data-i18n="showcase_eyebrow">The product</span>
-      <h2 data-i18n="showcase_h2">An operations dashboard, not a fulfillment portal.</h2>
-      <p data-i18n="showcase_lede">Built in-house for our own operation, then opened to sellers. Every screen earns its place on the warehouse floor.</p>
+      <span class="section-eyebrow" data-i18n="ops_eyebrow">How we run it</span>
+      <h2 data-i18n="ops_h2">One scan-disciplined workflow — receive to handoff to resolved.</h2>
+      <p data-i18n="ops_lede">Every parcel passes through the same flow at the Vancouver floor. Then realtime tracking, normalized across carriers, exceptions surfaced in one queue.</p>
     </div>
 
-    <div class="showcase-row">
-      <div>
-        <span class="module-tag" data-i18n="dash_tag" data-i18n-html="true"><span class="dot"></span>MODULE · DASHBOARD</span>
-        <h3 data-i18n="dash_h3">Your operation, visible in realtime — in your own workspace.</h3>
-        <p data-i18n="dash_p">Each seller gets a dedicated workspace. Today's volume, pipeline state, exception counts and recent batches — refreshed live as your team and ours scan through the day. The same screen, the same numbers, no exports to wait on.</p>
-        <ul class="check-list">
-          <li data-i18n="dash_b1" data-i18n-html="true"><span class="ck">✓</span>Per-seller workspace — your team and ours, one operational view</li>
-          <li data-i18n="dash_b2" data-i18n-html="true"><span class="ck">✓</span>Pipeline: Pending → Picked → Packed → Labeled → In Transit → Delivered</li>
-          <li data-i18n="dash_b3" data-i18n-html="true"><span class="ck">✓</span>Live activity log synced bidirectionally with Google Sheets</li>
-        </ul>
+    <!-- Block A: physical scan workflow (4 cards) -->
+    <div class="ops-grid">
+      <div class="ops-card">
+        <div class="ops-img"><img src="gpt1.png" alt="Operator scanning the barcode on a branded KDEXPRESS shipping box" /></div>
+        <div class="ops-body">
+          <div class="ops-step" data-i18n="ops_c1_step">01 · RECEIVE</div>
+          <h3 data-i18n="ops_c1_t">Inbound scan &amp; verify</h3>
+          <p data-i18n="ops_c1_d">Receiving is barcode-driven. Mismatches are flagged before they hit the shelf.</p>
+        </div>
       </div>
-      <div class="showcase-img">
-        <img src="app1.png" alt="KDEXPRESS dashboard showing live status pipeline, batches and activity feed" />
+      <div class="ops-card">
+        <div class="ops-img"><img src="gpt3.png" alt="Thermal label printer producing KDEXPRESS branded labels next to the shipments dashboard" /></div>
+        <div class="ops-body">
+          <div class="ops-step" data-i18n="ops_c2_step">02 · LABEL</div>
+          <h3 data-i18n="ops_c2_t">Branded thermal labels</h3>
+          <p data-i18n="ops_c2_d">One-click bulk printing from the dashboard. Carrier-aware service tier selection.</p>
+        </div>
       </div>
-    </div>
-
-    <div class="showcase-row reverse">
-      <div>
-        <span class="module-tag" data-i18n="orders_tag" data-i18n-html="true"><span class="dot"></span>MODULE · ACTIVE ORDERS</span>
-        <h3 data-i18n="orders_h3">Every order, every status, in one operational table.</h3>
-        <p data-i18n="orders_p">Filter by carrier, store, status or date. Bulk-select to print labels, mark picked or flag for attention. Read/unread state so your team picks up where they left off — even at peak volume.</p>
-        <ul class="check-list">
-          <li data-i18n="orders_b1" data-i18n-html="true"><span class="ck">✓</span>Filter &amp; bulk-action across thousands of orders</li>
-          <li data-i18n="orders_b2" data-i18n-html="true"><span class="ck">✓</span>Inline tracking link &amp; recipient address per row</li>
-          <li data-i18n="orders_b3" data-i18n-html="true"><span class="ck">✓</span>Operational read state — never lose your place</li>
-        </ul>
+      <div class="ops-card">
+        <div class="ops-img"><img src="gpt2.png" alt="KDEXPRESS team member sealing a labeled parcel with branded packing tape" /></div>
+        <div class="ops-body">
+          <div class="ops-step" data-i18n="ops_c3_step">03 · PACK</div>
+          <h3 data-i18n="ops_c3_t">Pack &amp; verify</h3>
+          <p data-i18n="ops_c3_d">Pick by bin, verify against the order, seal with branded tape. Scan to advance state.</p>
+        </div>
       </div>
-      <div class="showcase-img">
-        <img src="app2.png" alt="Active orders table inside the KDEXPRESS platform with filters and bulk actions" />
-      </div>
-    </div>
-
-    <div class="showcase-row">
-      <div>
-        <span class="module-tag" data-i18n="detail_tag" data-i18n-html="true"><span class="dot"></span>MODULE · ORDER DETAIL</span>
-        <h3 data-i18n="detail_h3">One click to the full audit trail of a parcel.</h3>
-        <p data-i18n="detail_p">Recipient, parcel dimensions, payment state, tracking number, carrier, delivery confirmation — plus the full event log of who scanned what, when. Built for support and dispute resolution, not just shipping.</p>
-        <ul class="check-list">
-          <li data-i18n="detail_b1" data-i18n-html="true"><span class="ck">✓</span>One-click open of carrier tracking page</li>
-          <li data-i18n="detail_b2" data-i18n-html="true"><span class="ck">✓</span>Delivery confirmation timestamp recorded automatically</li>
-          <li data-i18n="detail_b3" data-i18n-html="true"><span class="ck">✓</span>Full event log for support &amp; dispute resolution</li>
-        </ul>
-      </div>
-      <div class="showcase-img">
-        <img src="app3.png" alt="Order detail panel showing recipient, parcel, tracking and delivery confirmation" />
+      <div class="ops-card">
+        <div class="ops-img"><img src="gpt14.png" alt="Worker organizing a stack of sealed KDEXPRESS parcels onto a dispatch cart" /></div>
+        <div class="ops-body">
+          <div class="ops-step" data-i18n="ops_c4_step">04 · HANDOFF</div>
+          <h3 data-i18n="ops_c4_t">Carrier handoff &amp; sync</h3>
+          <p data-i18n="ops_c4_d">Sorted by carrier and route. Tracking events stream straight back into the dashboard.</p>
+        </div>
       </div>
     </div>
 
-    <div class="showcase-row reverse">
-      <div>
-        <span class="module-tag" data-i18n="track_tag" data-i18n-html="true"><span class="dot"></span>MODULE · TRACKING TIMELINE</span>
-        <h3 data-i18n="track_h3">Six checkpoints, one timeline, every parcel.</h3>
-        <p data-i18n="track_p">Label Printed → Picked Up → In Transit → Arrived at Destination → Out for Delivery → Delivered. Written to the order timeline as soon as it happens on the floor or upstream from the carrier.</p>
-        <ul class="check-list">
-          <li data-i18n="track_b1" data-i18n-html="true"><span class="ck">✓</span>Six-stage normalized timeline per parcel</li>
-          <li data-i18n="track_b2" data-i18n-html="true"><span class="ck">✓</span>Cross-carrier event ingestion (Canada Post, Purolator, UPS, FedEx)</li>
-          <li data-i18n="track_b3" data-i18n-html="true"><span class="ck">✓</span>Customer-facing public tracking link generated automatically</li>
-        </ul>
+    <!-- Block B: tracking pipeline (carriers normalized — full-bleed off-white band) -->
+    <div class="ops-band">
+      <div class="ops-band-inner">
+        <div class="ops-band-img">
+          <img src="gpt6.png" alt="Canada Post operator picking up the daily KDEXPRESS dispatch from the Vancouver facility" />
+        </div>
+        <div>
+          <span class="ops-block-tag" data-i18n="ops_track_tag">Tracking pipeline</span>
+          <h3 data-i18n="ops_track_h3">Every carrier, one timeline.</h3>
+          <p data-i18n="ops_track_p">Canada Post, Purolator, UPS, FedEx — events ingested, normalized, stitched into a single operational view per parcel. Service tier becomes a routing decision, not a brochure logo.</p>
+          <div class="carrier-list" style="margin-top:22px;">
+            <div class="carrier-tag"><span class="dot"></span><span>Canada Post</span></div>
+            <div class="carrier-tag"><span class="dot"></span><span>Purolator</span></div>
+            <div class="carrier-tag"><span class="dot"></span><span>UPS</span></div>
+            <div class="carrier-tag"><span class="dot"></span><span>FedEx</span></div>
+            <div class="carrier-tag"><span class="dot"></span><span data-i18n="carr_t5">International · USA / VN / EU</span></div>
+            <div class="carrier-tag"><span class="dot"></span><span data-i18n="carr_t6">COD service</span></div>
+          </div>
+        </div>
       </div>
-      <div class="showcase-img">
-        <img src="gpt5.png" alt="KDEXPRESS operator at a clean pack station with the live tracking timeline open on the screen" />
+    </div>
+
+    <!-- Block C: issue queue (3 light alert cards) -->
+    <div class="ops-issue">
+      <div class="ops-issue-head">
+        <span class="ops-block-tag" data-i18n="ops_issue_tag">Issue queue</span>
+        <h3 data-i18n="ops_issue_h3">Know shipment problems before your customer does.</h3>
+        <p data-i18n="ops_issue_p">Notice cards, address holds, returns, stalled parcels — surfaced in realtime. Each row has an owner, a status and a resolution path. Not lost in an inbox.</p>
+      </div>
+      <div class="alert-stack light">
+        <div class="alert red">
+          <div class="top">
+            <div class="who"><span class="status-pill red" data-i18n="alert1_pill" data-i18n-html="true"><span class="ddot"></span>NOTICE CARD</span><b>KDCA25051300188</b></div>
+            <span class="age" data-i18n="alert1_age">8m ago</span>
+          </div>
+          <div class="msg" data-i18n="alert1_msg" data-i18n-html="true">Carrier left a notice card — recipient not home at <b>1820 Cambie St, Vancouver BC</b>. Re-delivery scheduled May 20.</div>
+          <div class="foot">
+            <span data-i18n="alert1_foot" data-i18n-html="true">Assigned · <b>support · An</b></span>
+            <div class="actions">
+              <button class="mini-btn primary" data-i18n="alert1_btn2">Notify customer</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert amber">
+          <div class="top">
+            <div class="who"><span class="status-pill amber" data-i18n="alert2_pill" data-i18n-html="true"><span class="ddot"></span>ADDRESS ISSUE</span><b>KDCA25051300194</b></div>
+            <span class="age" data-i18n="alert2_age">12m ago</span>
+          </div>
+          <div class="msg" data-i18n="alert2_msg" data-i18n-html="true">Address validation failed — postal code <span class="mono">V6P 1R2</span> doesn't match civic address. Held before label generation.</div>
+          <div class="foot">
+            <span data-i18n="alert2_foot" data-i18n-html="true">Hold · <b>label not printed</b></span>
+            <div class="actions">
+              <button class="mini-btn primary" data-i18n="alert2_btn2">Release to print</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="alert blue">
+          <div class="top">
+            <div class="who"><span class="status-pill blue" data-i18n="alert3_pill" data-i18n-html="true"><span class="ddot"></span>RETURN INBOUND</span><b>KDCA25051200067</b></div>
+            <span class="age" data-i18n="alert3_age">1h ago</span>
+          </div>
+          <div class="msg" data-i18n="alert3_msg">Parcel returned to sender — customer refused at door. Inbound to warehouse. Suggested action: restock or RTO charge.</div>
+          <div class="foot">
+            <span data-i18n="alert3_foot" data-i18n-html="true">Inbound · <b>arriving May 21</b></span>
+            <div class="actions">
+              <button class="mini-btn primary" data-i18n="alert3_btn2">Mark for restock</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -860,8 +980,8 @@
   <div class="container">
     <div class="section-head">
       <span class="section-eyebrow" data-i18n="payops_eyebrow">Payment operations</span>
-      <h2 data-i18n="payops_h2">Built for how sellers actually settle payments in Canada.</h2>
-      <p data-i18n="payops_lede">Most cross-border sellers don't run on Shopify payouts. They settle through EFT, e-Transfer, COD remittance, cheques and weekly statements — with reference numbers, sender names and email memos as the only thread connecting money to orders. KDEXPRESS turns that thread into a workflow.</p>
+      <h2 data-i18n="payops_h2">Built for how sellers actually settle in Canada.</h2>
+      <p data-i18n="payops_lede">EFT, e-Transfer, COD, weekly statements — connected to orders only by reference numbers and email memos. KDEXPRESS turns that thread into a workflow.</p>
     </div>
 
     <!-- 4-stage workflow -->
@@ -999,418 +1119,139 @@
       </div>
     </div>
 
-    <!-- Callout: explicit positioning -->
-    <div class="payops-callout">
-      <div class="ic">i</div>
-      <div>
-        <div class="t" data-i18n="callout_t">This is operational finance, not accounting.</div>
-        <div class="d" data-i18n="callout_d" data-i18n-html="true">KDEXPRESS reconciles at the <b>customer level</b>, not the order level — by design. It reflects how cross-border sellers actually settle in Canada: weekly, by relationship, with a reference number and a memo. The output is a clean handoff to your accountant, not a replacement for them.</div>
-      </div>
-    </div>
   </div>
 </section>
 
-<!-- ============= EXCEPTION MANAGEMENT ============= -->
-<section id="exceptions" class="exception">
+<!-- ============= DASHBOARD (showcase, 3 modules) ============= -->
+<section id="showcase" class="showcase">
   <div class="container">
     <div class="section-head">
-      <span class="section-eyebrow" data-i18n="exc_eyebrow">Exception intelligence</span>
-      <h2 data-i18n="exc_h2">Know shipment problems before your customer does.</h2>
-      <p data-i18n="exc_lede">Notice cards, failed delivery attempts, address issues and return triggers — surfaced in realtime, assigned, and tracked through to resolution. The exception isn't lost in an inbox.</p>
+      <span class="section-eyebrow" data-i18n="showcase_eyebrow">The dashboard</span>
+      <h2 data-i18n="showcase_h2">An operations dashboard, not a fulfillment portal.</h2>
+      <p data-i18n="showcase_lede">Built in-house for our own operation, then opened to sellers. Every screen earns its place on the warehouse floor.</p>
     </div>
 
-    <div class="exc-grid">
-      <!-- Alert stack -->
-      <div class="alert-stack">
-        <div class="alert red">
-          <div class="top">
-            <div class="who"><span class="status-pill red" data-i18n="alert1_pill" data-i18n-html="true"><span class="ddot"></span>NOTICE CARD</span><b>KDCA25051300188</b></div>
-            <span class="age" data-i18n="alert1_age">8m ago</span>
-          </div>
-          <div class="msg" data-i18n="alert1_msg" data-i18n-html="true">Carrier left a notice card — recipient not home at <b>1820 Cambie St, Vancouver BC</b>. Re-delivery scheduled May 20.</div>
-          <div class="foot">
-            <span data-i18n="alert1_foot" data-i18n-html="true">Assigned · <b>support · An</b></span>
-            <div class="actions">
-              <button class="mini-btn" data-i18n="alert1_btn1">View timeline</button>
-              <button class="mini-btn primary" data-i18n="alert1_btn2">Notify customer</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="alert amber">
-          <div class="top">
-            <div class="who"><span class="status-pill amber" data-i18n="alert2_pill" data-i18n-html="true"><span class="ddot"></span>ADDRESS ISSUE</span><b>KDCA25051300194</b></div>
-            <span class="age" data-i18n="alert2_age">12m ago</span>
-          </div>
-          <div class="msg" data-i18n="alert2_msg" data-i18n-html="true">Address validation failed — postal code <span class="mono">V6P 1R2</span> doesn't match civic address. Held before label generation.</div>
-          <div class="foot">
-            <span data-i18n="alert2_foot" data-i18n-html="true">Hold · <b>label not printed</b></span>
-            <div class="actions">
-              <button class="mini-btn" data-i18n="alert2_btn1">Edit address</button>
-              <button class="mini-btn primary" data-i18n="alert2_btn2">Release to print</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="alert blue">
-          <div class="top">
-            <div class="who"><span class="status-pill blue" data-i18n="alert3_pill" data-i18n-html="true"><span class="ddot"></span>RETURN INBOUND</span><b>KDCA25051200067</b></div>
-            <span class="age" data-i18n="alert3_age">1h ago</span>
-          </div>
-          <div class="msg" data-i18n="alert3_msg">Parcel returned to sender — customer refused at door. Inbound to warehouse. Suggested action: restock or RTO charge.</div>
-          <div class="foot">
-            <span data-i18n="alert3_foot" data-i18n-html="true">Inbound · <b>arriving May 21</b></span>
-            <div class="actions">
-              <button class="mini-btn" data-i18n="alert3_btn1">Open return</button>
-              <button class="mini-btn primary" data-i18n="alert3_btn2">Mark for restock</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="alert amber">
-          <div class="top">
-            <div class="who"><span class="status-pill amber" data-i18n="alert4_pill" data-i18n-html="true"><span class="ddot"></span>STALLED IN TRANSIT</span><b>KDCA25051000041</b></div>
-            <span class="age" data-i18n="alert4_age">3h ago</span>
-          </div>
-          <div class="msg" data-i18n="alert4_msg" data-i18n-html="true">No carrier event in <b>72h</b> — last scan Calgary AB. Flagged before customer SLA breach.</div>
-          <div class="foot">
-            <span data-i18n="alert4_foot" data-i18n-html="true">Carrier · <b>Canada Post</b></span>
-            <div class="actions">
-              <button class="mini-btn" data-i18n="alert4_btn1">Open ticket</button>
-              <button class="mini-btn primary" data-i18n="alert4_btn2">Chase carrier</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right: summary + framing -->
+    <div class="showcase-row">
       <div>
-        <h3 style="font-size:20px;font-weight:700;color:#fff;letter-spacing:-.018em;margin-bottom:12px;" data-i18n="exc_right_h3">Realtime detection. Owned, not orphaned.</h3>
-        <p style="font-size:15px;color:#a1a8b3;line-height:1.6;" data-i18n="exc_right_p">Every exception is a row with an owner, a status and a resolution path. Your team works the queue — not their inbox.</p>
-
-        <div class="exc-summary">
-          <div class="row"><span data-i18n="exc_sum1">Notice card &amp; failed delivery</span><span class="count mono">7</span></div>
-          <div class="row"><span data-i18n="exc_sum2">Address validation issues</span><span class="count mono">3</span></div>
-          <div class="row"><span data-i18n="exc_sum3">Stalled in transit (&gt; 72h)</span><span class="count mono">2</span></div>
-          <div class="row"><span data-i18n="exc_sum4">Inbound returns</span><span class="count mono">5</span></div>
-          <div class="row"><span data-i18n="exc_sum5">Carrier disputes open</span><span class="count mono">1</span></div>
-        </div>
-
-        <ul class="check-list" style="margin-top:24px;">
-          <li><span class="ck">✓</span><span style="color:#cbd5e1;" data-i18n="exc_b1">Realtime detection from carrier event ingestion</span></li>
-          <li><span class="ck">✓</span><span style="color:#cbd5e1;" data-i18n="exc_b2">Ownership trail — assignee, status, last action</span></li>
-          <li><span class="ck">✓</span><span style="color:#cbd5e1;" data-i18n="exc_b3">Proactive customer notification templates</span></li>
-          <li><span class="ck">✓</span><span style="color:#cbd5e1;" data-i18n="exc_b4">Returns and RTO routed through the same queue</span></li>
+        <span class="module-tag" data-i18n="dash_tag" data-i18n-html="true"><span class="dot"></span>WORKSPACE · DASHBOARD</span>
+        <h3 data-i18n="dash_h3">Your operation, visible in realtime — in your own workspace.</h3>
+        <p data-i18n="dash_p">Each seller gets a dedicated workspace. Today's volume, pipeline state, exception counts and recent batches — refreshed live as your team and ours scan through the day.</p>
+        <ul class="check-list">
+          <li data-i18n="dash_b1" data-i18n-html="true"><span class="ck">✓</span>Per-seller workspace — your team and ours, one operational view</li>
+          <li data-i18n="dash_b2" data-i18n-html="true"><span class="ck">✓</span>Pipeline: Pending → Picked → Packed → Labeled → In Transit → Delivered</li>
+          <li data-i18n="dash_b3" data-i18n-html="true"><span class="ck">✓</span>Live activity log synced bidirectionally with Google Sheets</li>
         </ul>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============= FLEXIBLE WORKFLOWS ============= -->
-<section id="workflows" class="flex-flow">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-eyebrow" data-i18n="flow_eyebrow">Flexible workflows</span>
-      <h2 data-i18n="flow_h2">Still operating from spreadsheets? So are most growing sellers.</h2>
-      <p data-i18n="flow_lede">Orders in Sheets, payment notifications in email, supplier files in CSV, fulfillment in chat. KDEXPRESS meets that reality — and gives it a backbone.</p>
-    </div>
-
-    <div class="flow-card">
-      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px;margin-bottom:6px;">
-        <span class="module-tag" data-i18n="flow_tag" data-i18n-html="true"><span class="dot"></span>OPERATIONAL FLOW</span>
-        <span class="mono" style="font-size:12px;color:var(--muted);" data-i18n="flow_arrow_label">INPUT → BATCH → TRACKING → EXCEPTIONS</span>
+      <div class="showcase-img">
+        <img src="app1.png" alt="KDEXPRESS dashboard showing live status pipeline, batches and activity feed" />
       </div>
-
-      <div class="flow-diagram">
-        <div class="flow-node">
-          <div class="head"><div class="ic-sq">▤</div><div class="t" data-i18n="flow_n1_t">Input</div></div>
-          <div class="lst">
-            <span>Google Sheets</span>
-            <span data-i18n="flow_n1_l2">CSV upload</span>
-            <span data-i18n="flow_n1_l3">Email-in</span>
-            <span>REST API</span>
-          </div>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-node">
-          <div class="head"><div class="ic-sq">⎚</div><div class="t" data-i18n="flow_n2_t">Batch processing</div></div>
-          <div class="lst">
-            <span data-i18n="flow_n2_l1">Address validate</span>
-            <span data-i18n="flow_n2_l2">Label allocate</span>
-            <span data-i18n="flow_n2_l3">Pick &amp; pack queue</span>
-            <span data-i18n="flow_n2_l4">Carrier assign</span>
-          </div>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-node">
-          <div class="head"><div class="ic-sq">◎</div><div class="t" data-i18n="flow_n3_t">Live tracking</div></div>
-          <div class="lst">
-            <span data-i18n="flow_n3_l1">Six-stage timeline</span>
-            <span data-i18n="flow_n3_l2">Customer link</span>
-            <span data-i18n="flow_n3_l3">Sheets sync-back</span>
-            <span data-i18n="flow_n3_l4">Webhook events</span>
-          </div>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-node">
-          <div class="head"><div class="ic-sq">⚑</div><div class="t" data-i18n="flow_n4_t">Exceptions</div></div>
-          <div class="lst">
-            <span data-i18n="flow_n4_l1">Notice cards</span>
-            <span data-i18n="flow_n4_l2">Address issues</span>
-            <span data-i18n="flow_n4_l3">Returns &amp; RTO</span>
-            <span data-i18n="flow_n4_l4">Settlement holds</span>
-          </div>
-        </div>
-      </div>
-
-      <p style="margin-top:24px;font-size:14px;color:var(--ink-3);line-height:1.6;max-width:760px;" data-i18n="flow_footnote">
-        You don't have to be Shopify-native to operate professionally. The same workflow runs whether your input is an API call or a Tuesday-morning Sheets paste — and the output is the same operational discipline downstream.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ============= WHY SELLERS SWITCH ============= -->
-<section class="why">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-eyebrow" data-i18n="why_eyebrow">Why sellers switch</span>
-      <h2 data-i18n="why_h2">It's almost never one catastrophic failure.</h2>
     </div>
 
-    <div class="why-grid">
+    <div class="showcase-row reverse">
       <div>
-        <p class="why-quote" data-i18n="why_quote" data-i18n-html="true">
-          Most sellers don't switch fulfillment providers because of one <span class="accent">catastrophic failure</span>.
-          <br><br>
-          <em>They switch because of the slow accumulation of small operational problems — the kind that don't show up on a quarterly review but quietly eat the team's week.</em>
-        </p>
-        <div class="why-attrib">
-          <div class="av">K</div>
-          <div>
-            <div style="color:var(--ink);font-weight:600;" data-i18n="why_attrib_org">KDEXPRESS Operations</div>
-            <div class="mono" style="font-size:12px;color:var(--muted);" data-i18n="why_attrib_note">Founder note · Vancouver, BC</div>
-          </div>
-        </div>
+        <span class="module-tag" data-i18n="detail_tag" data-i18n-html="true"><span class="dot"></span>WORKSPACE · ORDER DETAIL</span>
+        <h3 data-i18n="detail_h3">One click to the full audit trail of a parcel.</h3>
+        <p data-i18n="detail_p">Recipient, parcel dimensions, payment state, tracking number, carrier, delivery confirmation — plus the full event log of who scanned what, when. Built for support and dispute resolution, not just shipping.</p>
+        <ul class="check-list">
+          <li data-i18n="detail_b1" data-i18n-html="true"><span class="ck">✓</span>One-click open of carrier tracking page</li>
+          <li data-i18n="detail_b2" data-i18n-html="true"><span class="ck">✓</span>Delivery confirmation timestamp recorded automatically</li>
+          <li data-i18n="detail_b3" data-i18n-html="true"><span class="ck">✓</span>Full event log for support &amp; dispute resolution</li>
+        </ul>
       </div>
+      <div class="showcase-img">
+        <img src="app3.png" alt="Order detail panel showing recipient, parcel, tracking and delivery confirmation" />
+      </div>
+    </div>
 
-      <div class="why-list">
-        <div class="item">
-          <div class="num mono">01</div>
-          <div>
-            <div class="t" data-i18n="why_i1_t">Inventory sync delays</div>
-            <div class="d" data-i18n="why_i1_d">Stock count is right in the WMS, wrong on the storefront, wrong on the supplier's spreadsheet. Refunds quietly pile up.</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="num mono">02</div>
-          <div>
-            <div class="t" data-i18n="why_i2_t">Manual tracking fixes</div>
-            <div class="d" data-i18n="why_i2_d">Tracking numbers re-keyed by hand, missing carriers, broken links emailed to customers who already opened a ticket.</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="num mono">03</div>
-          <div>
-            <div class="t" data-i18n="why_i3_t">Missed exceptions</div>
-            <div class="d" data-i18n="why_i3_d">Notice cards and stalled parcels surface only when the customer messages — by then, the SLA is gone and so is the trust.</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="num mono">04</div>
-          <div>
-            <div class="t" data-i18n="why_i4_t">Support lag</div>
-            <div class="d" data-i18n="why_i4_d">Provider replies in 48 hours. The marketplace deadline is 24. Every escalation becomes the founder's problem.</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="num mono">05</div>
-          <div>
-            <div class="t" data-i18n="why_i5_t">Settlement opacity</div>
-            <div class="d" data-i18n="why_i5_d">COD remittances, EFT credits and carrier surcharges don't line up. The monthly reconciliation eats two days.</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="num mono">06</div>
-          <div>
-            <div class="t" data-i18n="why_i6_t">Operational friction</div>
-            <div class="d" data-i18n="why_i6_d">Every workflow change needs a phone call. Every CSV needs a custom mapping. The team builds workarounds instead of moving volume.</div>
-          </div>
-        </div>
+    <div class="showcase-row">
+      <div>
+        <span class="module-tag" data-i18n="track_tag" data-i18n-html="true"><span class="dot"></span>WORKSPACE · TRACKING TIMELINE</span>
+        <h3 data-i18n="track_h3">Six checkpoints, one timeline, every parcel.</h3>
+        <p data-i18n="track_p">Label Printed → Picked Up → In Transit → Arrived at Destination → Out for Delivery → Delivered. Written to the order timeline as soon as it happens on the floor or upstream from the carrier.</p>
+        <ul class="check-list">
+          <li data-i18n="track_b1" data-i18n-html="true"><span class="ck">✓</span>Six-stage normalized timeline per parcel</li>
+          <li data-i18n="track_b2" data-i18n-html="true"><span class="ck">✓</span>Cross-carrier event ingestion (Canada Post, Purolator, UPS, FedEx)</li>
+          <li data-i18n="track_b3" data-i18n-html="true"><span class="ck">✓</span>Customer-facing public tracking link generated automatically</li>
+        </ul>
+      </div>
+      <div class="showcase-img">
+        <img src="gpt5.png" alt="KDEXPRESS operator at a clean pack station with the live tracking timeline open on the screen" />
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============= OPERATIONS BEHIND THE PLATFORM ============= -->
-<section id="operations" class="ops">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-eyebrow" data-i18n="ops_eyebrow">Real operations behind the software</span>
-      <h2 data-i18n="ops_h2">A scan-disciplined workflow, not a marketing claim.</h2>
-      <p data-i18n="ops_lede">Every parcel leaving our Vancouver facility passes the same four scans — receive, label, pack, handoff.</p>
-    </div>
-
-    <div class="ops-grid">
-      <div class="ops-card">
-        <div class="ops-img"><img src="gpt1.png" alt="Operator scanning the barcode on a branded KDEXPRESS shipping box" /></div>
-        <div class="ops-body">
-          <div class="ops-step" data-i18n="ops_c1_step">01 · RECEIVE</div>
-          <h3 data-i18n="ops_c1_t">Inbound scan &amp; verify</h3>
-          <p data-i18n="ops_c1_d">Receiving is barcode-driven. Mismatches are flagged before they hit the shelf.</p>
-        </div>
-      </div>
-      <div class="ops-card">
-        <div class="ops-img"><img src="gpt3.png" alt="Thermal label printer producing KDEXPRESS branded labels next to the shipments dashboard" /></div>
-        <div class="ops-body">
-          <div class="ops-step" data-i18n="ops_c2_step">02 · LABEL</div>
-          <h3 data-i18n="ops_c2_t">Branded thermal labels</h3>
-          <p data-i18n="ops_c2_d">One-click bulk printing from the dashboard. Carrier-aware service tier selection.</p>
-        </div>
-      </div>
-      <div class="ops-card">
-        <div class="ops-img"><img src="gpt2.png" alt="KDEXPRESS team member sealing a labeled parcel with branded packing tape" /></div>
-        <div class="ops-body">
-          <div class="ops-step" data-i18n="ops_c3_step">03 · PACK</div>
-          <h3 data-i18n="ops_c3_t">Pack &amp; verify</h3>
-          <p data-i18n="ops_c3_d">Pick by bin, verify against the order, seal with branded tape. Scan to advance state.</p>
-        </div>
-      </div>
-      <div class="ops-card">
-        <div class="ops-img"><img src="gpt14.png" alt="Worker organizing a stack of sealed KDEXPRESS parcels onto a dispatch cart" /></div>
-        <div class="ops-body">
-          <div class="ops-step" data-i18n="ops_c4_step">04 · HANDOFF</div>
-          <h3 data-i18n="ops_c4_t">Carrier handoff &amp; sync</h3>
-          <p data-i18n="ops_c4_d">Sorted by carrier and route. Tracking events stream straight back into the dashboard.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============= STORAGE (supporting layer, compact) ============= -->
-<section id="storage" class="storage" style="padding:72px 0;">
-  <div class="container storage-grid">
-    <div>
-      <span class="section-eyebrow" data-i18n="storage_eyebrow">The warehouse layer</span>
-      <h2 style="font-size:26px;" data-i18n="storage_h2">A real warehouse beneath the platform — not the headline.</h2>
-      <p style="font-size:15.5px;color:var(--ink-3);line-height:1.6;" data-i18n="storage_lede">Scan-tracked Canadian storage. Climate-controlled, barcode-linked, every position reconciled with the dashboard.</p>
-
-      <div class="storage-stats" style="grid-template-columns:1fr 1fr;">
-        <div class="s"><strong data-i18n="storage_s1_strong">Scan-tracked</strong><span data-i18n="storage_s1_span">Every position barcode-linked</span></div>
-        <div class="s"><strong data-i18n="storage_s2_strong">24h SLA</strong><span data-i18n="storage_s2_span">Receive-to-stock</span></div>
-      </div>
-    </div>
-    <div class="storage-gallery">
-      <div class="g"><img src="gpt10.png" alt="Organized warehouse shelving for mixed-category inventory" /><div class="cap" data-i18n="storage_cap1">MIXED · ZONE A</div></div>
-      <div class="g"><img src="gpt13.png" alt="Storage shelves dedicated to health and supplement SKUs" /><div class="cap" data-i18n="storage_cap2">HEALTH · ZONE B</div></div>
-      <div class="g"><img src="gpt11.png" alt="Storage shelves stocked with consumer goods and FMCG SKUs" /><div class="cap" data-i18n="storage_cap3">FMCG · ZONE C</div></div>
-      <div class="g"><img src="gpt12.png" alt="Aisle view of the KDEXPRESS warehouse showing organized rack rows" /><div class="cap" data-i18n="storage_cap4">AISLE · MAIN</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============= CARRIERS ============= -->
-<section id="carriers" class="carrier-section">
-  <div class="container carrier">
-    <div class="carrier-img">
-      <img src="gpt6.png" alt="Canada Post operator picking up a daily KDEXPRESS dispatch from the Vancouver facility" />
+<!-- ============= FACILITY (warehouse, merged from location + storage gallery) ============= -->
+<section id="facility" class="facility">
+  <div class="container facility-grid">
+    <div class="facility-img-main">
+      <img src="gpt7.png" alt="KDEXPRESS Vancouver warehouse exterior at 4450 Juneau St, branded entrance with shipping and import service signage" />
+      <span class="facility-img-tag" data-i18n="fac_img_tag">VANCOUVER · 4450 JUNEAU ST</span>
     </div>
     <div>
-      <span class="section-eyebrow" data-i18n="carr_eyebrow">Carrier normalization</span>
-      <h2 data-i18n="carr_h2">Every Canadian carrier, normalized into one operational timeline.</h2>
-      <p style="font-size:16px;color:var(--ink-3);line-height:1.6;" data-i18n="carr_lede">Carrier events from Canada Post, Purolator, UPS and FedEx ingested, normalized and stitched into a single operational view per parcel. Service tier becomes a routing decision — not an operational lock-in, not a logo on a brochure.</p>
-      <ul class="check-list" style="margin-top:20px;">
-        <li data-i18n="carr_b1" data-i18n-html="true"><span class="ck">✓</span>Six-stage timeline normalized across carriers — same shape every time</li>
-        <li data-i18n="carr_b2" data-i18n-html="true"><span class="ck">✓</span>Carrier-agnostic exception detection (notice card, stalled, returned)</li>
-        <li data-i18n="carr_b3" data-i18n-html="true"><span class="ck">✓</span>One customer-facing tracking link, regardless of who actually moved the box</li>
-      </ul>
-      <div class="carrier-list" style="margin-top:24px;opacity:.92;">
-        <div class="carrier-tag"><span class="dot"></span><span>Canada Post</span></div>
-        <div class="carrier-tag"><span class="dot"></span><span>Purolator</span></div>
-        <div class="carrier-tag"><span class="dot"></span><span>UPS</span></div>
-        <div class="carrier-tag"><span class="dot"></span><span>FedEx</span></div>
-        <div class="carrier-tag"><span class="dot"></span><span data-i18n="carr_t5">International · USA / VN / EU</span></div>
-        <div class="carrier-tag"><span class="dot"></span><span data-i18n="carr_t6">COD service</span></div>
-      </div>
-      <p style="margin-top:16px;font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.4px;" data-i18n="carr_caption">SUPPORTED CARRIERS · NORMALIZED · ROUTING-AGNOSTIC</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============= LOCATION ============= -->
-<section id="location" class="location">
-  <div class="container location-grid">
-    <div>
-      <span class="section-eyebrow" data-i18n="loc_eyebrow">Company</span>
-      <h2 data-i18n="loc_h2">A real facility, at a real address — in Vancouver, BC.</h2>
-      <p style="font-size:16px;color:var(--ink-3);line-height:1.6;" data-i18n="loc_lede">We don't operate from a virtual office. Walk into 4450 and you'll find the same warehouse, the same team and the same boxes you've been shipping to your customers.</p>
+      <span class="section-eyebrow" data-i18n="fac_eyebrow">Come see the warehouse</span>
+      <h2 data-i18n="fac_h2">A real address, a real team — walk in any weekday.</h2>
+      <p class="facility-lede" data-i18n="fac_lede">No virtual office. Walk into 4450 — meet the team, see the same boxes you've been shipping to your customers.</p>
       <div class="addr-card">
         <div class="row"><div class="label" data-i18n="loc_l_addr">Address</div><div class="val" data-i18n="loc_v_addr">4450 Juneau Street, Burnaby, BC, Canada</div></div>
         <div class="row"><div class="label" data-i18n="loc_l_hours">Hours</div><div class="val" data-i18n="loc_v_hours">Mon – Sat · 9:00 – 18:00 PST</div></div>
         <div class="row"><div class="label" data-i18n="loc_l_pickup">Pickup</div><div class="val" data-i18n="loc_v_pickup">Daily Canada Post · On-demand other carriers</div></div>
         <div class="row"><div class="label" data-i18n="loc_l_contact">Contact</div><div class="val">media@kdexpress.ca</div></div>
       </div>
-    </div>
-    <div class="location-img">
-      <img src="gpt7.png" alt="KDEXPRESS Vancouver warehouse exterior at 4450, branded entrance with shipping and import service signage" />
+      <a class="btn btn-primary" href="mailto:media@kdexpress.ca?subject=Warehouse%20tour" data-i18n="fac_cta">Book a warehouse tour →</a>
     </div>
   </div>
-</section>
 
-<!-- ============= ONBOARDING ============= -->
-<section id="onboarding" class="onboard">
-  <div class="container">
-    <div class="section-head">
-      <span class="section-eyebrow" data-i18n="onb_eyebrow">Onboarding</span>
-      <h2 data-i18n="onb_h2">A real workflow built around yours, in one business day.</h2>
-      <p data-i18n="onb_lede">No portal forms. No 30-page intake. Send your current setup — we build the ops around it.</p>
-    </div>
-    <div class="onboard-grid">
-      <div class="onboard-col">
-        <div class="ic">01</div>
-        <h3 data-i18n="onb_c1_h">Who this is for</h3>
-        <ul>
-          <li data-i18n="onb_c1_l1">Cross-border sellers shipping into / from Canada</li>
-          <li data-i18n="onb_c1_l2">300+ parcels/month operational volume</li>
-          <li data-i18n="onb_c1_l3">Already using Sheets, Shopify, COD or EFT workflows</li>
-          <li data-i18n="onb_c1_l4">Looking for an ops team, not a portal login</li>
-        </ul>
-      </div>
-      <div class="onboard-col">
-        <div class="ic">02</div>
-        <h3 data-i18n="onb_c2_h">How onboarding works</h3>
-        <ul>
-          <li data-i18n="onb_c2_l1">Send your current workflow — Sheets, CSV, screenshots</li>
-          <li data-i18n="onb_c2_l2">We mirror it into a dedicated workspace</li>
-          <li data-i18n="onb_c2_l3">First batch shipped within 5 business days</li>
-          <li data-i18n="onb_c2_l4">No setup fee · No long-term lock-in</li>
-        </ul>
-      </div>
-      <div class="onboard-col">
-        <div class="ic">03</div>
-        <h3 data-i18n="onb_c3_h">After you contact us</h3>
-        <ul>
-          <li data-i18n="onb_c3_l1">Reply within one business day · Vancouver hours</li>
-          <li data-i18n="onb_c3_l2">15-min ops call to map your current workflow</li>
-          <li data-i18n="onb_c3_l3">Quote + onboarding plan back same week</li>
-          <li data-i18n="onb_c3_l4">Optional: walk into the warehouse before signing</li>
-        </ul>
-      </div>
-    </div>
+  <div class="container facility-zones">
+    <div class="zone"><img src="gpt10.png" alt="Organized warehouse shelving for mixed-category inventory" /><div class="cap" data-i18n="storage_cap1">MIXED · ZONE A</div></div>
+    <div class="zone"><img src="gpt13.png" alt="Storage shelves dedicated to health and supplement SKUs" /><div class="cap" data-i18n="storage_cap2">HEALTH · ZONE B</div></div>
+    <div class="zone"><img src="gpt11.png" alt="Storage shelves stocked with consumer goods and FMCG SKUs" /><div class="cap" data-i18n="storage_cap3">FMCG · ZONE C</div></div>
+    <div class="zone"><img src="gpt12.png" alt="Aisle view of the KDEXPRESS warehouse showing organized rack rows" /><div class="cap" data-i18n="storage_cap4">AISLE · MAIN</div></div>
   </div>
 </section>
 
 <!-- ============= CTA ============= -->
 <section id="cta" class="cta">
   <div class="container">
-    <span class="section-eyebrow" style="color:#86efac;" data-i18n="cta_eyebrow">Get started</span>
-    <h2 data-i18n="cta_h2">Tell us how your operation actually runs today.</h2>
-    <p data-i18n="cta_lede">Sheets, Shopify, COD or e-Transfer — send your current workflow, we'll build the ops around it. Quote and onboarding plan back within one business day.</p>
-    <div class="hero-cta" style="justify-content:center;">
+    <span class="section-eyebrow cta-eyebrow" data-i18n="cta_eyebrow">Send us your workflow</span>
+    <h2 data-i18n="cta_h2">Send your workflow. We'll build ops around it.</h2>
+    <p data-i18n="cta_lede">Sheets, CSV, Shopify, COD, email orders — whatever you're running today. Quote and onboarding plan back within one business day.</p>
+
+    <div class="cta-chips">
+      <span class="cta-chip">Google Sheets</span>
+      <span class="cta-chip">CSV import</span>
+      <span class="cta-chip">Shopify</span>
+      <span class="cta-chip">COD</span>
+      <span class="cta-chip" data-i18n="cta_chip5">Email order</span>
+    </div>
+
+    <div class="hero-cta cta-buttons">
       <a class="btn btn-primary" href="mailto:media@kdexpress.ca" data-i18n="cta_btn1">Talk to operations →</a>
-      <a class="btn btn-ghost" href="#platform" data-i18n="cta_btn2">Tour the platform</a>
+      <a class="btn btn-ghost" href="#facility" data-i18n="cta_btn2">Visit the warehouse</a>
+    </div>
+
+    <div class="cta-next">
+      <div class="cta-next-item">
+        <span class="cta-next-num mono">01</span>
+        <div>
+          <div class="cta-next-t" data-i18n="cta_n1_t">Reply within 1 business day</div>
+          <div class="cta-next-d" data-i18n="cta_n1_d">Vancouver hours · we read every workflow personally</div>
+        </div>
+      </div>
+      <div class="cta-next-item">
+        <span class="cta-next-num mono">02</span>
+        <div>
+          <div class="cta-next-t" data-i18n="cta_n2_t">15-min ops call</div>
+          <div class="cta-next-d" data-i18n="cta_n2_d">Map your current flow · quote + onboarding plan back same week</div>
+        </div>
+      </div>
+      <div class="cta-next-item">
+        <span class="cta-next-num mono">03</span>
+        <div>
+          <div class="cta-next-t" data-i18n="cta_n3_t">Optional: warehouse tour</div>
+          <div class="cta-next-d" data-i18n="cta_n3_d">Walk into 4450 before signing · no setup fee · no long-term lock-in</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1428,18 +1269,16 @@
       <div>
         <h4 data-i18n="foot_col1_h">Platform</h4>
         <ul>
-          <li><a href="#platform" data-i18n="foot_col1_l1">Overview</a></li>
+          <li><a href="#operations" data-i18n="foot_col1_l1">Operations</a></li>
           <li><a href="#payment-ops" data-i18n="foot_col1_l3">Payment ops</a></li>
-          <li><a href="#exceptions" data-i18n="foot_col1_l4">Exceptions</a></li>
-          <li><a href="#onboarding" data-i18n="foot_col1_l5">Onboarding</a></li>
+          <li><a href="#showcase" data-i18n="foot_col1_l4">Dashboard</a></li>
         </ul>
       </div>
       <div>
-        <h4 data-i18n="foot_col2_h">Operations</h4>
+        <h4 data-i18n="foot_col2_h">Warehouse</h4>
         <ul>
-          <li><a href="#operations" data-i18n="foot_col2_l1">Warehouse flow</a></li>
-          <li><a href="#storage" data-i18n="foot_col2_l2">Storage</a></li>
-          <li><a href="#carriers" data-i18n="foot_col2_l3">Carriers</a></li>
+          <li><a href="#facility" data-i18n="foot_col2_l1">Visit the facility</a></li>
+          <li><a href="#cta" data-i18n="foot_col2_l2">Send your workflow</a></li>
         </ul>
       </div>
       <div>
@@ -1464,8 +1303,7 @@
   const I18N = {
     en: {
       // nav
-      nav_platform:"Platform", nav_operations:"Operations", nav_payops:"Settlement",
-      nav_exceptions:"Exceptions", nav_onboarding:"Onboarding",
+      nav_operations:"Operations", nav_payops:"Payment", nav_dashboard:"Dashboard",
       nav_company:"Visit warehouse", nav_cta:"Talk to operations →",
       // hero
       hero_eyebrow:'<span class="dot"></span> WAREHOUSE + OPS · VANCOUVER, BC',
@@ -1484,19 +1322,11 @@
       ticker_t4:"Canada Post pickup · 412 parcels · 18:00 PST",
       ticker_t5:"e-Transfer matched · JESSICA LE · $1,260 CAD",
       // stats
-      stat1_lbl:"Parcels processed", stat2_lbl:"Carrier integrations",
-      stat3_lbl:"Exception response", stat4_lbl:"Vancouver, BC facility",
-      // strip
-      strip_label:"The operational stack our sellers actually run on",
-      // pillars
-      pillars_eyebrow:"What we do",
-      pillars_h2:"Stop managing Canada shipping through spreadsheets and inboxes.",
-      pillars_lede:"Three things we do, end to end. Same warehouse. Same team. Same workflow for every parcel.",
-      pillar1_title:"Fulfilment ops", pillar1_desc:"Receive, pick, pack, label, handoff. Every parcel through the same scan-disciplined flow at our Vancouver warehouse — branded packaging, daily Canada Post pickup.",
-      pillar2_title:"Tracking & exceptions", pillar2_desc:"Canada Post, Purolator, UPS and FedEx events normalized into one timeline. Notice cards, failed delivery and stalled parcels surfaced before your customer asks.",
-      pillar3_title:"COD & settlement", pillar3_desc:"EFT, e-Transfer and COD remittance reconciled weekly. Payment routing and statement workflow built for how cross-border sellers actually settle in Canada.",
+      stat1_lbl:"Parcels processed", stat2_num:"Daily", stat2_lbl:"Canada Post pickup",
+      stat3_lbl:"Carriers synced", stat4_lbl:"Exception response",
+      stat5_num:"Vancouver", stat5_lbl:"BC · 12K sqft warehouse",
       // showcase
-      showcase_eyebrow:"The product",
+      showcase_eyebrow:"The dashboard",
       showcase_h2:"An operations dashboard, not a fulfillment portal.",
       showcase_lede:"Built in-house for our operation, then opened to sellers.",
       dash_tag:'<span class="dot"></span>MODULE · DASHBOARD',
@@ -1505,12 +1335,6 @@
       dash_b1:'<span class="ck">✓</span>Per-seller workspace — your team and ours, one operational view',
       dash_b2:'<span class="ck">✓</span>Pipeline: Pending → Picked → Packed → Labeled → In Transit → Delivered',
       dash_b3:'<span class="ck">✓</span>Live activity log synced bidirectionally with Google Sheets',
-      orders_tag:'<span class="dot"></span>MODULE · ACTIVE ORDERS',
-      orders_h3:"Every order, every status, in one operational table.",
-      orders_p:"Filter by carrier, store, status or date. Bulk-select to print labels, mark picked or flag for attention. Read/unread state so your team picks up where they left off — even at peak volume.",
-      orders_b1:'<span class="ck">✓</span>Filter &amp; bulk-action across thousands of orders',
-      orders_b2:'<span class="ck">✓</span>Inline tracking link &amp; recipient address per row',
-      orders_b3:'<span class="ck">✓</span>Operational read state — never lose your place',
       detail_tag:'<span class="dot"></span>MODULE · ORDER DETAIL',
       detail_h3:"One click to the full audit trail of a parcel.",
       detail_p:"Recipient, parcel dimensions, payment state, tracking number, carrier, delivery confirmation — plus the full event log of who scanned what, when. Built for support and dispute resolution, not just shipping.",
@@ -1540,8 +1364,8 @@
       settle_footnote:"Not bookkeeping software. The operational finance layer between your warehouse and your accountant — built for how cross-border sellers move money in Canada.",
       // payment ops
       payops_eyebrow:"Payment operations",
-      payops_h2:"Built for how sellers actually settle payments in Canada.",
-      payops_lede:"Sellers settle through EFT, e-Transfer, COD and weekly statements — connected to orders only by reference numbers and email memos. KDEXPRESS turns that thread into a workflow.",
+      payops_h2:"Built for how sellers actually settle in Canada.",
+      payops_lede:"EFT, e-Transfer, COD, weekly statements — connected to orders only by reference numbers and email memos. KDEXPRESS turns that thread into a workflow.",
       payops_s1_num:"01 · ROUTING", payops_s1_t:"Dedicated payment routing", payops_s1_d:"Each customer gets their own reference key and a custom payment notification email — so every inflow lands tagged, not anonymous in a shared inbox.",
       payops_s2_num:"02 · EXTRACTION", payops_s2_t:"Automated email extraction", payops_s2_d:"Bank notifications, carrier remittance and e-Transfer alerts are parsed automatically — amount, sender, reference number and memo, normalized into one payment event stream.",
       payops_s2_b1:"AMOUNT", payops_s2_b2:"SENDER", payops_s2_b4:"MEMO",
@@ -1558,8 +1382,6 @@
       stab_col_customer:"CUSTOMER", stab_col_inflows:"INFLOWS", stab_col_shipped:"SHIPPED", stab_col_balance:"BALANCE", stab_col_status:"STATUS",
       stab_st_recon:"RECONCILED", stab_st_review:"REVIEW", stab_st_settled:"SETTLED", stab_st_recon2:"RECONCILED", stab_st_ready:"READY",
       stab_foot:'5 customers · 882 parcels · <b>$31,694.50 CAD</b>', stab_export:"EXPORT · PDF",
-      callout_t:"This is operational finance, not accounting.",
-      callout_d:'KDEXPRESS reconciles at the <b>customer level</b>, not the order level — by design. The output is a clean handoff to your accountant, not a replacement.',
       // exception
       exc_eyebrow:"Exception intelligence",
       exc_h2:"Know shipment problems before your customer does.",
@@ -1601,14 +1423,32 @@
       why_i4_t:"Support lag", why_i4_d:"Provider replies in 48 hours. The marketplace deadline is 24. Every escalation becomes the founder's problem.",
       why_i5_t:"Settlement opacity", why_i5_d:"COD remittances, EFT credits and carrier surcharges don't line up. The monthly reconciliation eats two days.",
       why_i6_t:"Operational friction", why_i6_d:"Every workflow change needs a phone call. Every CSV needs a custom mapping. The team builds workarounds instead of moving volume.",
-      // operations
-      ops_eyebrow:"Real operations behind the software",
-      ops_h2:"A scan-disciplined workflow, not a marketing claim.",
-      ops_lede:"Every parcel leaving our Vancouver facility passes the same four scans — receive, label, pack, handoff.",
+      // operations (merged: scan + tracking + issue queue)
+      ops_eyebrow:"How we run it",
+      ops_h2:"One scan-disciplined workflow — receive to handoff to resolved.",
+      ops_lede:"Every parcel passes through the same flow at the Vancouver floor. Then realtime tracking, normalized across carriers, exceptions surfaced in one queue.",
       ops_c1_step:"01 · RECEIVE", ops_c1_t:"Inbound scan & verify", ops_c1_d:"Receiving is barcode-driven. Mismatches are flagged before they hit the shelf.",
       ops_c2_step:"02 · LABEL", ops_c2_t:"Branded thermal labels", ops_c2_d:"One-click bulk printing from the dashboard. Carrier-aware service tier selection.",
       ops_c3_step:"03 · PACK", ops_c3_t:"Pack & verify", ops_c3_d:"Pick by bin, verify against the order, seal with branded tape. Scan to advance state.",
       ops_c4_step:"04 · HANDOFF", ops_c4_t:"Carrier handoff & sync", ops_c4_d:"Sorted by carrier and route. Tracking events stream straight back into the dashboard.",
+      // ops block B (tracking pipeline)
+      ops_track_tag:"Tracking pipeline",
+      ops_track_h3:"Every carrier, one timeline.",
+      ops_track_p:"Canada Post, Purolator, UPS, FedEx — events ingested, normalized, stitched into a single operational view per parcel. Service tier becomes a routing decision, not a brochure logo.",
+      // ops block C (issue queue)
+      ops_issue_tag:"Issue queue",
+      ops_issue_h3:"Know shipment problems before your customer does.",
+      ops_issue_p:"Notice cards, address holds, returns, stalled parcels — surfaced in realtime. Each row has an owner, a status and a resolution path. Not lost in an inbox.",
+      // alerts (3, used inside operations issue queue)
+      alert1_pill:'<span class="ddot"></span>NOTICE CARD', alert1_age:"8m ago",
+      alert1_msg:'Carrier left a notice card — recipient not home at <b>1820 Cambie St, Vancouver BC</b>. Re-delivery scheduled May 20.',
+      alert1_foot:'Assigned · <b>support · An</b>', alert1_btn2:"Notify customer",
+      alert2_pill:'<span class="ddot"></span>ADDRESS ISSUE', alert2_age:"12m ago",
+      alert2_msg:'Address validation failed — postal code <span class="mono">V6P 1R2</span> doesn\'t match civic address. Held before label generation.',
+      alert2_foot:'Hold · <b>label not printed</b>', alert2_btn2:"Release to print",
+      alert3_pill:'<span class="ddot"></span>RETURN INBOUND', alert3_age:"1h ago",
+      alert3_msg:"Parcel returned to sender — customer refused at door. Inbound to warehouse. Suggested action: restock or RTO charge.",
+      alert3_foot:'Inbound · <b>arriving May 21</b>', alert3_btn2:"Mark for restock",
       // storage
       storage_eyebrow:"The warehouse layer",
       storage_h2:"A real warehouse beneath the platform — not the headline.",
@@ -1626,48 +1466,34 @@
       carr_t5:"International · USA / VN / EU", carr_t6:"COD service",
       carr_caption:"SUPPORTED CARRIERS · NORMALIZED · ROUTING-AGNOSTIC",
       // location
-      loc_eyebrow:"Company",
-      loc_h2:"A real facility, at a real address — in Vancouver, BC.",
-      loc_lede:"We don't operate from a virtual office. Walk into 4450 and you'll find the same warehouse, the same team and the same boxes you've been shipping to your customers.",
+      fac_eyebrow:"Come see the warehouse",
+      fac_h2:"A real address, a real team — walk in any weekday.",
+      fac_lede:"No virtual office. Walk into 4450 — meet the team, see the same boxes you've been shipping to your customers.",
+      fac_img_tag:"VANCOUVER · 4450 JUNEAU ST",
+      fac_cta:"Book a warehouse tour →",
       loc_l_addr:"Address", loc_v_addr:"4450 Juneau Street, Burnaby, BC, Canada",
       loc_l_hours:"Hours", loc_v_hours:"Mon – Sat · 9:00 – 18:00 PST",
       loc_l_pickup:"Pickup", loc_v_pickup:"Daily Canada Post · On-demand other carriers",
       loc_l_contact:"Contact",
-      // onboarding
-      onb_eyebrow:"Onboarding",
-      onb_h2:"A real workflow built around yours, in one business day.",
-      onb_lede:"No portal forms. No 30-page intake. Send your current setup — we build the ops around it.",
-      onb_c1_h:"Who this is for",
-      onb_c1_l1:"Cross-border sellers shipping into / from Canada",
-      onb_c1_l2:"300+ parcels / month operational volume",
-      onb_c1_l3:"Already using Sheets, Shopify, COD or EFT workflows",
-      onb_c1_l4:"Looking for an ops team, not a portal login",
-      onb_c2_h:"How onboarding works",
-      onb_c2_l1:"Send your current workflow — Sheets, CSV, screenshots",
-      onb_c2_l2:"We mirror it into a dedicated workspace",
-      onb_c2_l3:"First batch shipped within 5 business days",
-      onb_c2_l4:"No setup fee · No long-term lock-in",
-      onb_c3_h:"After you contact us",
-      onb_c3_l1:"Reply within one business day · Vancouver hours",
-      onb_c3_l2:"15-min ops call to map your current workflow",
-      onb_c3_l3:"Quote + onboarding plan back same week",
-      onb_c3_l4:"Optional: walk into the warehouse before signing",
       // cta
-      cta_eyebrow:"Get started", cta_h2:"Tell us how your operation actually runs today.",
-      cta_lede:"Sheets, Shopify, COD or e-Transfer — send your current workflow, we'll build the ops around it. Quote and onboarding plan back within one business day.",
-      cta_btn1:"Talk to operations →", cta_btn2:"Tour the platform",
+      cta_eyebrow:"Send us your workflow", cta_h2:"Send your workflow. We'll build ops around it.",
+      cta_lede:"Sheets, CSV, Shopify, COD, email orders — whatever you're running today. Quote and onboarding plan back within one business day.",
+      cta_btn1:"Talk to operations →", cta_btn2:"Visit the warehouse",
+      cta_chip5:"Email order",
+      cta_n1_t:"Reply within 1 business day", cta_n1_d:"Vancouver hours · we read every workflow personally",
+      cta_n2_t:"15-min ops call", cta_n2_d:"Map your current flow · quote + onboarding plan back same week",
+      cta_n3_t:"Optional: warehouse tour", cta_n3_d:"Walk into 4450 before signing · no setup fee · no long-term lock-in",
       // footer
       foot_desc:"Cross-border fulfilment + ops for sellers in Canada. Realtime tracking, exception management and settlement — on a real warehouse in Vancouver, BC.",
-      foot_col1_h:"Platform", foot_col1_l1:"Overview", foot_col1_l3:"Payment ops", foot_col1_l4:"Exceptions", foot_col1_l5:"Onboarding",
-      foot_col2_h:"Operations", foot_col2_l1:"Warehouse flow", foot_col2_l2:"Storage", foot_col2_l3:"Carriers",
+      foot_col1_h:"Platform", foot_col1_l1:"Operations", foot_col1_l3:"Payment ops", foot_col1_l4:"Dashboard",
+      foot_col2_h:"Warehouse", foot_col2_l1:"Visit the facility", foot_col2_l2:"Send your workflow",
       foot_col3_h:"Visit", foot_col3_l_hours:"Mon – Sat · 9:00 – 18:00 PST",
       foot_addr_line:"4450 JUNEAU ST · BURNABY BC · MON–SAT 9:00–18:00 PST",
       foot_copy:"© 2026 KDEXPRESS · Vancouver, BC",
     },
     vi: {
       // nav
-      nav_platform:"Nền tảng", nav_operations:"Vận hành", nav_payops:"Đối soát",
-      nav_exceptions:"Sự cố", nav_onboarding:"Onboarding",
+      nav_operations:"Vận hành", nav_payops:"Thanh toán", nav_dashboard:"Dashboard",
       nav_company:"Đến thăm kho", nav_cta:"Liên hệ →",
       // hero
       hero_eyebrow:'<span class="dot"></span> KHO + VẬN HÀNH · VANCOUVER, BC',
@@ -1686,19 +1512,12 @@
       ticker_t4:"Canada Post pickup · 412 kiện · 18:00 PST",
       ticker_t5:"e-Transfer đã khớp · JESSICA LE · $1,260 CAD",
       // stats
-      stat1_lbl:"Kiện đã xử lý", stat2_lbl:"Carrier tích hợp",
-      stat3_lbl:"Phản hồi sự cố", stat4_lbl:"Kho tại Vancouver, BC",
+      stat1_lbl:"Kiện đã xử lý", stat2_num:"Hằng ngày", stat2_lbl:"Canada Post pickup",
+      stat3_lbl:"Hãng vận chuyển sync", stat4_lbl:"Phản hồi sự cố",
+      stat5_num:"Vancouver", stat5_lbl:"BC · Kho 12K sqft",
       // strip
-      strip_label:"Bộ công cụ thật mà seller đang dùng",
-      // pillars
-      pillars_eyebrow:"Việc của mình",
-      pillars_h2:"Đừng quản đơn Canada bằng Sheets và inbox nữa.",
-      pillars_lede:"Ba việc mình làm, từ đầu đến cuối. Cùng một kho. Cùng một team. Cùng một workflow cho mọi kiện.",
-      pillar1_title:"Vận hành kho", pillar1_desc:"Nhận, pick, pack, dán nhãn, bàn giao. Mọi kiện đều qua cùng workflow scan-disciplined tại kho Vancouver — bao bì branded, Canada Post pickup hằng ngày.",
-      pillar2_title:"Tracking & sự cố", pillar2_desc:"Event Canada Post, Purolator, UPS và FedEx chuẩn hoá thành một timeline. Phiếu báo, giao trượt, kiện đứng đường — flag trước khi khách hỏi.",
-      pillar3_title:"COD & đối soát", pillar3_desc:"EFT, e-Transfer và COD đối soát theo tuần. Định tuyến thanh toán và workflow sao kê — xây cho cách seller cross-border thật sự thanh toán tại Canada.",
       // showcase
-      showcase_eyebrow:"Sản phẩm",
+      showcase_eyebrow:"Dashboard",
       showcase_h2:"Dashboard xây cho team vận hành thật.",
       showcase_lede:"Tự xây cho vận hành của mình, rồi mở cho seller dùng.",
       dash_tag:'<span class="dot"></span>MODULE · DASHBOARD',
@@ -1707,12 +1526,6 @@
       dash_b1:'<span class="ck">✓</span>Workspace riêng từng seller — team bạn và team mình, cùng một view',
       dash_b2:'<span class="ck">✓</span>Pipeline: Chờ → Lấy hàng → Đóng gói → Dán nhãn → Đang gửi → Đã giao',
       dash_b3:'<span class="ck">✓</span>Log hoạt động live, sync hai chiều với Google Sheets',
-      orders_tag:'<span class="dot"></span>MODULE · ĐƠN ĐANG CHẠY',
-      orders_h3:"Mọi đơn, mọi trạng thái, trong cùng một bảng.",
-      orders_p:"Lọc theo carrier, store, trạng thái hay ngày. Chọn nhiều đơn để in nhãn, đánh dấu đã pick, hay flag để xử lý. Trạng thái đã/chưa đọc giúp team biết tiếp ở đâu — kể cả lúc peak.",
-      orders_b1:'<span class="ck">✓</span>Lọc &amp; bulk-action trên hàng nghìn đơn',
-      orders_b2:'<span class="ck">✓</span>Link tracking &amp; địa chỉ người nhận hiện inline từng dòng',
-      orders_b3:'<span class="ck">✓</span>Trạng thái đã đọc — không bao giờ mất chỗ đang làm',
       detail_tag:'<span class="dot"></span>MODULE · CHI TIẾT ĐƠN',
       detail_h3:"Một click xem toàn bộ audit trail.",
       detail_p:"Người nhận, kích thước kiện, thanh toán, mã tracking, carrier, xác nhận giao — kèm full event log ai scan, lúc nào. Làm cho support và xử lý tranh chấp, không chỉ cho shipping.",
@@ -1743,7 +1556,7 @@
       // payment ops
       payops_eyebrow:"Vận hành thanh toán",
       payops_h2:"Xây cho cách seller thật sự thanh toán tại Canada.",
-      payops_lede:"Seller thanh toán bằng EFT, e-Transfer, COD và sao kê tuần — nối với đơn qua mã tham chiếu và memo email. KDEXPRESS biến sợi chỉ đó thành workflow.",
+      payops_lede:"EFT, e-Transfer, COD, sao kê tuần — nối với đơn qua mã tham chiếu và memo email. KDEXPRESS biến sợi chỉ đó thành workflow.",
       payops_s1_num:"01 · ĐỊNH TUYẾN", payops_s1_t:"Định tuyến thanh toán riêng", payops_s1_d:"Mỗi khách có key tham chiếu riêng và email nhận thanh toán riêng — mọi khoản vào đều có tag, không ẩn danh trong inbox chung.",
       payops_s2_num:"02 · TRÍCH XUẤT", payops_s2_t:"Trích xuất email tự động", payops_s2_d:"Thông báo ngân hàng, remittance carrier và alert e-Transfer được parse tự động — số tiền, người gửi, mã tham chiếu, memo, gom về cùng một event stream.",
       payops_s2_b1:"SỐ TIỀN", payops_s2_b2:"NGƯỜI GỬI", payops_s2_b4:"MEMO",
@@ -1760,8 +1573,6 @@
       stab_col_customer:"KHÁCH", stab_col_inflows:"TIỀN VÀO", stab_col_shipped:"ĐÃ GỬI", stab_col_balance:"SỐ DƯ", stab_col_status:"TRẠNG THÁI",
       stab_st_recon:"ĐÃ KHỚP", stab_st_review:"REVIEW", stab_st_settled:"XONG", stab_st_recon2:"ĐÃ KHỚP", stab_st_ready:"SẴN SÀNG",
       stab_foot:'5 khách · 882 kiện · <b>$31,694.50 CAD</b>', stab_export:"XUẤT · PDF",
-      callout_t:"Đây là tài chính vận hành, không phải kế toán.",
-      callout_d:'KDEXPRESS đối soát theo <b>khách</b>, không theo từng đơn — đây là chủ ý. Đầu ra là một bàn giao gọn cho kế toán, không thay thế kế toán.',
       // exception
       exc_eyebrow:"Xử lý sự cố",
       exc_h2:"Biết vấn đề shipment trước cả khi khách hỏi.",
@@ -1804,13 +1615,31 @@
       why_i5_t:"Đối soát mù mờ", why_i5_d:"COD remittance, EFT credit và phụ phí carrier không khớp. Đối soát tháng ngốn hai ngày.",
       why_i6_t:"Vận hành cứng nhắc", why_i6_d:"Mỗi đổi workflow cần một cuộc gọi. Mỗi CSV cần mapping riêng. Team xây workaround thay vì đẩy volume.",
       // operations
-      ops_eyebrow:"Vận hành thật sau phần mềm",
-      ops_h2:"Scan ở mọi bước vận hành.",
-      ops_lede:"Mọi kiện rời facility Vancouver đều qua cùng 4 lần scan — nhận, dán nhãn, đóng gói, bàn giao.",
+      ops_eyebrow:"Cách tụi mình chạy",
+      ops_h2:"Một workflow scan-disciplined — từ nhận đến giao đến đóng case.",
+      ops_lede:"Mọi kiện đều qua cùng một flow tại floor Vancouver. Sau đó tracking realtime, chuẩn hoá qua mọi hãng, sự cố tụ về một queue.",
       ops_c1_step:"01 · NHẬN", ops_c1_t:"Scan &amp; xác minh", ops_c1_d:"Nhận theo barcode. Sai lệch được flag trước khi lên kệ.",
       ops_c2_step:"02 · DÁN NHÃN", ops_c2_t:"Nhãn nhiệt branded", ops_c2_d:"In bulk một click từ dashboard. Service tier chọn theo carrier.",
       ops_c3_step:"03 · ĐÓNG GÓI", ops_c3_t:"Đóng gói &amp; xác minh", ops_c3_d:"Pick theo bin, đối chiếu với đơn, dán băng dính branded. Scan để chuyển trạng thái.",
       ops_c4_step:"04 · BÀN GIAO", ops_c4_t:"Bàn giao &amp; sync", ops_c4_d:"Phân theo carrier và tuyến. Event tracking về thẳng dashboard.",
+      // ops block B (tracking pipeline)
+      ops_track_tag:"Tracking pipeline",
+      ops_track_h3:"Mọi hãng — một timeline.",
+      ops_track_p:"Canada Post, Purolator, UPS, FedEx — event được ingest, chuẩn hoá, ghép thành một góc nhìn vận hành cho mỗi kiện. Service tier thành quyết định routing, không phải logo brochure.",
+      // ops block C (issue queue)
+      ops_issue_tag:"Issue queue",
+      ops_issue_h3:"Biết vấn đề shipment trước cả khi khách hỏi.",
+      ops_issue_p:"Phiếu báo, address hold, return, kiện đứng đường — flag realtime. Mỗi dòng có owner, có status, có đường resolve. Không lạc trong inbox.",
+      // alerts (3, used inside operations issue queue)
+      alert1_pill:'<span class="ddot"></span>PHIẾU BÁO', alert1_age:"8 phút trước",
+      alert1_msg:'Carrier để lại phiếu báo — người nhận không có ở <b>1820 Cambie St, Vancouver BC</b>. Giao lại ngày 20/5.',
+      alert1_foot:'Phân cho · <b>support · An</b>', alert1_btn2:"Báo khách",
+      alert2_pill:'<span class="ddot"></span>SAI ĐỊA CHỈ', alert2_age:"12 phút trước",
+      alert2_msg:'Validate địa chỉ thất bại — postal code <span class="mono">V6P 1R2</span> không khớp địa chỉ phố. Hold trước khi in nhãn.',
+      alert2_foot:'Hold · <b>chưa in nhãn</b>', alert2_btn2:"Release in nhãn",
+      alert3_pill:'<span class="ddot"></span>RETURN VỀ', alert3_age:"1 giờ trước",
+      alert3_msg:"Kiện trả về — khách từ chối nhận. Đang về kho. Đề xuất: restock hoặc tính phí RTO.",
+      alert3_foot:'Inbound · <b>về 21/5</b>', alert3_btn2:"Đánh dấu restock",
       // storage
       storage_eyebrow:"Lớp kho hàng",
       storage_h2:"Phần mềm chạy trên kho thật.",
@@ -1828,40 +1657,27 @@
       carr_t5:"Quốc tế · USA / VN / EU", carr_t6:"Dịch vụ COD",
       carr_caption:"CARRIER HỖ TRỢ · CHUẨN HOÁ · ĐỘC LẬP ROUTING",
       // location
-      loc_eyebrow:"Công ty",
-      loc_h2:"Facility thật, địa chỉ thật — tại Vancouver, BC.",
-      loc_lede:"Mình không vận hành từ văn phòng ảo. Bước vào 4450 bạn sẽ thấy chính cái kho, chính team đó, và chính những kiện hàng đã gửi cho khách của bạn.",
+      fac_eyebrow:"Ghé kho gặp team",
+      fac_h2:"Địa chỉ thật, team thật — ghé bất kỳ ngày thường nào.",
+      fac_lede:"Không văn phòng ảo. Bước vào 4450 — gặp team, nhìn chính những kiện hàng đã gửi cho khách của bạn.",
+      fac_img_tag:"VANCOUVER · 4450 JUNEAU ST",
+      fac_cta:"Đặt lịch tour kho →",
       loc_l_addr:"Địa chỉ", loc_v_addr:"4450 Juneau Street, Burnaby, BC, Canada",
       loc_l_hours:"Giờ làm", loc_v_hours:"T2 – T7 · 9:00 – 18:00 PST",
       loc_l_pickup:"Pickup", loc_v_pickup:"Canada Post hằng ngày · Carrier khác on-demand",
       loc_l_contact:"Liên hệ",
-      // onboarding
-      onb_eyebrow:"Onboarding",
-      onb_h2:"Workflow vận hành thật, dựng quanh workflow của bạn — trong một ngày.",
-      onb_lede:"Không form portal. Không intake 30 trang. Gửi setup hiện tại — mình dựng vận hành quanh nó.",
-      onb_c1_h:"Phù hợp với ai",
-      onb_c1_l1:"Seller cross-border ship vào / từ Canada",
-      onb_c1_l2:"Volume vận hành 300+ kiện / tháng",
-      onb_c1_l3:"Đang dùng Sheets, Shopify, COD hoặc EFT",
-      onb_c1_l4:"Cần một ops team, không phải một portal đăng nhập",
-      onb_c2_h:"Onboarding chạy thế nào",
-      onb_c2_l1:"Gửi workflow hiện tại — Sheets, CSV, screenshot",
-      onb_c2_l2:"Mình mirror vào một workspace riêng",
-      onb_c2_l3:"Batch đầu tiên gửi trong 5 ngày làm việc",
-      onb_c2_l4:"Không phí setup · Không khoá hợp đồng dài hạn",
-      onb_c3_h:"Sau khi bạn liên hệ",
-      onb_c3_l1:"Phản hồi trong 1 ngày làm việc · giờ Vancouver",
-      onb_c3_l2:"Call 15 phút để map workflow của bạn",
-      onb_c3_l3:"Báo giá + kế hoạch onboarding trong tuần",
-      onb_c3_l4:"Tuỳ chọn: đến tận kho trước khi ký",
       // cta
-      cta_eyebrow:"Bắt đầu", cta_h2:"Kể cho mình nghe vận hành hiện tại của bạn.",
-      cta_lede:"Sheets, Shopify, COD hay e-Transfer — gửi workflow hiện tại, mình dựng vận hành quanh nó. Báo giá và kế hoạch onboarding gửi lại trong một ngày làm việc.",
-      cta_btn1:"Liên hệ team →", cta_btn2:"Xem dashboard",
+      cta_eyebrow:"Gửi workflow cho mình", cta_h2:"Gửi workflow hiện tại. Mình dựng vận hành quanh nó.",
+      cta_lede:"Sheets, CSV, Shopify, COD, đơn qua email — bất cứ gì bạn đang chạy. Báo giá và kế hoạch onboarding gửi lại trong một ngày làm việc.",
+      cta_btn1:"Liên hệ team →", cta_btn2:"Ghé thăm kho",
+      cta_chip5:"Đơn qua email",
+      cta_n1_t:"Trả lời trong 1 ngày làm việc", cta_n1_d:"Giờ Vancouver · mỗi workflow đều được đọc thủ công",
+      cta_n2_t:"Call vận hành 15 phút", cta_n2_d:"Map flow hiện tại · báo giá + kế hoạch onboarding trong tuần",
+      cta_n3_t:"Tùy chọn: tour kho", cta_n3_d:"Ghé 4450 trước khi ký · không phí setup · không khoá hợp đồng dài",
       // footer
       foot_desc:"Hạ tầng vận hành tại Canada cho seller ecommerce toàn cầu. Realtime, sự cố và đối soát — trên kho thật ở Vancouver, BC.",
-      foot_col1_h:"Nền tảng", foot_col1_l1:"Tổng quan", foot_col1_l3:"Thanh toán", foot_col1_l4:"Sự cố", foot_col1_l5:"Onboarding",
-      foot_col2_h:"Vận hành", foot_col2_l1:"Luồng kho", foot_col2_l2:"Kho hàng", foot_col2_l3:"Carrier",
+      foot_col1_h:"Nền tảng", foot_col1_l1:"Vận hành", foot_col1_l3:"Thanh toán", foot_col1_l4:"Dashboard",
+      foot_col2_h:"Kho hàng", foot_col2_l1:"Ghé kho", foot_col2_l2:"Gửi workflow",
       foot_col3_h:"Đến kho", foot_col3_l_hours:"T2 – T7 · 9:00 – 18:00 PST",
       foot_addr_line:"4450 JUNEAU ST · BURNABY BC · T2–T7 9:00–18:00 PST",
       foot_copy:"© 2026 KDEXPRESS · Vancouver, BC",
