@@ -675,7 +675,49 @@
   .facility-zones .zone{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1;}
   .facility-zones .zone img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;}
   .facility-zones .zone:hover img{transform:scale(1.04);}
-  .facility-zones .zone .cap{position:absolute;left:10px;bottom:10px;font-family:var(--mono);font-size:10.5px;font-weight:700;padding:5px 8px;border-radius:5px;background:rgba(11,12,15,.78);color:#fff;letter-spacing:.5px;}
+  .facility-zones .zone .cap{position:absolute;left:10px;bottom:10px;font-family:var(--mono);font-size:10.5px;font-weight:700;padding:5px 8px;border-radius:5px;background:rgba(11,12,15,.78);color:#fff;letter-spacing:.5px;z-index:2;}
+  /* ════ Warehouse images: parallax + slow zoom (102%→105%) + fade + mask reveal ════ */
+  .ops-img,.ops-band-img{position:relative;}
+  .showcase-img:has(img.kho-img){position:relative;overflow:hidden;aspect-ratio:16/10;}
+  img.kho-img{
+    position:absolute;left:0;top:50%;width:100%;height:116%;object-fit:cover;
+    scale:1.02;                                   /* slow-zoom base (animates → 1.05) */
+    translate:0 calc(-50% + var(--ky,0%));        /* vertical center + scroll parallax */
+    animation:kho-zoom 11s ease-in-out infinite alternate;
+    will-change:scale,translate,opacity,clip-path;backface-visibility:hidden;
+  }
+  .js img.kho-img{opacity:0;clip-path:inset(0 0 100% 0);transition:opacity 1s ease,clip-path 1.2s cubic-bezier(.22,.7,.2,1);}
+  .js img.kho-img.kho-in{opacity:1;clip-path:inset(0 0 0 0);}
+  @keyframes kho-zoom{from{scale:1.02;}to{scale:1.05;}}
+  @media (prefers-reduced-motion: reduce){
+    img.kho-img{animation:none;scale:1;translate:0 -50%;}
+    .js img.kho-img{opacity:1;clip-path:none;transition:none;}
+  }
+  /* ── Lead form (quote request) — prominent card on dark CTA section ── */
+  .quote-form{max-width:560px;margin:30px auto 0;text-align:left;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13);border-radius:18px;padding:26px 26px 22px;box-shadow:0 34px 80px -44px rgba(0,0,0,.85);}
+  .qf-hp{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0;}
+  .qf-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;}
+  .qf-field{display:flex;flex-direction:column;gap:7px;min-width:0;}
+  .qf-span{grid-column:1 / -1;}
+  .qf-label{font-family:inherit;font-size:12.5px;letter-spacing:0;text-transform:none;color:rgba(255,255,255,.9);font-weight:600;}
+  .qf-label b{color:#6ee79e;font-weight:700;}
+  .quote-form input{width:100%;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.22);border-radius:10px;padding:12px 14px;color:#fff;font:inherit;font-size:14.5px;outline:none;transition:border-color .2s ease,background .2s ease,box-shadow .2s ease;}
+  .quote-form input::placeholder{color:rgba(255,255,255,.4);}
+  .quote-form input:focus{border-color:var(--green);background:rgba(255,255,255,.13);box-shadow:0 0 0 3px rgba(22,163,74,.2);}
+  .qf-actions{display:flex;align-items:center;gap:22px;margin-top:20px;}
+  .cta .qf-actions .btn-primary{cursor:pointer;border:0;font:inherit;background:var(--green);color:#fff;font-weight:700;font-size:15px;padding:13px 26px;box-shadow:0 12px 28px -8px rgba(22,163,74,.55);}
+  .cta .qf-actions .btn-primary:hover{background:var(--green-dark);}
+  .qf-actions .btn-primary[disabled]{opacity:.65;cursor:default;}
+  .qf-secondary{color:rgba(255,255,255,.66);font-size:13px;font-weight:600;}
+  .qf-secondary:hover{color:#fff;}
+  .qf-msg{margin-top:14px;font-size:13.5px;min-height:1.1em;font-weight:600;}
+  .qf-msg.ok{color:#6ee79e;}
+  .qf-msg.err{color:#fca5a5;}
+  @media(max-width:560px){.qf-grid{grid-template-columns:1fr;}.qf-actions{flex-direction:column;align-items:stretch;gap:12px;}.qf-secondary{text-align:center;}.quote-form{padding:22px 18px;}}
+  /* ── Gentle scroll reveal (payops / đối soát) ── */
+  .js .reveal-up{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,.7,.2,1);transition-delay:var(--rd,0s);}
+  .js .reveal-up.in{opacity:1;transform:none;}
+  @media (prefers-reduced-motion: reduce){ .js .reveal-up{opacity:1!important;transform:none!important;transition:none;} }
   .addr-card{background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:20px;margin-top:18px;}
   .addr-card .row{display:flex;gap:14px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13.5px;}
   .addr-card .row:last-child{border-bottom:0;}
@@ -802,7 +844,7 @@
         <button class="lang-btn active" data-lang="en" type="button">EN</button>
         <button class="lang-btn" data-lang="vi" type="button">VI</button>
       </div>
-      <a class="btn btn-primary" href="#cta" data-i18n="nav_cta">Talk to operations →</a>
+      <a class="btn btn-primary" href="#cta" data-i18n="nav_cta">Get a quote</a>
     </div>
   </div>
 </header>
@@ -814,8 +856,8 @@
     <h1 data-i18n="hero_h1" data-i18n-html="true">The operations team in Canada for brands that sell — packing, shipping, tracking and reconciliation — from warehouses in <span class="accent">Vancouver</span> &amp; <span class="accent">Toronto</span>.</h1>
     <p class="lede hero-reveal" style="--d:.5s" data-i18n="hero_lede">A real warehouse, a real operations team, and one shared screen for both sides. Canada Post collects every day, from the same address.</p>
     <div class="hero-cta hero-reveal" style="--d:.62s">
-      <a class="btn btn-primary" href="#cta" data-i18n="hero_cta1">Talk to operations →</a>
-      <a class="btn btn-ghost" href="#platform" data-i18n="hero_cta2">Visit the warehouse</a>
+      <a class="btn btn-primary" href="#cta" data-i18n="hero_cta1">Get a quote →</a>
+      <a class="btn btn-ghost" href="#facility" data-i18n="hero_cta2">See the warehouse</a>
     </div>
 
     <!-- ▸ LAYER 1 — Workflow timeline (loop 5 bước) -->
@@ -999,7 +1041,7 @@
     <!-- Block A: physical scan workflow (4 cards) -->
     <div class="ops-grid">
       <div class="ops-card">
-        <div class="ops-img"><img src="assets/gpt1.png" alt="Operator scanning the barcode on a branded KDEXPRESS shipping box" /></div>
+        <div class="ops-img"><img class="kho-img" src="assets/gpt1.png" alt="Operator scanning the barcode on a branded KDEXPRESS shipping box" /></div>
         <div class="ops-body">
           <div class="ops-step" data-i18n="ops_c1_step">01 · RECEIVE</div>
           <h3 data-i18n="ops_c1_t">Scanned in, checked</h3>
@@ -1007,7 +1049,7 @@
         </div>
       </div>
       <div class="ops-card">
-        <div class="ops-img"><img src="assets/gpt3.png" alt="Thermal label printer producing KDEXPRESS branded labels next to the shipments dashboard" /></div>
+        <div class="ops-img"><img class="kho-img" src="assets/gpt3.png" alt="Thermal label printer producing KDEXPRESS branded labels next to the shipments dashboard" /></div>
         <div class="ops-body">
           <div class="ops-step" data-i18n="ops_c2_step">02 · LABEL</div>
           <h3 data-i18n="ops_c2_t">Labeled</h3>
@@ -1015,7 +1057,7 @@
         </div>
       </div>
       <div class="ops-card">
-        <div class="ops-img"><img src="assets/gpt2.png" alt="KDEXPRESS team member sealing a labeled parcel with branded packing tape" /></div>
+        <div class="ops-img"><img class="kho-img" src="assets/gpt2.png" alt="KDEXPRESS team member sealing a labeled parcel with branded packing tape" /></div>
         <div class="ops-body">
           <div class="ops-step" data-i18n="ops_c3_step">03 · PACK</div>
           <h3 data-i18n="ops_c3_t">Packed and verified</h3>
@@ -1023,7 +1065,7 @@
         </div>
       </div>
       <div class="ops-card">
-        <div class="ops-img"><img src="assets/gpt14.png" alt="Worker organizing a stack of sealed KDEXPRESS parcels onto a dispatch cart" /></div>
+        <div class="ops-img"><img class="kho-img" src="assets/gpt14.png" alt="Worker organizing a stack of sealed KDEXPRESS parcels onto a dispatch cart" /></div>
         <div class="ops-body">
           <div class="ops-step" data-i18n="ops_c4_step">04 · HANDOFF</div>
           <h3 data-i18n="ops_c4_t">Handed to the carrier</h3>
@@ -1036,7 +1078,7 @@
     <div class="ops-band">
       <div class="ops-band-inner">
         <div class="ops-band-img">
-          <img src="assets/gpt6.png" alt="Canada Post operator picking up the daily KDEXPRESS dispatch from the Vancouver facility" />
+          <img class="kho-img" src="assets/gpt6.png" alt="Canada Post operator picking up the daily KDEXPRESS dispatch from the Vancouver facility" />
         </div>
         <div>
           <span class="ops-block-tag" data-i18n="ops_track_tag">Tracking</span>
@@ -1119,7 +1161,7 @@
 
     <!-- 4-stage workflow -->
     <div class="payops-stages">
-      <div class="payops-stage">
+      <div class="payops-stage reveal-up" style="--rd:0s">
         <div class="stage-num" data-i18n="payops_s1_num">01 · ROUTING</div>
         <h3 data-i18n="payops_s1_t">A reference per seller</h3>
         <p data-i18n="payops_s1_d">Each customer has their own reference and payment email. When money arrives, the order it belongs to is already known.</p>
@@ -1129,7 +1171,7 @@
           <span class="badge">COD</span>
         </div>
       </div>
-      <div class="payops-stage">
+      <div class="payops-stage reveal-up" style="--rd:.07s">
         <div class="stage-num" data-i18n="payops_s2_num">02 · EXTRACTION</div>
         <h3 data-i18n="payops_s2_t">Payment emails read automatically</h3>
         <p data-i18n="payops_s2_d">Bank alerts, carrier remittance, e-Transfer notices — amount, sender, reference and memo are extracted from each, nothing copied by hand.</p>
@@ -1140,7 +1182,7 @@
           <span class="badge" data-i18n="payops_s2_b4">MEMO</span>
         </div>
       </div>
-      <div class="payops-stage">
+      <div class="payops-stage reveal-up" style="--rd:.14s">
         <div class="stage-num" data-i18n="payops_s3_num">03 · MATCHING</div>
         <h3 data-i18n="payops_s3_t">Matched to the right customer</h3>
         <p data-i18n="payops_s3_d" data-i18n-html="true">Each payment is matched to the customer who owns the reference. <b>Not</b> line-by-line accounting — that's the bookkeeper's job.</p>
@@ -1149,7 +1191,7 @@
           <span class="badge" data-i18n="payops_s3_b2">BATCH</span>
         </div>
       </div>
-      <div class="payops-stage">
+      <div class="payops-stage reveal-up" style="--rd:.21s">
         <div class="stage-num" data-i18n="payops_s4_num">04 · SETTLEMENT</div>
         <h3 data-i18n="payops_s4_t">One weekly statement per seller</h3>
         <p data-i18n="payops_s4_d">One row per customer, per week — received, shipped, refused, balance. Reviewed once, signed off. No spreadsheet, no month-end scramble.</p>
@@ -1163,7 +1205,7 @@
     <!-- Email extraction + customer-level settlement table -->
     <div class="payops-detail">
       <!-- Left: email extraction mock -->
-      <div class="email-mock">
+      <div class="email-mock reveal-up" style="--rd:0s">
         <div class="em-head">
           <div class="et" data-i18n="email_head">⌬ INBOUND PAYMENT NOTIFICATION</div>
           <div class="dot-row"><span></span><span></span><span></span></div>
@@ -1186,7 +1228,7 @@
       </div>
 
       <!-- Right: customer-level weekly settlement table -->
-      <div class="settle-table">
+      <div class="settle-table reveal-up" style="--rd:.1s">
         <div class="st-head">
           <div class="left">
             <div class="icon">⌂</div>
@@ -1314,64 +1356,86 @@
 <section id="facility" class="facility">
   <div class="container facility-grid">
     <div class="facility-img-main">
-      <img src="assets/gpt7.png" alt="KDEXPRESS Vancouver warehouse exterior at 4450 Juneau St, branded entrance with shipping and import service signage" />
+      <img class="kho-img" src="assets/gpt7.png" alt="KDEXPRESS Vancouver warehouse exterior at 4450 Juneau St, branded entrance with shipping and import service signage" />
       <span class="facility-img-tag" data-i18n="fac_img_tag">VANCOUVER · 4450 JUNEAU ST</span>
     </div>
     <div>
-      <span class="section-eyebrow" data-i18n="fac_eyebrow">Come see the warehouse</span>
-      <h2 data-i18n="fac_h2">A real address, a real team — walk in any weekday.</h2>
-      <p class="facility-lede" data-i18n="fac_lede">No virtual office, no PO box. Walk into 4450 Juneau, meet the team that packs your orders, and watch Canada Post collect them — as it does every day.</p>
+      <span class="section-eyebrow" data-i18n="fac_eyebrow">A real warehouse</span>
+      <h2 data-i18n="fac_h2">A real address and a real team — not a virtual office.</h2>
+      <p class="facility-lede" data-i18n="fac_lede">No virtual office, no PO box — a real address at 4450 Juneau, a real team, and daily Canada Post pickup. Verifiable, even from the other side of the world.</p>
       <div class="addr-card">
         <div class="row"><div class="label" data-i18n="loc_l_addr">Address</div><div class="val" data-i18n="loc_v_addr">4450 Juneau Street, Burnaby, BC, Canada</div></div>
         <div class="row"><div class="label" data-i18n="loc_l_hours">Hours</div><div class="val" data-i18n="loc_v_hours">Mon – Sat · 9:00 – 18:00 PST</div></div>
         <div class="row"><div class="label" data-i18n="loc_l_pickup">Pickup</div><div class="val" data-i18n="loc_v_pickup">Daily Canada Post · On-demand other carriers</div></div>
         <div class="row"><div class="label" data-i18n="loc_l_contact">Contact</div><div class="val">media@kdexpress.ca</div></div>
       </div>
-      <a class="btn btn-primary" href="mailto:media@kdexpress.ca?subject=Warehouse%20tour" data-i18n="fac_cta">Book a warehouse tour →</a>
+      <a class="btn btn-primary" href="#cta" data-i18n="fac_cta">Get a quote →</a>
     </div>
   </div>
 
   <div class="container facility-zones">
-    <div class="zone"><img src="assets/gpt10.png" alt="Organized warehouse shelving for mixed-category inventory" /><div class="cap" data-i18n="storage_cap1">MIXED · ZONE A</div></div>
-    <div class="zone"><img src="assets/gpt13.png" alt="Storage shelves dedicated to health and supplement SKUs" /><div class="cap" data-i18n="storage_cap2">HEALTH · ZONE B</div></div>
-    <div class="zone"><img src="assets/gpt11.png" alt="Storage shelves stocked with consumer goods and FMCG SKUs" /><div class="cap" data-i18n="storage_cap3">FMCG · ZONE C</div></div>
-    <div class="zone"><img src="assets/gpt12.png" alt="Aisle view of the KDEXPRESS warehouse showing organized rack rows" /><div class="cap" data-i18n="storage_cap4">AISLE · MAIN</div></div>
+    <div class="zone"><img class="kho-img" src="assets/gpt10.png" alt="Organized warehouse shelving for mixed-category inventory" /><div class="cap" data-i18n="storage_cap1">MIXED · ZONE A</div></div>
+    <div class="zone"><img class="kho-img" src="assets/gpt13.png" alt="Storage shelves dedicated to health and supplement SKUs" /><div class="cap" data-i18n="storage_cap2">HEALTH · ZONE B</div></div>
+    <div class="zone"><img class="kho-img" src="assets/gpt11.png" alt="Storage shelves stocked with consumer goods and FMCG SKUs" /><div class="cap" data-i18n="storage_cap3">FMCG · ZONE C</div></div>
+    <div class="zone"><img class="kho-img" src="assets/gpt12.png" alt="Aisle view of the KDEXPRESS warehouse showing organized rack rows" /><div class="cap" data-i18n="storage_cap4">AISLE · MAIN</div></div>
   </div>
 </section>
 
 <!-- ============= CTA ============= -->
 <section id="cta" class="cta">
   <div class="container">
-    <span class="section-eyebrow cta-eyebrow" data-i18n="cta_eyebrow">Send your current process</span>
-    <h2 data-i18n="cta_h2">Send your current process. The rest is built around it.</h2>
-    <p data-i18n="cta_lede">Sheets, CSV, Shopify, COD, orders by email — whatever runs today. A price and a setup plan come back within one business day.</p>
+    <span class="section-eyebrow cta-eyebrow" data-i18n="cta_eyebrow">Get a quote</span>
+    <h2 data-i18n="cta_h2">Get a quote within one business day.</h2>
+    <p data-i18n="cta_lede">Send what you sell, how many orders a month, and where you ship from — that's enough to price it. No workflow questions, no sales process.</p>
 
-    <div class="cta-chips">
-      <span class="cta-chip">Google Sheets</span>
-      <span class="cta-chip">CSV import</span>
-      <span class="cta-chip">Shopify</span>
-      <span class="cta-chip">COD</span>
-      <span class="cta-chip" data-i18n="cta_chip5">Email order</span>
-    </div>
-
-    <div class="hero-cta cta-buttons">
-      <a class="btn btn-primary" href="mailto:media@kdexpress.ca" data-i18n="cta_btn1">Talk to operations →</a>
-      <a class="btn btn-ghost" href="#facility" data-i18n="cta_btn2">Visit the warehouse</a>
-    </div>
+    <!-- Lead form → Web3Forms. ⚠️ DÁN ACCESS KEY vào value bên dưới (lấy free tại web3forms.com, nhập email media@kdexpress.ca). -->
+    <form class="quote-form" id="quote-form" novalidate>
+      <input type="hidden" name="access_key" value="f4d08a8f-c489-40b4-b2ed-a12238c6fcea">
+      <input type="hidden" name="subject" value="New quote request — KDExpress">
+      <input type="hidden" name="from_name" value="KDExpress site">
+      <input type="checkbox" name="botcheck" class="qf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="qf-grid">
+        <label class="qf-field">
+          <span class="qf-label" data-i18n="qf_website">Website / shop link</span>
+          <input type="text" name="website" autocomplete="url">
+        </label>
+        <label class="qf-field">
+          <span class="qf-label" data-i18n="qf_email" data-i18n-html="true">Email <b>*</b></span>
+          <input type="email" name="email" required autocomplete="email">
+        </label>
+        <label class="qf-field">
+          <span class="qf-label" data-i18n="qf_products">What you sell</span>
+          <input type="text" name="products">
+        </label>
+        <label class="qf-field">
+          <span class="qf-label" data-i18n="qf_orders">Orders / month</span>
+          <input type="text" name="orders" inputmode="numeric">
+        </label>
+        <label class="qf-field qf-span">
+          <span class="qf-label" data-i18n="qf_origin">Shipping from (country / city)</span>
+          <input type="text" name="origin">
+        </label>
+      </div>
+      <div class="qf-actions">
+        <button type="submit" class="btn btn-primary" data-i18n="qf_submit">Get a quote →</button>
+        <a class="qf-secondary" href="#facility" data-i18n="qf_secondary">See the warehouse</a>
+      </div>
+      <p class="qf-msg" id="qf-msg" role="status" aria-live="polite"></p>
+    </form>
 
     <div class="cta-next">
       <div class="cta-next-item">
         <span class="cta-next-num mono">01</span>
         <div>
-          <div class="cta-next-t" data-i18n="cta_n1_t">Reply within 1 business day</div>
+          <div class="cta-next-t" data-i18n="cta_n1_t">Quote within 1 business day</div>
           <div class="cta-next-d" data-i18n="cta_n1_d">Vancouver hours · read by a real person</div>
         </div>
       </div>
       <div class="cta-next-item">
         <span class="cta-next-num mono">02</span>
         <div>
-          <div class="cta-next-t" data-i18n="cta_n2_t">A 15-minute call</div>
-          <div class="cta-next-d" data-i18n="cta_n2_d">A walk-through of your current process · price + setup plan the same week</div>
+          <div class="cta-next-t" data-i18n="cta_n2_t">Straight to the operations team</div>
+          <div class="cta-next-d" data-i18n="cta_n2_d">No sales funnel · ask about price and shipping, get a straight answer</div>
         </div>
       </div>
       <div class="cta-next-item">
@@ -1407,7 +1471,7 @@
         <h4 data-i18n="foot_col2_h">Warehouse</h4>
         <ul>
           <li><a href="#facility" data-i18n="foot_col2_l1">Visit the warehouse</a></li>
-          <li><a href="#cta" data-i18n="foot_col2_l2">Send your process</a></li>
+          <li><a href="#cta" data-i18n="foot_col2_l2">Get a quote</a></li>
         </ul>
       </div>
       <div>
@@ -1433,12 +1497,12 @@
     en: {
       // nav
       nav_operations:"Operations", nav_payops:"Payment", nav_dashboard:"Dashboard",
-      nav_company:"Visit warehouse", nav_cta:"Talk to operations →",
+      nav_company:"Visit warehouse", nav_cta:"Get a quote",
       // hero
       hero_eyebrow:'<span class="dot"></span> WAREHOUSE + OPS · VANCOUVER + TORONTO',
       hero_h1:'The operations team in Canada for brands that sell — packing, shipping, tracking and reconciliation — from warehouses in <span class="accent">Vancouver</span> &amp; <span class="accent">Toronto</span>.',
       hero_lede:"A real warehouse, a real operations team, and one shared screen for both sides. Canada Post collects every day, from the same address.",
-      hero_cta1:"Talk to operations →", hero_cta2:"Visit the warehouse",
+      hero_cta1:"Get a quote →", hero_cta2:"See the warehouse",
       hero_chip1:'<b>4450 Juneau St</b> · Burnaby BC',
       hero_chip2:'<b>Canada Post pickup</b> · daily',
       hero_chip3:'<b>12K sqft</b> · scan-tracked',
@@ -1595,27 +1659,28 @@
       carr_t5:"International · USA / VN / EU", carr_t6:"COD service",
       carr_caption:"SUPPORTED CARRIERS · NORMALIZED · ROUTING-AGNOSTIC",
       // location
-      fac_eyebrow:"Come see the warehouse",
-      fac_h2:"A real address, a real team — walk in any weekday.",
-      fac_lede:"No virtual office, no PO box. Walk into 4450 Juneau, meet the team that packs your orders, and watch Canada Post collect them — as it does every day.",
+      fac_eyebrow:"A real warehouse",
+      fac_h2:"A real address and a real team — not a virtual office.",
+      fac_lede:"No virtual office, no PO box — a real address at 4450 Juneau, a real team, and daily Canada Post pickup. Verifiable, even from the other side of the world.",
       fac_img_tag:"VANCOUVER · 4450 JUNEAU ST",
-      fac_cta:"Book a warehouse tour →",
+      fac_cta:"Get a quote →",
       loc_l_addr:"Address", loc_v_addr:"4450 Juneau Street, Burnaby, BC, Canada",
       loc_l_hours:"Hours", loc_v_hours:"Mon – Sat · 9:00 – 18:00 PST",
       loc_l_pickup:"Pickup", loc_v_pickup:"Daily Canada Post · On-demand other carriers",
       loc_l_contact:"Contact",
       // cta
-      cta_eyebrow:"Send your current process", cta_h2:"Send your current process. The rest is built around it.",
-      cta_lede:"Sheets, CSV, Shopify, COD, orders by email — whatever runs today. A price and a setup plan come back within one business day.",
-      cta_btn1:"Talk to operations →", cta_btn2:"Visit the warehouse",
-      cta_chip5:"Email order",
-      cta_n1_t:"Reply within 1 business day", cta_n1_d:"Vancouver hours · read by a real person",
-      cta_n2_t:"A 15-minute call", cta_n2_d:"A walk-through of your current process · price + setup plan the same week",
+      cta_eyebrow:"Get a quote", cta_h2:"Get a quote within one business day.",
+      cta_lede:"Send what you sell, how many orders a month, and where you ship from — that's enough to price it. No workflow questions, no sales process.",
+      cta_btn1:"Get a quote →", cta_btn2:"See the warehouse",
+      cta_chip1:"Website", cta_chip2:"What you sell", cta_chip3:"Orders / month", cta_chip4:"Shipping from", cta_chip5:"Email",
+      cta_n1_t:"Quote within 1 business day", cta_n1_d:"Vancouver hours · read by a real person",
+      cta_n2_t:"Straight to the operations team", cta_n2_d:"No sales funnel · ask about price and shipping, get a straight answer",
       cta_n3_t:"Come see the warehouse first", cta_n3_d:"Walk into 4450 before you sign · no setup fee · no long lock-in",
+      qf_website:"Website / shop link", qf_email:"Email <b>*</b>", qf_products:"What you sell", qf_orders:"Orders / month", qf_origin:"Shipping from (country / city)", qf_submit:"Get a quote →", qf_secondary:"See the warehouse",
       // footer
       foot_desc:"The operations team in Canada for brands that sell — packing, shipping, tracking and reconciliation — from warehouses in Vancouver and Toronto.",
       foot_col1_h:"Services", foot_col1_l1:"Operations", foot_col1_l3:"Payments", foot_col1_l4:"Dashboard",
-      foot_col2_h:"Warehouse", foot_col2_l1:"Visit the warehouse", foot_col2_l2:"Send your process",
+      foot_col2_h:"Warehouse", foot_col2_l1:"Visit the warehouse", foot_col2_l2:"Get a quote",
       foot_col3_h:"Visit", foot_col3_l_hours:"Mon – Sat · 9:00 – 18:00 PST",
       foot_addr_line:"4450 JUNEAU ST · BURNABY BC · MON–SAT 9:00–18:00 PST",
       foot_copy:"© 2026 KDEXPRESS · Vancouver, BC",
@@ -1623,12 +1688,12 @@
     vi: {
       // nav
       nav_operations:"Vận hành", nav_payops:"Thanh toán", nav_dashboard:"Dashboard",
-      nav_company:"Đến thăm kho", nav_cta:"Liên hệ →",
+      nav_company:"Đến thăm kho", nav_cta:"Nhận báo giá",
       // hero
       hero_eyebrow:'<span class="dot"></span> KHO + VẬN HÀNH · VANCOUVER + TORONTO',
       hero_h1:'Đội vận hành tại Canada cho các thương hiệu bán hàng — đóng gói, gửi đi, tracking và đối soát — từ kho ở <span class="accent">Vancouver</span> &amp; <span class="accent">Toronto</span>.',
       hero_lede:"Kho thật, đội vận hành thật, và một màn hình chung cho cả hai bên. Canada Post lấy hàng mỗi ngày, cùng một địa chỉ.",
-      hero_cta1:"Liên hệ vận hành →", hero_cta2:"Đến thăm kho",
+      hero_cta1:"Nhận báo giá →", hero_cta2:"Xem kho hàng",
       hero_chip1:'<b>4450 Juneau St</b> · Burnaby BC',
       hero_chip2:'<b>Canada Post pickup</b> · hằng ngày',
       hero_chip3:'<b>12K sqft</b> · scan-tracked',
@@ -1786,27 +1851,28 @@
       carr_t5:"Quốc tế · USA / VN / EU", carr_t6:"Dịch vụ COD",
       carr_caption:"CARRIER HỖ TRỢ · CHUẨN HOÁ · ĐỘC LẬP ROUTING",
       // location
-      fac_eyebrow:"Ghé thăm kho",
-      fac_h2:"Địa chỉ thật, đội ngũ thật — ghé bất kỳ ngày làm việc nào.",
-      fac_lede:"Không văn phòng ảo, không hộp thư. Bước vào 4450 Juneau, gặp đội đóng đơn cho bạn, xem Canada Post lấy hàng — như mỗi ngày.",
+      fac_eyebrow:"Kho thật",
+      fac_h2:"Địa chỉ thật, đội ngũ thật — không phải văn phòng ảo.",
+      fac_lede:"Không văn phòng ảo, không hộp thư — địa chỉ thật ở 4450 Juneau, đội ngũ thật, Canada Post lấy hàng mỗi ngày. Kiểm chứng được, kể cả khi bạn ở nửa kia thế giới.",
       fac_img_tag:"VANCOUVER · 4450 JUNEAU ST",
-      fac_cta:"Đặt lịch tour kho →",
+      fac_cta:"Nhận báo giá →",
       loc_l_addr:"Địa chỉ", loc_v_addr:"4450 Juneau Street, Burnaby, BC, Canada",
       loc_l_hours:"Giờ làm", loc_v_hours:"T2 – T7 · 9:00 – 18:00 PST",
       loc_l_pickup:"Pickup", loc_v_pickup:"Canada Post hằng ngày · Carrier khác on-demand",
       loc_l_contact:"Liên hệ",
       // cta
-      cta_eyebrow:"Gửi quy trình hiện tại", cta_h2:"Gửi quy trình hiện tại. Phần còn lại được dựng quanh nó.",
-      cta_lede:"Sheets, CSV, Shopify, COD, đơn qua email — bất cứ gì đang chạy. Báo giá và kế hoạch setup gửi lại trong một ngày làm việc.",
-      cta_btn1:"Liên hệ vận hành →", cta_btn2:"Ghé thăm kho",
-      cta_chip5:"Đơn qua email",
-      cta_n1_t:"Phản hồi trong 1 ngày làm việc", cta_n1_d:"Giờ Vancouver · người thật đọc từng yêu cầu",
-      cta_n2_t:"Một cuộc gọi 15 phút", cta_n2_d:"Rà quy trình hiện tại · báo giá + kế hoạch setup trong tuần",
+      cta_eyebrow:"Nhận báo giá", cta_h2:"Nhận báo giá trong 1 ngày làm việc.",
+      cta_lede:"Gửi sản phẩm đang bán, số đơn mỗi tháng và nơi đang ship đi — đủ để báo giá. Không hỏi workflow, không quy trình sales.",
+      cta_btn1:"Nhận báo giá →", cta_btn2:"Xem kho hàng",
+      cta_chip1:"Website", cta_chip2:"Sản phẩm đang bán", cta_chip3:"Đơn mỗi tháng", cta_chip4:"Đang ship từ đâu", cta_chip5:"Email",
+      cta_n1_t:"Báo giá trong 1 ngày làm việc", cta_n1_d:"Giờ Vancouver · người thật đọc từng yêu cầu",
+      cta_n2_t:"Nói thẳng với đội vận hành", cta_n2_d:"Không qua sales · hỏi giá, hỏi cách ship — trả lời thẳng",
       cta_n3_t:"Ghé kho trước khi quyết", cta_n3_d:"Bước vào 4450 trước khi ký · không phí setup · không khoá hợp đồng dài",
+      qf_website:"Website / link shop", qf_email:"Email <b>*</b>", qf_products:"Sản phẩm đang bán", qf_orders:"Đơn mỗi tháng", qf_origin:"Đang ship từ đâu (nước / thành phố)", qf_submit:"Nhận báo giá →", qf_secondary:"Xem kho hàng",
       // footer
       foot_desc:"Đội vận hành tại Canada cho các thương hiệu bán hàng — đóng gói, gửi đi, tracking và đối soát — từ kho ở Vancouver và Toronto.",
       foot_col1_h:"Dịch vụ", foot_col1_l1:"Vận hành", foot_col1_l3:"Thanh toán", foot_col1_l4:"Dashboard",
-      foot_col2_h:"Kho hàng", foot_col2_l1:"Ghé kho", foot_col2_l2:"Gửi quy trình",
+      foot_col2_h:"Kho hàng", foot_col2_l1:"Ghé kho", foot_col2_l2:"Nhận báo giá",
       foot_col3_h:"Đến kho", foot_col3_l_hours:"T2 – T7 · 9:00 – 18:00 PST",
       foot_addr_line:"4450 JUNEAU ST · BURNABY BC · T2–T7 9:00–18:00 PST",
       foot_copy:"© 2026 KDEXPRESS · Vancouver, BC",
@@ -2023,6 +2089,86 @@
     runStep(0);
     setInterval(()=>{ i=(i+1)%STEPS.length; runStep(i); }, STEP_MS);
   }, 1100);
+})();
+</script>
+<!-- ╔══════════════════════════════════════════════════════════════════╗
+     ║  WAREHOUSE IMAGE FX — parallax + slow zoom + fade/mask reveal       ║
+     ║  Thuần CSS/JS, không video, không đổi file ảnh. Xoá khối này để gỡ. ║
+     ╚══════════════════════════════════════════════════════════════════╝ -->
+<script>
+(function(){
+  var imgs = Array.prototype.slice.call(document.querySelectorAll('img.kho-img'));
+  if (!imgs.length) return;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) { imgs.forEach(function(im){ im.classList.add('kho-in'); }); return; }
+
+  // Reveal (fade + mask) khi cuộn tới + parallax — gộp trong một vòng rAF theo scroll
+  var vh = window.innerHeight, ticking = false;
+  function update(){
+    ticking = false;
+    var mid = vh / 2;
+    for (var i = 0; i < imgs.length; i++){
+      var im = imgs[i], r = im.getBoundingClientRect();
+      if (r.bottom < -60 || r.top > vh + 60) continue;
+      if (!im.classList.contains('kho-in') && r.top < vh * 0.88) im.classList.add('kho-in');
+      var rel = ((r.top + r.height / 2) - mid) / vh;        // ~ -0.7..0.7
+      var ky = Math.max(-5, Math.min(5, rel * -8));          // % (clamp ±5)
+      im.style.setProperty('--ky', ky.toFixed(2) + '%');
+    }
+  }
+  function onScroll(){ if (!ticking){ ticking = true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', function(){ vh = window.innerHeight; onScroll(); }, { passive: true });
+  update();
+})();
+</script>
+<!-- ╔══════════════════════════════════════════════════════════════════╗
+     ║  QUOTE LEAD FORM — gửi qua Web3Forms (static, không cần server)     ║
+     ║  Dán access key vào input[name=access_key] phía trên để kích hoạt.  ║
+     ╚══════════════════════════════════════════════════════════════════╝ -->
+<script>
+(function(){
+  var form = document.getElementById('quote-form'); if (!form) return;
+  var msg = document.getElementById('qf-msg');
+  var btn = form.querySelector('button[type=submit]');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var vi = (document.documentElement.lang === 'vi');
+    var L = vi
+      ? { sending:'Đang gửi…', ok:'Đã nhận. Báo giá sẽ gửi lại trong 1 ngày làm việc.', err:'Gửi không được. Thử lại hoặc email media@kdexpress.ca.', email:'Nhập email hợp lệ giúp nhé.', key:'Form chưa gắn access key — xem hướng dẫn.' }
+      : { sending:'Sending…', ok:'Got it. A quote comes back within one business day.', err:'Could not send. Try again or email media@kdexpress.ca.', email:'Please enter a valid email.', key:'Form is missing its access key.' };
+    msg.className = 'qf-msg'; msg.textContent = '';
+    var email = (form.email.value || '').trim();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.textContent = L.email; msg.className = 'qf-msg err'; form.email.focus(); return; }
+    var key = form.access_key.value;
+    if (!key || key.indexOf('YOUR_') === 0) { msg.textContent = L.key; msg.className = 'qf-msg err'; return; }
+    var orig = btn.textContent; btn.disabled = true; btn.textContent = L.sending;
+    fetch('https://api.web3forms.com/submit', { method:'POST', headers:{ 'Accept':'application/json' }, body:new FormData(form) })
+      .then(function(r){ return r.json(); })
+      .then(function(j){ if (j && j.success) { form.reset(); msg.textContent = L.ok; msg.className = 'qf-msg ok'; } else { throw 0; } })
+      .catch(function(){ msg.textContent = L.err; msg.className = 'qf-msg err'; })
+      .then(function(){ btn.disabled = false; btn.textContent = orig; });
+  });
+})();
+</script>
+<!-- Gentle scroll reveal for .reveal-up (payops / đối soát) -->
+<script>
+(function(){
+  var els = Array.prototype.slice.call(document.querySelectorAll('.reveal-up'));
+  if (!els.length) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { els.forEach(function(e){ e.classList.add('in'); }); return; }
+  var vh = window.innerHeight, ticking = false;
+  function check(){
+    ticking = false;
+    for (var i = els.length - 1; i >= 0; i--){
+      if (els[i].getBoundingClientRect().top < vh * 0.86){ els[i].classList.add('in'); els.splice(i, 1); }
+    }
+    if (!els.length) window.removeEventListener('scroll', onScroll);
+  }
+  function onScroll(){ if (!ticking){ ticking = true; requestAnimationFrame(check); } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', function(){ vh = window.innerHeight; onScroll(); }, { passive: true });
+  check();
 })();
 </script>
 </body>
