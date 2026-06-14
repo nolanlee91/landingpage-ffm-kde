@@ -1028,8 +1028,8 @@
   <div class="container">
     <div class="section-head">
       <span class="section-eyebrow" data-i18n="ops_eyebrow">How it runs</span>
-      <h2 data-i18n="ops_h2">Every box goes through the same steps — from the dock to the carrier.</h2>
-      <p data-i18n="ops_lede">Each parcel is scanned at every step in the warehouse. After it ships, tracking is monitored and any problem is pulled into one list your team can see.</p>
+      <h2 data-i18n="ops_h2">From inbound stock to a delivered order.</h2>
+      <p data-i18n="ops_lede">Goods are received, processed and shipped from our Vancouver and Toronto warehouses. Inventory, orders and tracking update on one system.</p>
     </div>
 
     <!-- Block A: physical scan workflow (4 cards) -->
@@ -1038,32 +1038,32 @@
         <div class="ops-img"><img class="kho-img" src="assets/gpt1.png" alt="Operator scanning the barcode on a branded KDEXPRESS shipping box" /></div>
         <div class="ops-body">
           <div class="ops-step" data-i18n="ops_c1_step">01 · RECEIVE</div>
-          <h3 data-i18n="ops_c1_t">Scanned in, checked</h3>
-          <p data-i18n="ops_c1_d">Every box is scanned on arrival. A miscount is caught before it reaches the shelf.</p>
+          <h3 data-i18n="ops_c1_t">Counted and stocked in</h3>
+          <p data-i18n="ops_c1_d">Goods are counted and recorded in the system before going into storage.</p>
         </div>
       </div>
       <div class="ops-card">
         <div class="ops-img"><img class="kho-img" src="assets/gpt3.png" alt="Thermal label printer producing KDEXPRESS branded labels next to the shipments dashboard" /></div>
         <div class="ops-body">
-          <div class="ops-step" data-i18n="ops_c2_step">02 · LABEL</div>
-          <h3 data-i18n="ops_c2_t">Labeled</h3>
-          <p data-i18n="ops_c2_d">Labels printed in batches, with the carrier and service that fit each order — your branding on them.</p>
+          <div class="ops-step" data-i18n="ops_c2_step">02 · PROCESS</div>
+          <h3 data-i18n="ops_c2_t">Labeled and prepped</h3>
+          <p data-i18n="ops_c2_d">Each order is processed to that customer's requirements.</p>
         </div>
       </div>
       <div class="ops-card">
         <div class="ops-img"><img class="kho-img" src="assets/gpt2.png" alt="KDEXPRESS team member sealing a labeled parcel with branded packing tape" /></div>
         <div class="ops-body">
           <div class="ops-step" data-i18n="ops_c3_step">03 · PACK</div>
-          <h3 data-i18n="ops_c3_t">Packed and verified</h3>
-          <p data-i18n="ops_c3_d">Picked from the bin, checked against the order, taped up. One scan moves it to the next step.</p>
+          <h3 data-i18n="ops_c3_t">Checked before it ships</h3>
+          <p data-i18n="ops_c3_d">Orders are matched, packed and made ready to leave the warehouse.</p>
         </div>
       </div>
       <div class="ops-card">
         <div class="ops-img"><img class="kho-img" src="assets/gpt14.png" alt="Worker organizing a stack of sealed KDEXPRESS parcels onto a dispatch cart" /></div>
         <div class="ops-body">
-          <div class="ops-step" data-i18n="ops_c4_step">04 · HANDOFF</div>
-          <h3 data-i18n="ops_c4_t">Handed to the carrier</h3>
-          <p data-i18n="ops_c4_d">Sorted by carrier and handed to the driver. From there, every scan appears back on the screen.</p>
+          <div class="ops-step" data-i18n="ops_c4_step">04 · DISPATCH</div>
+          <h3 data-i18n="ops_c4_t">Staged for handoff</h3>
+          <p data-i18n="ops_c4_d">Orders are staged and made ready to hand off to the carrier.</p>
         </div>
       </div>
     </div>
@@ -1076,16 +1076,14 @@
         </div>
         <div>
           <span class="ops-block-tag" data-i18n="ops_track_tag">Tracking</span>
-          <h3 data-i18n="ops_track_h3">Every carrier, one place to look.</h3>
-          <p data-i18n="ops_track_p">Every carrier reports differently. Every update for a parcel is kept in one place, so there's no opening multiple carrier sites to answer one customer.</p>
+          <h3 data-i18n="ops_track_h3">Goods leave the warehouse, tracking begins.</h3>
+          <p data-i18n="ops_track_p">Once an order is handed off to the carrier, delivery status updates automatically on the KDE system.</p>
           <div class="carrier-list" style="margin-top:22px;">
             <div class="carrier-tag"><span class="dot"></span><span>Canada Post</span></div>
             <div class="carrier-tag"><span class="dot"></span><span>Purolator</span></div>
             <div class="carrier-tag"><span class="dot"></span><span>UPS</span></div>
             <div class="carrier-tag"><span class="dot"></span><span>FedEx</span></div>
-            <div class="carrier-tag"><span class="dot"></span><span data-i18n="carr_t7">&amp; 4 more carriers</span></div>
-            <div class="carrier-tag"><span class="dot"></span><span data-i18n="carr_t5">International · USA / VN / EU</span></div>
-            <div class="carrier-tag"><span class="dot"></span><span data-i18n="carr_t6">COD service</span></div>
+            <div class="carrier-tag"><span class="dot"></span><span data-i18n="carr_t7">8+ carriers</span></div>
           </div>
         </div>
       </div>
@@ -1611,16 +1609,16 @@
       why_i6_t:"Order tracking", why_i6_d:"Opening sheet, carrier and chat just to find one order.", why_i6_k:"Orders and tracking live on one screen.",
       // operations (merged: scan + tracking + issue queue)
       ops_eyebrow:"How it runs",
-      ops_h2:"Every box goes through the same steps — from the dock to the carrier.",
-      ops_lede:"Each parcel is scanned at every step in the warehouse. After it ships, tracking is monitored and any problem is pulled into one list your team can see.",
-      ops_c1_step:"01 · RECEIVE", ops_c1_t:"Scanned in, checked", ops_c1_d:"Every box is scanned on arrival. A miscount is caught before it reaches the shelf.",
-      ops_c2_step:"02 · LABEL", ops_c2_t:"Labeled", ops_c2_d:"Labels printed in batches, with the carrier and service that fit each order — your branding on them.",
-      ops_c3_step:"03 · PACK", ops_c3_t:"Packed and verified", ops_c3_d:"Picked from the bin, checked against the order, taped up. One scan moves it to the next step.",
-      ops_c4_step:"04 · HANDOFF", ops_c4_t:"Handed to the carrier", ops_c4_d:"Sorted by carrier and handed to the driver. From there, every scan appears back on the screen.",
+      ops_h2:"From inbound stock to a delivered order.",
+      ops_lede:"Goods are received, processed and shipped from our Vancouver and Toronto warehouses. Inventory, orders and tracking update on one system.",
+      ops_c1_step:"01 · RECEIVE", ops_c1_t:"Counted and stocked in", ops_c1_d:"Goods are counted and recorded in the system before going into storage.",
+      ops_c2_step:"02 · PROCESS", ops_c2_t:"Labeled and prepped", ops_c2_d:"Each order is processed to that customer's requirements.",
+      ops_c3_step:"03 · PACK", ops_c3_t:"Checked before it ships", ops_c3_d:"Orders are matched, packed and made ready to leave the warehouse.",
+      ops_c4_step:"04 · DISPATCH", ops_c4_t:"Staged for handoff", ops_c4_d:"Orders are staged and made ready to hand off to the carrier.",
       // ops block B (tracking pipeline)
       ops_track_tag:"Tracking",
-      ops_track_h3:"Every carrier, one place to look.",
-      ops_track_p:"Every carrier reports differently. Every update for a parcel is kept in one place, so there's no opening multiple carrier sites to answer one customer.",
+      ops_track_h3:"Goods leave the warehouse, tracking begins.",
+      ops_track_p:"Once an order is handed off to the carrier, delivery status updates automatically on the KDE system.",
       // ops block C (issue queue)
       ops_issue_tag:"When something goes wrong",
       ops_issue_h3:"Problems are caught before the customer notices.",
@@ -1649,7 +1647,7 @@
       carr_b1:'<span class="ck">✓</span>Six-stage timeline normalized across carriers — same shape every time',
       carr_b2:'<span class="ck">✓</span>Carrier-agnostic exception detection (notice card, stalled, returned)',
       carr_b3:'<span class="ck">✓</span>One customer-facing tracking link, regardless of who actually moved the box',
-      carr_t5:"International · USA / VN / EU", carr_t6:"COD service", carr_t7:"& 4 more carriers",
+      carr_t5:"International · USA / VN / EU", carr_t6:"COD service", carr_t7:"8+ carriers",
       carr_caption:"SUPPORTED CARRIERS · NORMALIZED · ROUTING-AGNOSTIC",
       // location
       fac_eyebrow:"A real warehouse",
@@ -1801,16 +1799,16 @@
       why_i6_t:"Theo dõi đơn hàng", why_i6_d:"Mở sheet, carrier và chat chỉ để tìm một đơn.", why_i6_k:"Đơn hàng và tracking nằm trên cùng một màn hình.",
       // operations
       ops_eyebrow:"Cách vận hành",
-      ops_h2:"Mỗi kiện đi qua cùng các bước — từ cửa kho tới tay carrier.",
-      ops_lede:"Mỗi kiện được scan ở từng bước trong kho. Sau khi gửi, tracking được theo dõi và mọi sự cố gom về một danh sách bạn xem được.",
-      ops_c1_step:"01 · NHẬN", ops_c1_t:"Scan vào, kiểm lại", ops_c1_d:"Từng kiện được scan khi nhập kho. Lệch số bị bắt ngay, trước khi lên kệ.",
-      ops_c2_step:"02 · DÁN NHÃN", ops_c2_t:"In nhãn", ops_c2_d:"Nhãn in theo lô, chọn carrier và dịch vụ theo từng đơn — kèm brand của bạn.",
-      ops_c3_step:"03 · ĐÓNG GÓI", ops_c3_t:"Đóng gói, kiểm lại", ops_c3_d:"Lấy theo bin, đối chiếu với đơn, dán băng keo. Scan là chuyển bước.",
-      ops_c4_step:"04 · BÀN GIAO", ops_c4_t:"Giao cho carrier", ops_c4_d:"Phân theo carrier, giao cho tài xế. Từ đó mọi lần scan hiện lại trên màn hình.",
+      ops_h2:"Từ hàng vào kho đến đơn giao thành công.",
+      ops_lede:"Hàng được nhận, xử lý và gửi đi từ kho Vancouver và Toronto. Tồn kho, đơn hàng và tracking được cập nhật trên cùng một hệ thống.",
+      ops_c1_step:"01 · NHẬN HÀNG", ops_c1_t:"Kiểm đếm và nhập kho", ops_c1_d:"Hàng được kiểm đếm và cập nhật vào hệ thống trước khi lưu kho.",
+      ops_c2_step:"02 · XỬ LÝ ĐƠN", ops_c2_t:"In nhãn và chuẩn bị hàng", ops_c2_d:"Đơn hàng được xử lý theo yêu cầu của từng khách hàng.",
+      ops_c3_step:"03 · ĐÓNG GÓI", ops_c3_t:"Kiểm tra trước khi gửi", ops_c3_d:"Đối chiếu đơn hàng, đóng gói và chuẩn bị xuất kho.",
+      ops_c4_step:"04 · XUẤT KHO", ops_c4_t:"Chuẩn bị bàn giao", ops_c4_d:"Đơn hàng được tập kết và chuẩn bị bàn giao cho carrier.",
       // ops block B (tracking pipeline)
       ops_track_tag:"Tracking",
-      ops_track_h3:"Mọi hãng vận chuyển, theo dõi ở một nơi.",
-      ops_track_p:"Mỗi hãng báo một kiểu. Mọi cập nhật của một kiện gom về một chỗ, khỏi mở nhiều trang carrier để trả lời một khách.",
+      ops_track_h3:"Hàng rời kho, tracking bắt đầu.",
+      ops_track_p:"Sau khi đơn hàng được bàn giao cho carrier, trạng thái giao hàng được cập nhật tự động trên hệ thống KDE.",
       // ops block C (issue queue)
       ops_issue_tag:"Khi có sự cố",
       ops_issue_h3:"Sự cố được phát hiện trước cả khách.",
@@ -1839,7 +1837,7 @@
       carr_b1:'<span class="ck">✓</span>Timeline 6 bước chuẩn hoá xuyên carrier — cùng shape mỗi lần',
       carr_b2:'<span class="ck">✓</span>Phát hiện sự cố độc lập carrier (phiếu báo, đứng đường, hoàn)',
       carr_b3:'<span class="ck">✓</span>Một link tracking cho khách, bất kể ai thật sự gửi kiện',
-      carr_t5:"Quốc tế · USA / VN / EU", carr_t6:"Dịch vụ COD", carr_t7:"& 4 hãng khác",
+      carr_t5:"Quốc tế · USA / VN / EU", carr_t6:"Dịch vụ COD", carr_t7:"8+ hãng vận chuyển",
       carr_caption:"CARRIER HỖ TRỢ · CHUẨN HOÁ · ĐỘC LẬP ROUTING",
       // location
       fac_eyebrow:"Kho thật",
