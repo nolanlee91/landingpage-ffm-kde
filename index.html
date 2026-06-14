@@ -575,22 +575,19 @@
   .why .container{position:relative;}
   .why h2{color:#fff;}
   .why .section-eyebrow{color:#86efac;}
-  .why-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:start;}
-  .why-quote{
-    font-size:25px;font-weight:600;line-height:1.38;
-    letter-spacing:-.018em;color:#fff;
+  .why .why-sub{font-size:18px;color:#cbd5e1;line-height:1.62;margin-top:14px;}
+  .why .section-head.center{margin-bottom:40px;}
+  .why-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .why-card{
+    background:#fff;border:1px solid var(--line);border-radius:16px;
+    padding:26px 24px;display:flex;flex-direction:column;text-align:left;
+    box-shadow:var(--shadow-sm);
   }
-  .why-quote .accent{color:#86efac;}
-  .why-quote em{font-style:normal;color:#9ca3af;font-weight:500;}
-  .why-attrib{margin-top:28px;display:flex;align-items:center;gap:12px;font-size:13px;color:#9ca3af;}
-  .why-attrib .av{width:36px;height:36px;border-radius:50%;background:rgba(22,163,74,.18);color:#86efac;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;border:1px solid rgba(22,163,74,.32);}
-  .why-attrib-org{color:#fff;font-weight:600;}
-  .why-attrib-note{font-size:12px;color:#6b7280;}
-  .why-list{display:grid;gap:0;border-top:1px solid rgba(255,255,255,.08);}
-  .why-list .item{display:grid;grid-template-columns:36px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.08);}
-  .why-list .num{font-family:var(--mono);font-size:12px;font-weight:700;color:#86efac;letter-spacing:.5px;}
-  .why-list .t{font-weight:700;font-size:15.5px;margin-bottom:4px;letter-spacing:-.01em;color:#fff;}
-  .why-list .d{font-size:15px;color:#cbd5e1;line-height:1.6;}
+  .why-card .ic{width:26px;height:26px;color:var(--green);margin-bottom:16px;}
+  .why-card .ic svg{width:100%;height:100%;display:block;}
+  .why-card .ct{font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.9px;color:var(--muted);margin-bottom:12px;}
+  .why-card .pain{font-size:16px;font-weight:600;color:#374151;line-height:1.5;margin-bottom:18px;}
+  .why-card .fix{font-size:15px;font-weight:600;color:var(--green);line-height:1.5;padding-top:18px;border-top:1px solid var(--line);margin-top:auto;}
 
   /* ───── Operations (merged: scan workflow + tracking + issue queue) ───── */
   .ops{background:#fff;}
@@ -802,7 +799,8 @@
 
   /* ───── Responsive ───── */
   @media (max-width:960px){
-    .hero-grid,.settle-grid,.exc-grid,.why-grid,.carrier,.facility-grid,.storage-grid,.showcase-row,.showcase-row.reverse,.payops-detail,.ops-band-inner{grid-template-columns:1fr;gap:40px;}
+    .hero-grid,.settle-grid,.exc-grid,.carrier,.facility-grid,.storage-grid,.showcase-row,.showcase-row.reverse,.payops-detail,.ops-band-inner{grid-template-columns:1fr;gap:40px;}
+    .why-cards{grid-template-columns:repeat(2,1fr);}
     .facility-zones{grid-template-columns:repeat(2,1fr);}
     .cta-next{grid-template-columns:1fr;gap:18px;}
     .showcase-row.reverse .showcase-img{order:0;}
@@ -822,6 +820,7 @@
     .hero-visual .ws-snip{width:120px;bottom:-16px;right:-12px;}
   }
   @media (max-width:560px){
+    .why-cards{grid-template-columns:1fr;}
     .addr-card .row{flex-direction:column;gap:4px;padding:12px 0;}
     .addr-card .label{width:auto;padding-top:0;}
     .addr-card .val{font-size:14px;line-height:1.45;}
@@ -978,66 +977,47 @@
 <!-- ============= WHY SELLERS SWITCH (pain hook, moved up) ============= -->
 <section class="why">
   <div class="container">
-    <div class="section-head">
-      <span class="section-eyebrow" data-i18n="why_eyebrow">Why sellers switch</span>
-      <h2 data-i18n="why_h2">It's rarely one big failure. It's the small things, every day.</h2>
+    <div class="section-head center">
+      <h2 data-i18n="why_h2">What sellers still do by hand</h2>
+      <p class="why-sub" data-i18n="why_sub">Each task takes only a few minutes. Repeated hundreds of times, it becomes a real operating cost.</p>
     </div>
 
-    <div class="why-grid">
-      <div>
-        <p class="why-quote" data-i18n="why_quote" data-i18n-html="true">Most sellers don't leave their provider over one <span class="accent">big failure</span>.<br><br><em>They leave because a few small things go wrong every week — and each one lands back on the owner.</em></p>
-        <div class="why-attrib">
-          <div class="av">K</div>
-          <div>
-            <div class="why-attrib-org" data-i18n="why_attrib_org">KDEXPRESS · Operations</div>
-            <div class="mono why-attrib-note" data-i18n="why_attrib_note">Founder note · Vancouver, BC</div>
-          </div>
-        </div>
+    <div class="why-cards">
+      <div class="why-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h11v11H3z"/><path d="M14 8h4l3 3v4h-7z"/><circle cx="6.5" cy="18" r="1.8"/><circle cx="17.5" cy="18" r="1.8"/></svg></div>
+        <div class="ct" data-i18n="why_i1_t">Tracking</div>
+        <div class="pain" data-i18n="why_i1_d">Hundreds of tracking updates.</div>
+        <div class="fix" data-i18n="why_i1_k">Track every order — delivery status updates automatically.</div>
       </div>
-
-      <div class="why-list">
-        <div class="item">
-          <div class="num mono">01</div>
-          <div>
-            <div class="t" data-i18n="why_i1_t">Tracking typed by hand</div>
-            <div class="d" data-i18n="why_i1_d">Tracking numbers copied into a sheet by hand. A few come out wrong. The customer gets a dead link.</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="num mono">02</div>
-          <div>
-            <div class="t" data-i18n="why_i2_t">Stock that doesn't match</div>
-            <div class="d" data-i18n="why_i2_d">The count is right in one place, wrong in two others — store, supplier sheet, warehouse. Orders get refunded that could have shipped.</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="num mono">03</div>
-          <div>
-            <div class="t" data-i18n="why_i3_t">Tickets that slip</div>
-            <div class="d" data-i18n="why_i3_d">A notice card, a stuck parcel — unseen until the customer messages. By then it's late.</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="num mono">04</div>
-          <div>
-            <div class="t" data-i18n="why_i4_t">COD slow to add up</div>
-            <div class="d" data-i18n="why_i4_d">COD returns in batches and surcharges don't line up. Reconciling it to orders takes a day or two each month.</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="num mono">05</div>
-          <div>
-            <div class="t" data-i18n="why_i5_t">Has the money arrived?</div>
-            <div class="d" data-i18n="why_i5_d">Scrolling bank emails to check whether an e-Transfer came in, and for which order. Half a morning gone.</div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="num mono">06</div>
-          <div>
-            <div class="t" data-i18n="why_i6_t">Chasing where an order is</div>
-            <div class="d" data-i18n="why_i6_d">To locate one order: check the warehouse, the carrier, and a chat group. Three places, one question.</div>
-          </div>
-        </div>
+      <div class="why-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8l9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg></div>
+        <div class="ct" data-i18n="why_i2_t">Inventory</div>
+        <div class="pain" data-i18n="why_i2_d">No real idea how much stock is actually left in the warehouse.</div>
+        <div class="fix" data-i18n="why_i2_k">Always know current stock, with an alert when an item is running low.</div>
+      </div>
+      <div class="why-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V3.2A1.2 1.2 0 0 1 10.2 2h3.6A1.2 1.2 0 0 1 15 3.2V4"/><path d="M9.5 12.5l2 2 3.5-3.5"/></svg></div>
+        <div class="ct" data-i18n="why_i3_t">Open orders</div>
+        <div class="pain" data-i18n="why_i3_d">Delivery problems or support requests slip through the cracks.</div>
+        <div class="fix" data-i18n="why_i3_k">Orders that need action are flagged until they're resolved.</div>
+      </div>
+      <div class="why-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h12l-3-3"/><path d="M20 16H8l3 3"/></svg></div>
+        <div class="ct" data-i18n="why_i4_t">Reconciliation</div>
+        <div class="pain" data-i18n="why_i4_d">Matching money received to each order takes hours.</div>
+        <div class="fix" data-i18n="why_i4_k">The system tracks cash per customer.</div>
+      </div>
+      <div class="why-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.5 21a1.5 1.5 0 0 1-3 0"/></svg></div>
+        <div class="ct" data-i18n="why_i5_t">EFT</div>
+        <div class="pain" data-i18n="why_i5_d">The money has landed, but you only find out after reconciliation.</div>
+        <div class="fix" data-i18n="why_i5_k">Get notified the moment the system records a payment.</div>
+      </div>
+      <div class="why-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+        <div class="ct" data-i18n="why_i6_t">Order tracking</div>
+        <div class="pain" data-i18n="why_i6_d">Opening sheet, carrier and chat just to find one order.</div>
+        <div class="fix" data-i18n="why_i6_k">Orders and tracking live on one screen.</div>
       </div>
     </div>
   </div>
@@ -1622,15 +1602,13 @@
       flow_n4_t:"Exceptions", flow_n4_l1:"Notice cards", flow_n4_l2:"Address issues", flow_n4_l3:"Returns & RTO", flow_n4_l4:"Settlement holds",
       flow_footnote:"You don't have to be Shopify-native to operate professionally. Same workflow whether the input is an API call or a Tuesday Sheets paste — same output downstream.",
       // why
-      why_eyebrow:"The seller's pain points", why_h2:"It's rarely one big failure. It's the small things, every day.",
-      why_quote:'Most sellers don\'t leave their provider over one <span class="accent">big failure</span>.<br><br><em>They leave because a few small things go wrong every week — and each one lands back on the owner.</em>',
-      why_attrib_org:"KDEXPRESS · Operations", why_attrib_note:"Founder note · Vancouver, BC",
-      why_i1_t:"Tracking typed by hand", why_i1_d:"Tracking numbers copied into a sheet by hand. A few come out wrong. The customer gets a dead link.",
-      why_i2_t:"Stock that doesn't match", why_i2_d:"The count is right in one place, wrong in two others — store, supplier sheet, warehouse. Orders get refunded that could have shipped.",
-      why_i3_t:"Tickets that slip", why_i3_d:"A notice card, a stuck parcel — unseen until the customer messages. By then it's late.",
-      why_i4_t:"COD slow to add up", why_i4_d:"COD returns in batches and surcharges don't line up. Reconciling it to orders takes a day or two each month.",
-      why_i5_t:"Has the money arrived?", why_i5_d:"Scrolling bank emails to check whether an e-Transfer came in, and for which order. Half a morning gone.",
-      why_i6_t:"Chasing where an order is", why_i6_d:"To locate one order: check the warehouse, the carrier, and a chat group. Three places, one question.",
+      why_eyebrow:"The seller's pain points", why_h2:"What sellers still do by hand", why_sub:"Each task takes only a few minutes. Repeated hundreds of times, it becomes a real operating cost.",
+      why_i1_t:"Tracking", why_i1_d:"Hundreds of tracking updates.", why_i1_k:"Track every order — delivery status updates automatically.",
+      why_i2_t:"Inventory", why_i2_d:"No real idea how much stock is actually left in the warehouse.", why_i2_k:"Always know current stock, with an alert when an item is running low.",
+      why_i3_t:"Open orders", why_i3_d:"Delivery problems or support requests slip through the cracks.", why_i3_k:"Orders that need action are flagged until they're resolved.",
+      why_i4_t:"Reconciliation", why_i4_d:"Matching money received to each order takes hours.", why_i4_k:"The system tracks cash per customer.",
+      why_i5_t:"EFT", why_i5_d:"The money has landed, but you only find out after reconciliation.", why_i5_k:"Get notified the moment the system records a payment.",
+      why_i6_t:"Order tracking", why_i6_d:"Opening sheet, carrier and chat just to find one order.", why_i6_k:"Orders and tracking live on one screen.",
       // operations (merged: scan + tracking + issue queue)
       ops_eyebrow:"How it runs",
       ops_h2:"Every box goes through the same steps — from the dock to the carrier.",
@@ -1814,15 +1792,13 @@
       flow_n4_t:"Sự cố", flow_n4_l1:"Phiếu báo", flow_n4_l2:"Lỗi địa chỉ", flow_n4_l3:"Hoàn &amp; RTO", flow_n4_l4:"Hold đối soát",
       flow_footnote:"Không cần Shopify-native mới vận hành chuyên nghiệp. Cùng workflow chạy dù đầu vào là API call hay paste Sheets sáng thứ ba — cùng output downstream.",
       // why
-      why_eyebrow:"Những nỗi đau của seller", why_h2:"Không phải một sự cố lớn. Là những lỗi nhỏ, mỗi ngày.",
-      why_quote:'Đa số seller không đổi đối tác vì một <span class="accent">sự cố lớn</span>.<br><br><em>Họ đổi vì mỗi tuần vài lỗi nhỏ lặp lại — và lỗi nào cuối cùng cũng dồn về phía chủ shop.</em>',
-      why_attrib_org:"KDEXPRESS · Vận hành", why_attrib_note:"Ghi chú founder · Vancouver, BC",
-      why_i1_t:"Tracking nhập tay", why_i1_d:"Mã tracking copy tay vào sheet. Vài mã sai. Khách nhận link hỏng.",
-      why_i2_t:"Tồn kho lệch nhau", why_i2_d:"Số tồn đúng một nơi, sai hai nơi — store, sheet supplier, kho. Đơn đáng gửi lại bị refund.",
-      why_i3_t:"Ticket bị bỏ sót", why_i3_d:"Một phiếu báo, một kiện đứng đường — không ai thấy tới khi khách nhắn. Lúc đó đã trễ.",
-      why_i4_t:"COD đối soát chậm", why_i4_d:"COD về theo đợt, phụ phí không khớp. Đối soát với đơn mất một hai ngày mỗi tháng.",
-      why_i5_t:"Không biết tiền đã về chưa", why_i5_d:"Lục email ngân hàng xem e-Transfer đã vào chưa, của đơn nào. Mất cả buổi sáng.",
-      why_i6_t:"Mở nhiều nơi để tìm một đơn", why_i6_d:"Để biết một đơn đang ở đâu: hỏi kho, hỏi carrier, mở nhóm chat. Ba nơi, một câu hỏi.",
+      why_eyebrow:"Những nỗi đau của seller", why_h2:"Những việc seller vẫn đang làm thủ công", why_sub:"Mỗi việc chỉ mất vài phút. Nhưng khi lặp lại hàng trăm lần, chúng trở thành một chi phí vận hành đáng kể.",
+      why_i1_t:"Tracking", why_i1_d:"Hàng trăm lần cập nhật tracking.", why_i1_k:"Theo dõi mọi đơn hàng, trạng thái giao hàng được cập nhật tự động.",
+      why_i2_t:"Tồn kho", why_i2_d:"Không biết thực tế còn bao nhiêu hàng trong kho.", why_i2_k:"Luôn biết số lượng tồn kho hiện tại và nhận cảnh báo khi hàng sắp hết.",
+      why_i3_t:"Đơn cần xử lý", why_i3_d:"Lỗi giao hàng hoặc yêu cầu hỗ trợ dễ bị bỏ sót.", why_i3_k:"Gắn cờ các đơn cần xử lý cho đến khi hoàn tất.",
+      why_i4_t:"Đối soát", why_i4_d:"Ghép tiền nhận được với từng đơn mất hàng giờ.", why_i4_k:"Hệ thống theo dõi tiền theo từng khách hàng.",
+      why_i5_t:"EFT", why_i5_d:"Tiền đã về nhưng phải chờ đối soát mới biết.", why_i5_k:"Nhận thông báo ngay khi hệ thống ghi nhận thanh toán.",
+      why_i6_t:"Theo dõi đơn hàng", why_i6_d:"Mở sheet, carrier và chat chỉ để tìm một đơn.", why_i6_k:"Đơn hàng và tracking nằm trên cùng một màn hình.",
       // operations
       ops_eyebrow:"Cách vận hành",
       ops_h2:"Mỗi kiện đi qua cùng các bước — từ cửa kho tới tay carrier.",
