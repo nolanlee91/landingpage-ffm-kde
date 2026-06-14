@@ -144,7 +144,14 @@
   /* ════ Hero v2: workflow timeline + live dashboard + context cards ════ */
   .hero-stack{display:flex;flex-direction:column;align-items:center;text-align:center;}
   .hero-stack h1{max-width:900px;margin-bottom:20px;}
-  .hero-stack .lede{margin:0 auto 26px;max-width:600px;}
+  .hero-stack .lede{margin:0 auto 18px;max-width:600px;}
+  .trust-line{
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 12px;
+    font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.4px;
+    text-transform:uppercase;color:var(--muted);
+    margin:0 auto 26px;max-width:660px;
+  }
+  .trust-line .trust-sep{color:var(--green);opacity:.65;}
   .hero-stack .hero-cta{justify-content:center;margin-bottom:4px;}
   /* ── Layer 1: workflow timeline ── */
   .wf{width:100%;max-width:720px;margin:34px auto 30px;}
@@ -852,9 +859,16 @@
 <!-- ============= HERO ============= -->
 <section class="hero">
   <div class="container hero-stack">
-    <span class="eyebrow hero-reveal" style="--d:0s" data-i18n="hero_eyebrow" data-i18n-html="true"><span class="dot"></span> WAREHOUSE + OPS · VANCOUVER + TORONTO</span>
-    <h1 data-i18n="hero_h1" data-i18n-html="true">The operations team in Canada for brands that sell — packing, shipping, tracking and reconciliation — from warehouses in <span class="accent">Vancouver</span> &amp; <span class="accent">Toronto</span>.</h1>
-    <p class="lede hero-reveal" style="--d:.5s" data-i18n="hero_lede">A real warehouse, a real operations team, and one shared screen for both sides. Canada Post collects every day, from the same address.</p>
+    <span class="eyebrow hero-reveal" style="--d:0s" data-i18n="hero_eyebrow" data-i18n-html="true"><span class="dot"></span> FULFILMENT IN CANADA</span>
+    <h1 data-i18n="hero_h1" data-i18n-html="true">Focus on selling.<br>We'll handle <span class="accent">the operations.</span></h1>
+    <p class="lede hero-reveal" style="--d:.5s" data-i18n="hero_lede">Receiving, storage, packing and delivery from two warehouses in Vancouver and Toronto.</p>
+    <p class="trust-line hero-reveal" style="--d:.58s">
+      <span data-i18n="hero_chip1">2 fulfilment warehouses in Canada</span>
+      <span class="trust-sep" aria-hidden="true">•</span>
+      <span data-i18n="hero_chip2">Order &amp; inventory tracking</span>
+      <span class="trust-sep" aria-hidden="true">•</span>
+      <span data-i18n="hero_chip3">Orders processed daily</span>
+    </p>
     <div class="hero-cta hero-reveal" style="--d:.62s">
       <a class="btn btn-primary" href="#cta" data-i18n="hero_cta1">Get a quote →</a>
       <a class="btn btn-ghost" href="#facility" data-i18n="hero_cta2">See the warehouse</a>
@@ -943,10 +957,10 @@
       </div>
       <div class="stat">
         <div class="num text" data-i18n="stat2_num">Daily</div>
-        <div class="lbl" data-i18n="stat2_lbl">Canada Post pickup</div>
+        <div class="lbl" data-i18n="stat2_lbl">Multi-carrier pickup</div>
       </div>
       <div class="stat">
-        <div class="num">4</div>
+        <div class="num">8</div>
         <div class="lbl" data-i18n="stat3_lbl">Carriers supported</div>
       </div>
       <div class="stat">
@@ -1083,12 +1097,13 @@
         <div>
           <span class="ops-block-tag" data-i18n="ops_track_tag">Tracking</span>
           <h3 data-i18n="ops_track_h3">Every carrier, one place to look.</h3>
-          <p data-i18n="ops_track_p">Canada Post, Purolator, UPS, FedEx — each reports differently. Every update for a parcel is kept in one place, so there's no opening four carrier sites to answer one customer.</p>
+          <p data-i18n="ops_track_p">Every carrier reports differently. Every update for a parcel is kept in one place, so there's no opening multiple carrier sites to answer one customer.</p>
           <div class="carrier-list" style="margin-top:22px;">
             <div class="carrier-tag"><span class="dot"></span><span>Canada Post</span></div>
             <div class="carrier-tag"><span class="dot"></span><span>Purolator</span></div>
             <div class="carrier-tag"><span class="dot"></span><span>UPS</span></div>
             <div class="carrier-tag"><span class="dot"></span><span>FedEx</span></div>
+            <div class="carrier-tag"><span class="dot"></span><span data-i18n="carr_t7">&amp; 4 more carriers</span></div>
             <div class="carrier-tag"><span class="dot"></span><span data-i18n="carr_t5">International · USA / VN / EU</span></div>
             <div class="carrier-tag"><span class="dot"></span><span data-i18n="carr_t6">COD service</span></div>
           </div>
@@ -1361,12 +1376,12 @@
     </div>
     <div>
       <span class="section-eyebrow" data-i18n="fac_eyebrow">A real warehouse</span>
-      <h2 data-i18n="fac_h2">A real address and a real team — not a virtual office.</h2>
-      <p class="facility-lede" data-i18n="fac_lede">No virtual office, no PO box — a real address at 4450 Juneau, a real team, and daily Canada Post pickup. Verifiable, even from the other side of the world.</p>
+      <h2 data-i18n="fac_h2">A real address and a real team — no middleman.</h2>
+      <p class="facility-lede" data-i18n="fac_lede">No middleman, no broker — stock goes straight into a real warehouse at 4450 Juneau, handled by a real team, with daily multi-carrier pickup. Verifiable, even from the other side of the world.</p>
       <div class="addr-card">
         <div class="row"><div class="label" data-i18n="loc_l_addr">Address</div><div class="val" data-i18n="loc_v_addr">4450 Juneau Street, Burnaby, BC, Canada</div></div>
         <div class="row"><div class="label" data-i18n="loc_l_hours">Hours</div><div class="val" data-i18n="loc_v_hours">Mon – Sat · 9:00 – 18:00 PST</div></div>
-        <div class="row"><div class="label" data-i18n="loc_l_pickup">Pickup</div><div class="val" data-i18n="loc_v_pickup">Daily Canada Post · On-demand other carriers</div></div>
+        <div class="row"><div class="label" data-i18n="loc_l_pickup">Pickup</div><div class="val" data-i18n="loc_v_pickup">Daily pickup · multiple carriers</div></div>
         <div class="row"><div class="label" data-i18n="loc_l_contact">Contact</div><div class="val">media@kdexpress.ca</div></div>
       </div>
       <a class="btn btn-primary" href="#cta" data-i18n="fac_cta">Get a quote →</a>
@@ -1499,15 +1514,15 @@
       nav_operations:"Operations", nav_payops:"Payment", nav_dashboard:"Dashboard",
       nav_company:"Visit warehouse", nav_cta:"Get a quote",
       // hero
-      hero_eyebrow:'<span class="dot"></span> WAREHOUSE + OPS · VANCOUVER + TORONTO',
-      hero_h1:'The operations warehouse in Canada for brands that sell — packing, shipping, tracking and reconciliation — from warehouses in <span class="accent">Vancouver</span> &amp; <span class="accent">Toronto</span>.',
-      hero_lede:"A real warehouse, a real operations team, and one shared screen for both sides. Canada Post collects every day, from the same address.",
+      hero_eyebrow:'<span class="dot"></span> FULFILMENT IN CANADA',
+      hero_h1:'Focus on selling.<br>We\'ll handle <span class="accent">the operations.</span>',
+      hero_lede:"Receiving, storage, packing and delivery from two warehouses in Vancouver and Toronto.",
       hero_cta1:"Get a quote →", hero_cta2:"See the warehouse",
-      hero_chip1:'<b>4450 Juneau St</b> · Burnaby BC',
-      hero_chip2:'<b>Canada Post pickup</b> · daily',
-      hero_chip3:'<b>12K sqft</b> · scan-tracked',
+      hero_chip1:"2 fulfilment warehouses in Canada",
+      hero_chip2:"Order & inventory tracking",
+      hero_chip3:"Orders processed daily",
       hero_float_title:"LIVE PIPELINE", hero_float_label1:"IN TRANSIT", hero_float_label2:"FLAGGED",
-      hero_ws_tag:"CANADA POST · DAILY",
+      hero_ws_tag:"DAILY PICKUP",
       // ticker
       ticker_t1:"Parcel KDCA-2026-0517-C9 · scan PACK · Vancouver",
       ticker_t2:"Batch KDCA250513 · 166 orders · reconciled",
@@ -1515,7 +1530,7 @@
       ticker_t4:"Canada Post pickup · 412 parcels · 18:00 PST",
       ticker_t5:"e-Transfer matched · JESSICA LE · $1,260 CAD",
       // stats
-      stat1_lbl:"Parcels shipped", stat2_num:"Daily", stat2_lbl:"Canada Post pickup",
+      stat1_lbl:"Parcels shipped", stat2_num:"Daily", stat2_lbl:"Multi-carrier pickup",
       stat3_lbl:"Carriers supported", stat4_lbl:"To respond to an issue",
       stat5_num:"2 hubs", stat5_lbl:"Vancouver + Toronto",
       // showcase
@@ -1627,7 +1642,7 @@
       // ops block B (tracking pipeline)
       ops_track_tag:"Tracking",
       ops_track_h3:"Every carrier, one place to look.",
-      ops_track_p:"Canada Post, Purolator, UPS, FedEx — each reports differently. Every update for a parcel is kept in one place, so there's no opening four carrier sites to answer one customer.",
+      ops_track_p:"Every carrier reports differently. Every update for a parcel is kept in one place, so there's no opening multiple carrier sites to answer one customer.",
       // ops block C (issue queue)
       ops_issue_tag:"When something goes wrong",
       ops_issue_h3:"Problems are caught before the customer notices.",
@@ -1656,17 +1671,17 @@
       carr_b1:'<span class="ck">✓</span>Six-stage timeline normalized across carriers — same shape every time',
       carr_b2:'<span class="ck">✓</span>Carrier-agnostic exception detection (notice card, stalled, returned)',
       carr_b3:'<span class="ck">✓</span>One customer-facing tracking link, regardless of who actually moved the box',
-      carr_t5:"International · USA / VN / EU", carr_t6:"COD service",
+      carr_t5:"International · USA / VN / EU", carr_t6:"COD service", carr_t7:"& 4 more carriers",
       carr_caption:"SUPPORTED CARRIERS · NORMALIZED · ROUTING-AGNOSTIC",
       // location
       fac_eyebrow:"A real warehouse",
       fac_h2:"A real address and a real team — no middleman.",
-      fac_lede:"No middleman, no broker — stock goes straight into a real warehouse at 4450 Juneau, handled by a real team, with daily Canada Post pickup. Verifiable, even from the other side of the world.",
+      fac_lede:"No middleman, no broker — stock goes straight into a real warehouse at 4450 Juneau, handled by a real team, with daily multi-carrier pickup. Verifiable, even from the other side of the world.",
       fac_img_tag:"VANCOUVER · 4450 JUNEAU ST",
       fac_cta:"Get a quote →",
       loc_l_addr:"Address", loc_v_addr:"4450 Juneau Street, Burnaby, BC, Canada",
       loc_l_hours:"Hours", loc_v_hours:"Mon – Sat · 9:00 – 18:00 PST",
-      loc_l_pickup:"Pickup", loc_v_pickup:"Daily Canada Post · On-demand other carriers",
+      loc_l_pickup:"Pickup", loc_v_pickup:"Daily pickup · multiple carriers",
       loc_l_contact:"Contact",
       // cta
       cta_eyebrow:"Get a quote", cta_h2:"Get a quote within one business day.",
@@ -1690,15 +1705,15 @@
       nav_operations:"Vận hành", nav_payops:"Thanh toán", nav_dashboard:"Dashboard",
       nav_company:"Đến thăm kho", nav_cta:"Nhận báo giá",
       // hero
-      hero_eyebrow:'<span class="dot"></span> KHO + VẬN HÀNH · VANCOUVER + TORONTO',
-      hero_h1:'Kho vận hành tại Canada cho các thương hiệu bán hàng — đóng gói, gửi đi, tracking và đối soát — từ kho ở <span class="accent">Vancouver</span> &amp; <span class="accent">Toronto</span>.',
-      hero_lede:"Kho thật, đội vận hành thật, và một màn hình chung cho cả hai bên. Canada Post lấy hàng mỗi ngày, cùng một địa chỉ.",
+      hero_eyebrow:'<span class="dot"></span> FULFILMENT TẠI CANADA',
+      hero_h1:'Tập trung bán hàng.<br>Phần vận hành để <span class="accent">chúng tôi lo.</span>',
+      hero_lede:"Nhận hàng, lưu kho, đóng gói và giao hàng từ hai kho tại Vancouver và Toronto.",
       hero_cta1:"Nhận báo giá →", hero_cta2:"Xem kho hàng",
-      hero_chip1:'<b>4450 Juneau St</b> · Burnaby BC',
-      hero_chip2:'<b>Canada Post pickup</b> · hằng ngày',
-      hero_chip3:'<b>12K sqft</b> · scan-tracked',
+      hero_chip1:"2 kho vận hành tại Canada",
+      hero_chip2:"Theo dõi đơn hàng & tồn kho",
+      hero_chip3:"Đơn được xử lý mỗi ngày",
       hero_float_title:"PIPELINE LIVE", hero_float_label1:"ĐANG GỬI", hero_float_label2:"CẦN XỬ LÝ",
-      hero_ws_tag:"CANADA POST · HẰNG NGÀY",
+      hero_ws_tag:"PICKUP · HẰNG NGÀY",
       // ticker
       ticker_t1:"Kiện KDCA-2026-0517-C9 · scan PACK · Vancouver",
       ticker_t2:"Batch KDCA250513 · 166 đơn · đã đối soát",
@@ -1706,7 +1721,7 @@
       ticker_t4:"Canada Post pickup · 412 kiện · 18:00 PST",
       ticker_t5:"e-Transfer đã khớp · JESSICA LE · $1,260 CAD",
       // stats
-      stat1_lbl:"Kiện đã gửi", stat2_num:"Hằng ngày", stat2_lbl:"Canada Post pickup",
+      stat1_lbl:"Kiện đã gửi", stat2_num:"Hằng ngày", stat2_lbl:"Nhiều hãng pickup",
       stat3_lbl:"Hãng vận chuyển", stat4_lbl:"Phản hồi khi có sự cố",
       stat5_num:"2 kho", stat5_lbl:"Vancouver + Toronto",
       // strip
@@ -1819,7 +1834,7 @@
       // ops block B (tracking pipeline)
       ops_track_tag:"Tracking",
       ops_track_h3:"Mọi hãng vận chuyển, theo dõi ở một nơi.",
-      ops_track_p:"Canada Post, Purolator, UPS, FedEx — mỗi hãng báo một kiểu. Mọi cập nhật của một kiện gom về một chỗ, khỏi mở bốn trang carrier để trả lời một khách.",
+      ops_track_p:"Mỗi hãng báo một kiểu. Mọi cập nhật của một kiện gom về một chỗ, khỏi mở nhiều trang carrier để trả lời một khách.",
       // ops block C (issue queue)
       ops_issue_tag:"Khi có sự cố",
       ops_issue_h3:"Sự cố được phát hiện trước cả khách.",
@@ -1848,17 +1863,17 @@
       carr_b1:'<span class="ck">✓</span>Timeline 6 bước chuẩn hoá xuyên carrier — cùng shape mỗi lần',
       carr_b2:'<span class="ck">✓</span>Phát hiện sự cố độc lập carrier (phiếu báo, đứng đường, hoàn)',
       carr_b3:'<span class="ck">✓</span>Một link tracking cho khách, bất kể ai thật sự gửi kiện',
-      carr_t5:"Quốc tế · USA / VN / EU", carr_t6:"Dịch vụ COD",
+      carr_t5:"Quốc tế · USA / VN / EU", carr_t6:"Dịch vụ COD", carr_t7:"& 4 hãng khác",
       carr_caption:"CARRIER HỖ TRỢ · CHUẨN HOÁ · ĐỘC LẬP ROUTING",
       // location
       fac_eyebrow:"Kho thật",
       fac_h2:"Địa chỉ thật, đội ngũ thật — không qua trung gian.",
-      fac_lede:"Không qua trung gian, không môi giới — hàng vào thẳng kho thật ở 4450 Juneau, đội ngũ thật xử lý, Canada Post lấy hàng mỗi ngày. Kiểm chứng được, kể cả khi bạn ở nửa kia thế giới.",
+      fac_lede:"Không qua trung gian, không môi giới — hàng vào thẳng kho thật ở 4450 Juneau, đội ngũ thật xử lý, nhiều hãng vận chuyển lấy hàng mỗi ngày. Kiểm chứng được, kể cả khi bạn ở nửa kia thế giới.",
       fac_img_tag:"VANCOUVER · 4450 JUNEAU ST",
       fac_cta:"Nhận báo giá →",
       loc_l_addr:"Địa chỉ", loc_v_addr:"4450 Juneau Street, Burnaby, BC, Canada",
       loc_l_hours:"Giờ làm", loc_v_hours:"T2 – T7 · 9:00 – 18:00 PST",
-      loc_l_pickup:"Pickup", loc_v_pickup:"Canada Post hằng ngày · Carrier khác on-demand",
+      loc_l_pickup:"Pickup", loc_v_pickup:"Pickup hằng ngày · nhiều hãng vận chuyển",
       loc_l_contact:"Liên hệ",
       // cta
       cta_eyebrow:"Nhận báo giá", cta_h2:"Nhận báo giá trong 1 ngày làm việc.",
@@ -1897,6 +1912,7 @@
           frag.appendChild(w);
         });
       } else if (node.nodeType === 1){ // element (vd .accent) → bọc cả khối thành 1 từ
+        if (node.tagName === 'BR'){ frag.appendChild(document.createElement('br')); return; } // giữ ngắt dòng headline
         const w = document.createElement('span');
         w.className = 'hw';
         w.style.setProperty('--i', i++);
