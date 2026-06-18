@@ -381,15 +381,16 @@
   .payops-stage{
     padding:24px;border-right:1px solid var(--line);position:relative;
     background:linear-gradient(180deg,#fff 0%,var(--bg-soft) 100%);
+    display:flex;flex-direction:column;
   }
   .payops-stage:last-child{border-right:0;}
   .payops-stage .stage-num{
     font-family:var(--mono);font-size:11px;font-weight:700;
     color:var(--green-dark);letter-spacing:1.2px;margin-bottom:10px;
   }
-  .payops-stage h3{font-size:15.5px;font-weight:700;letter-spacing:-.01em;margin-bottom:6px;}
+  .payops-stage h3{font-size:15.5px;font-weight:700;letter-spacing:-.01em;margin-bottom:6px;color:var(--ink);}
   .payops-stage p{font-size:13px;color:var(--ink-3);line-height:1.5;}
-  .payops-stage .badge-row{display:flex;gap:5px;margin-top:12px;flex-wrap:wrap;}
+  .payops-stage .badge-row{display:flex;gap:5px;margin-top:auto;padding-top:14px;flex-wrap:wrap;}
   .payops-stage .badge{
     font-family:var(--mono);font-size:10px;font-weight:600;
     padding:3px 7px;border-radius:4px;
@@ -1147,17 +1148,17 @@
 <section id="payment-ops" class="payops">
   <div class="container">
     <div class="section-head">
-      <span class="section-eyebrow" data-i18n="payops_eyebrow">The money</span>
-      <h2 data-i18n="payops_h2">Orders, tracking and cash — followed in one process.</h2>
-      <p data-i18n="payops_lede">EFT, e-Transfer, COD, weekly statements — tied to your orders by a reference number and a line in an email. That thread is followed automatically.</p>
+      <span class="section-eyebrow" data-i18n="payops_eyebrow">Payment</span>
+      <h2 data-i18n="payops_h2">No waiting for reconciliation to know the money arrived.</h2>
+      <p data-i18n="payops_lede">The system sends a notification the moment a payment is recorded.</p>
     </div>
 
     <!-- 4-stage workflow -->
     <div class="payops-stages">
       <div class="payops-stage reveal-up" style="--rd:0s">
-        <div class="stage-num" data-i18n="payops_s1_num">01 · ROUTING</div>
-        <h3 data-i18n="payops_s1_t">A reference per seller</h3>
-        <p data-i18n="payops_s1_d">Each customer has their own reference and payment email. When money arrives, the order it belongs to is already known.</p>
+        <div class="stage-num" data-i18n="payops_s1_num">01 · SETUP</div>
+        <h3 data-i18n="payops_s1_t">A dedicated payment stream per seller</h3>
+        <p data-i18n="payops_s1_d">Each customer gets their own payment email or reference, so when money comes in, the system knows which seller it belongs to.</p>
         <div class="badge-row">
           <span class="badge">EFT</span>
           <span class="badge">e-TRANSFER</span>
@@ -1165,32 +1166,33 @@
         </div>
       </div>
       <div class="payops-stage reveal-up" style="--rd:.07s">
-        <div class="stage-num" data-i18n="payops_s2_num">02 · EXTRACTION</div>
-        <h3 data-i18n="payops_s2_t">Payment emails read automatically</h3>
-        <p data-i18n="payops_s2_d">Bank alerts, carrier remittance, e-Transfer notices — amount, sender, reference and memo are extracted from each, nothing copied by hand.</p>
+        <div class="stage-num" data-i18n="payops_s2_num">02 · CAPTURE</div>
+        <h3 data-i18n="payops_s2_t">Money in, notification out</h3>
+        <p data-i18n="payops_s2_d">Bank emails, e-Transfer alerts or remittance files are read automatically to record the amount, sender and time received.</p>
         <div class="badge-row">
           <span class="badge" data-i18n="payops_s2_b1">AMOUNT</span>
           <span class="badge" data-i18n="payops_s2_b2">SENDER</span>
-          <span class="badge">REF</span>
-          <span class="badge" data-i18n="payops_s2_b4">MEMO</span>
+          <span class="badge" data-i18n="payops_s2_b3">TIME</span>
         </div>
       </div>
       <div class="payops-stage reveal-up" style="--rd:.14s">
-        <div class="stage-num" data-i18n="payops_s3_num">03 · MATCHING</div>
-        <h3 data-i18n="payops_s3_t">Matched to the right customer</h3>
-        <p data-i18n="payops_s3_d" data-i18n-html="true">Each payment is matched to the customer who owns the reference. <b>Not</b> line-by-line accounting — that's the bookkeeper's job.</p>
+        <div class="stage-num" data-i18n="payops_s3_num">03 · NOTIFY</div>
+        <h3 data-i18n="payops_s3_t">Sellers don't wait for reconciliation</h3>
+        <p data-i18n="payops_s3_d">Once a payment is recorded, the seller can be notified right away instead of waiting for the weekly reconciliation.</p>
         <div class="badge-row">
-          <span class="badge" data-i18n="payops_s3_b1">CUSTOMER</span>
-          <span class="badge" data-i18n="payops_s3_b2">BATCH</span>
+          <span class="badge" data-i18n="payops_s3_b1">NOTIFY</span>
+          <span class="badge" data-i18n="payops_s3_b2">CUSTOMER</span>
+          <span class="badge" data-i18n="payops_s3_b3">AMOUNT</span>
         </div>
       </div>
       <div class="payops-stage reveal-up" style="--rd:.21s">
-        <div class="stage-num" data-i18n="payops_s4_num">04 · SETTLEMENT</div>
-        <h3 data-i18n="payops_s4_t">One weekly statement per seller</h3>
-        <p data-i18n="payops_s4_d">One row per customer, per week — received, shipped, refused, balance. Reviewed once, signed off. No spreadsheet, no month-end scramble.</p>
+        <div class="stage-num" data-i18n="payops_s4_num">04 · RECONCILE</div>
+        <h3 data-i18n="payops_s4_t">Summed up by period</h3>
+        <p data-i18n="payops_s4_d">Payments received, fees and balance are summed up per seller for both sides to check and close each period.</p>
         <div class="badge-row">
           <span class="badge" data-i18n="payops_s4_b1">WEEKLY</span>
           <span class="badge" data-i18n="payops_s4_b2">STATEMENT</span>
+          <span class="badge" data-i18n="payops_s4_b3">BALANCE</span>
         </div>
       </div>
     </div>
@@ -1549,16 +1551,16 @@
       recon_s4_t:"Operational finance dashboard", recon_s4_d:"Receivables, settled, in-review and refused — visible in the same product your operations team already uses.",
       settle_footnote:"Not bookkeeping software. The operational finance layer between your warehouse and your accountant — built for how cross-border sellers move money in Canada.",
       // payment ops
-      payops_eyebrow:"The money",
-      payops_h2:"Orders, tracking and cash — followed in one process.",
-      payops_lede:"EFT, e-Transfer, COD, weekly statements — tied to your orders by a reference number and a line in an email. That thread is followed automatically.",
-      payops_s1_num:"01 · ROUTING", payops_s1_t:"A reference per seller", payops_s1_d:"Each customer has their own reference and payment email. When money arrives, the order it belongs to is already known.",
-      payops_s2_num:"02 · EXTRACTION", payops_s2_t:"Payment emails read automatically", payops_s2_d:"Bank alerts, carrier remittance, e-Transfer notices — amount, sender, reference and memo are extracted from each, nothing copied by hand.",
-      payops_s2_b1:"AMOUNT", payops_s2_b2:"SENDER", payops_s2_b4:"MEMO",
-      payops_s3_num:"03 · MATCHING", payops_s3_t:"Matched to the right customer", payops_s3_d:'Each payment is matched to the customer who owns the reference. <b>Not</b> line-by-line accounting — that\'s the bookkeeper\'s job.',
-      payops_s3_b1:"CUSTOMER", payops_s3_b2:"BATCH",
-      payops_s4_num:"04 · SETTLEMENT", payops_s4_t:"One weekly statement per seller", payops_s4_d:"One row per customer, per week — received, shipped, refused, balance. Reviewed once, signed off. No spreadsheet, no month-end scramble.",
-      payops_s4_b1:"WEEKLY", payops_s4_b2:"STATEMENT",
+      payops_eyebrow:"Payment",
+      payops_h2:"No waiting for reconciliation to know the money arrived.",
+      payops_lede:"The system sends a notification the moment a payment is recorded.",
+      payops_s1_num:"01 · SETUP", payops_s1_t:"A dedicated payment stream per seller", payops_s1_d:"Each customer gets their own payment email or reference, so when money comes in, the system knows which seller it belongs to.",
+      payops_s2_num:"02 · CAPTURE", payops_s2_t:"Money in, notification out", payops_s2_d:"Bank emails, e-Transfer alerts or remittance files are read automatically to record the amount, sender and time received.",
+      payops_s2_b1:"AMOUNT", payops_s2_b2:"SENDER", payops_s2_b3:"TIME",
+      payops_s3_num:"03 · NOTIFY", payops_s3_t:"Sellers don't wait for reconciliation", payops_s3_d:"Once a payment is recorded, the seller can be notified right away instead of waiting for the weekly reconciliation.",
+      payops_s3_b1:"NOTIFY", payops_s3_b2:"CUSTOMER", payops_s3_b3:"AMOUNT",
+      payops_s4_num:"04 · RECONCILE", payops_s4_t:"Summed up by period", payops_s4_d:"Payments received, fees and balance are summed up per seller for both sides to check and close each period.",
+      payops_s4_b1:"WEEKLY", payops_s4_b2:"STATEMENT", payops_s4_b3:"BALANCE",
       email_head:"⌬ INBOUND PAYMENT NOTIFICATION",
       email_from:"From", email_subject:"Subject", email_subject_val:"INTERAC e-Transfer received", email_date:"Date",
       email_body:'You received <mark>$1,260.00 CAD</mark> from <mark>JESSICA LE</mark>.<br/>Reference: <mark>KDCA-2026-0517-C9</mark><br/>Message: "may invoice settlement"',
@@ -1739,16 +1741,16 @@
       recon_s4_t:"Dashboard tài chính vận hành", recon_s4_d:"Phải thu, đã đối soát, đang review, từ chối — nhìn ngay trong cùng sản phẩm mà team vận hành đang dùng.",
       settle_footnote:"Không phải phần mềm kế toán. Lớp tài chính vận hành giữa kho và kế toán — xây cho cách seller cross-border xoay tiền tại Canada.",
       // payment ops
-      payops_eyebrow:"Dòng tiền",
-      payops_h2:"Đơn hàng, tracking và dòng tiền — theo dõi trong cùng một quy trình.",
-      payops_lede:"EFT, e-Transfer, COD, sao kê tuần — nối với đơn qua một mã tham chiếu và một dòng email. Mối nối đó được lần theo tự động.",
-      payops_s1_num:"01 · ĐỊNH TUYẾN", payops_s1_t:"Mỗi seller một mã riêng", payops_s1_d:"Mỗi khách một mã tham chiếu và một email nhận tiền riêng. Tiền vào, biết ngay thuộc đơn nào.",
-      payops_s2_num:"02 · TRÍCH XUẤT", payops_s2_t:"Email thanh toán đọc tự động", payops_s2_d:"Báo ngân hàng, remittance carrier, alert e-Transfer — số tiền, người gửi, mã và memo được bóc tự động, không ai copy tay.",
-      payops_s2_b1:"SỐ TIỀN", payops_s2_b2:"NGƯỜI GỬI", payops_s2_b4:"MEMO",
-      payops_s3_num:"03 · KHỚP", payops_s3_t:"Khớp đúng khách", payops_s3_d:'Mỗi khoản khớp với khách sở hữu mã đó. <b>Không</b> phải kế toán từng dòng — đó là việc của kế toán.',
-      payops_s3_b1:"KHÁCH", payops_s3_b2:"BATCH",
-      payops_s4_num:"04 · SAO KÊ", payops_s4_t:"Mỗi seller một sao kê tuần", payops_s4_d:"Một dòng mỗi khách mỗi tuần — tiền vào, đã gửi, từ chối, số dư. Xem một lần, duyệt, xong. Không Sheets, không dồn cuối tháng.",
-      payops_s4_b1:"TUẦN", payops_s4_b2:"SAO KÊ",
+      payops_eyebrow:"Thanh toán",
+      payops_h2:"Không cần chờ đối soát để biết tiền đã về.",
+      payops_lede:"Hệ thống gửi thông báo ngay khi có khoản thanh toán được ghi nhận.",
+      payops_s1_num:"01 · THIẾT LẬP", payops_s1_t:"Mỗi seller một luồng nhận tiền riêng", payops_s1_d:"Mỗi khách được setup email hoặc mã nhận tiền riêng để khi có khoản thanh toán vào, hệ thống biết khoản đó thuộc seller nào.",
+      payops_s2_num:"02 · GHI NHẬN", payops_s2_t:"Tiền về là có thông báo", payops_s2_d:"Email ngân hàng, e-Transfer alert hoặc file remittance được hệ thống đọc tự động để ghi nhận số tiền, người gửi và thời điểm nhận.",
+      payops_s2_b1:"SỐ TIỀN", payops_s2_b2:"NGƯỜI GỬI", payops_s2_b3:"THỜI GIAN",
+      payops_s3_num:"03 · THEO DÕI", payops_s3_t:"Seller không phải chờ đối soát", payops_s3_d:"Khi tiền được ghi nhận, seller có thể nhận thông báo ngay thay vì phải chờ đến bảng đối soát cuối tuần.",
+      payops_s3_b1:"THÔNG BÁO", payops_s3_b2:"KHÁCH HÀNG", payops_s3_b3:"SỐ TIỀN",
+      payops_s4_num:"04 · ĐỐI SOÁT", payops_s4_t:"Tổng hợp theo từng kỳ", payops_s4_d:"Các khoản đã nhận, phí phát sinh và số dư được tổng hợp theo từng seller để hai bên kiểm tra và chốt theo kỳ.",
+      payops_s4_b1:"TUẦN", payops_s4_b2:"BẢNG KÊ", payops_s4_b3:"SỐ DƯ",
       email_head:"⌬ THANH TOÁN MỚI",
       email_from:"Từ", email_subject:"Tiêu đề", email_subject_val:"Đã nhận INTERAC e-Transfer", email_date:"Ngày",
       email_body:'Bạn nhận <mark>$1,260.00 CAD</mark> từ <mark>JESSICA LE</mark>.<br/>Mã: <mark>KDCA-2026-0517-C9</mark><br/>Lời nhắn: "hoá đơn tháng 5"',
